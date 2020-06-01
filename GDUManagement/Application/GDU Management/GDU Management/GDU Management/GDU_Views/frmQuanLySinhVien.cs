@@ -94,12 +94,7 @@ namespace GDU_Management
             txtTenKhoaHoc.DataBindings.Clear();
             txtTenKhoaHoc.DataBindings.Add("text", dgvDanhSachKhoaHoc.DataSource, "TenKhoaHoc");
             txtNienKhoa.DataBindings.Clear();
-            txtNienKhoa.DataBindings.Add("text", dgvDanhSachKhoaHoc.DataSource, "NienKhoa");
-
-            //  lblMaKhoaHocKL.DataBindings.Clear();
-            //lblMaKhoaHocKL.DataBindings.Add("text", dgvDanhSachKhoaHoc.DataSource, "MaKhoaHoc");
-
-            // string maKhoa = cboChonKhoa.SelectedValue.ToString();
+            txtNienKhoa.DataBindings.Add("text", dgvDanhSachKhoaHoc.DataSource, "NienKhoa");     
 
         }
 
@@ -109,13 +104,6 @@ namespace GDU_Management
             cboChonKhoa.DataSource = khoaService.GetAllKhoa();
             cboChonKhoa.DisplayMember = "TenKhoa";
             cboChonKhoa.ValueMember = "MaKhoa";
-        }
-
-        public void LoadDuLieuNganh(string maKhoa)
-        {
-            maKhoa = cboChonKhoa.SelectedItem.ToString();
-            cboChonNganh.DisplayMember = "TenNganh";
-            cboChonNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
         }
 
         //hàm check data 
@@ -302,7 +290,7 @@ namespace GDU_Management
             kh.MaKhoa = txtMaKhoa.Text;
             kh.TenKhoa = txtTenKhoa.Text;
             khoaService.UpdateKhoa(kh);
-            MessageBox.Show("Cập nhật thông tin '"+txtMaKhoa.Text+"' Thành Công", "THÔNG BÁO", MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Cập nhật thông tin '"+txtMaKhoa+"' Thành Công", "THÔNG BÁO", MessageBoxButtons.OK,MessageBoxIcon.Information);
             LoadDanhSachKhoaToDatagridview();
         }
 
@@ -341,14 +329,15 @@ namespace GDU_Management
 
         private void cboChonKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             string maKhoa = cboChonKhoa.SelectedValue.ToString();
             cboChonNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
             cboChonNganh.DisplayMember = "TenNganh";
+            cboChonNganh.ValueMember = "MaNganh";
         }
 
         private void cboChonNganh_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
         }
 
         private void btnNewKhoaHoc_Click(object sender, EventArgs e)

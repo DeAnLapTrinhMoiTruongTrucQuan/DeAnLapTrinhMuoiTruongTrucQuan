@@ -26,6 +26,7 @@ namespace GDU_Management.DaoImpl
                 nganhHocs = nganhHoc.ToList();
             }
         }
+
         // thêm ngành
         public NganhHoc CreateNganhHoc(NganhHoc nganhHoc)
         {
@@ -67,7 +68,7 @@ namespace GDU_Management.DaoImpl
         //    return nganhHoc;
         //}
 
-            //cập nhật ngành
+        //cập nhật ngành
         public void UpdateNganhHoc(NganhHoc nganhHoc)
         {
 

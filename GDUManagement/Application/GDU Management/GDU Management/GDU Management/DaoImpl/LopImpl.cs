@@ -12,8 +12,8 @@ namespace GDU_Management.DaoImpl
     class LopImpl : IDaoLop
     {
         //tạo kết nối database 
-        GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
-        List<Lop> lop;
+        GDUDataConnectionsDataContext db;
+        List<Lop> listLop;
         public Lop CreateLop(Lop lop)
         {
             //code content
@@ -31,9 +31,19 @@ namespace GDU_Management.DaoImpl
             return null;
         }
 
+        public List<Lop> GetDanhSachLopByMaNganhVaMaKhoaHoc(string maNganh, string maKhoaHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var lop = from x in db.Lops where x.MaNganh == maNganh && x.MaKhoaHoc == maKhoaHoc select x;
+            listLop = lop.ToList();
+            return listLop;
+        }
+
         public void UpdateLop(Lop lop)
         {
             //code content
         }
+
+       
     }
 }

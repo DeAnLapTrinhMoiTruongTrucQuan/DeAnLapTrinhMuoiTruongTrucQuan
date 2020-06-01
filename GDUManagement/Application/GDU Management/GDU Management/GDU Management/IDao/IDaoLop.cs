@@ -13,5 +13,6 @@ namespace GDU_Management.IDao
         Lop CreateLop(Lop lop);
         void DeleteLop(string maLop);
         void UpdateLop(Lop lop);
+        List<Lop> GetDanhSachLopByMaNganhVaMaKhoaHoc(string maNganh, string maKhoaHoc);
     }
 }
