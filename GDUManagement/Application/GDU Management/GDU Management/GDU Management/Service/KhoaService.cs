@@ -42,5 +42,10 @@ namespace GDU_Management.Service
         {
             return khoaIDao.GetKhoaByMaKhoa(maKhoa);
         }
+
+        public List<Khoa> TimKiemKhoaByTenKhoa(string tenKhoa)
+        {
+            return khoaIDao.TimKiemKhoaByTenKhoa(tenKhoa);
+        }
     }
 }

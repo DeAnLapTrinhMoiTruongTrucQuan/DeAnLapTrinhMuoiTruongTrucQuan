@@ -13,7 +13,7 @@ namespace GDU_Management.DaoImpl
     {
         //tạo kết nối database 
         GDUDataConnectionsDataContext db;
-        List<Khoa> khoas;
+        List<Khoa> listKhoas;
 
         //lấy database từ cơ sở dữ liệu
         public KhoaImpl()
@@ -23,7 +23,7 @@ namespace GDU_Management.DaoImpl
             {
                 var khoa = from x in db.Khoas select x;
                 db.DeferredLoadingEnabled = true;
-                khoas = khoa.ToList();
+                listKhoas = khoa.ToList();
             }
         }
 
@@ -53,8 +53,8 @@ namespace GDU_Management.DaoImpl
         {
             db = new GDUDataConnectionsDataContext();
             var k = from x in db.Khoas select x;
-            khoas = k.ToList();
-            return khoas;
+            listKhoas = k.ToList();
+            return listKhoas;
         }
 
         //lấy danh sách khoa theo mã khoa
@@ -62,8 +62,16 @@ namespace GDU_Management.DaoImpl
         {
             db = new GDUDataConnectionsDataContext();
             var k = from x in db.Khoas where x.MaKhoa == maKhoa select x;
-            khoas = k.ToList();
-            return khoas;
+            listKhoas = k.ToList();
+            return listKhoas;
+        }
+
+        public List<Khoa> TimKiemKhoaByTenKhoa(string tenKhoa)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var khoa = from x in db.Khoas where x.TenKhoa.Contains(tenKhoa) select x;
+            listKhoas = khoa.ToList();
+            return listKhoas;
         }
 
         //update khoa

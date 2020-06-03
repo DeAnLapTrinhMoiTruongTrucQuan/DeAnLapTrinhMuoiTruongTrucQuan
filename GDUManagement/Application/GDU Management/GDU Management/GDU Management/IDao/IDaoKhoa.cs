@@ -15,5 +15,7 @@ namespace GDU_Management.IDao
         void UpdateKhoa(Khoa khoa);
         List<Khoa> GetKhoaByMaKhoa(string maKhoa);
 
+        List<Khoa> TimKiemKhoaByTenKhoa(string tenKhoa);
+
     }
 }

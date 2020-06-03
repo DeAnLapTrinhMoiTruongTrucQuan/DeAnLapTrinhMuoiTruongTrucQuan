@@ -35,6 +35,7 @@ namespace GDU_Management.DaoImpl
         {
             db = new GDUDataConnectionsDataContext();
             var lop = from x in db.Lops where x.MaNganh == maNganh && x.MaKhoaHoc == maKhoaHoc select x;
+            listLop = new List<Lop>();
             listLop = lop.ToList();
             return listLop;
         }

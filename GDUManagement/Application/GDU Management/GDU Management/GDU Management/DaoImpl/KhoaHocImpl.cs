@@ -15,9 +15,21 @@ namespace GDU_Management.DaoImpl
         GDUDataConnectionsDataContext db;
         List<KhoaHoc> listkhoaHoc;
 
+        public KhoaHocImpl()
+        {
+            db = new GDUDataConnectionsDataContext();
+            using (db)
+            {
+                var khoaHoc = from x in db.KhoaHocs select x;
+                db.DeferredLoadingEnabled = true;
+                listkhoaHoc = khoaHoc.ToList();
+            }
+        }
         public KhoaHoc CreateKhoaHoc(KhoaHoc khoaHoc)
         {
-            //code content
+            db = new GDUDataConnectionsDataContext();
+            KhoaHoc khoaHocs = new KhoaHoc();
+
             return null;
         }
 

@@ -26,6 +26,7 @@ namespace GDU_Management
 
         //các delegate dùng để truyền id qua các form con
         delegate void SendMaKhoaToFrmDanhSachKhoa(TextBox dlgtxtMaKhoa);
+        delegate void SendMaKhoaHocMaNganhToFrmDanhSachLop(string dlgtMaKhoaHoc, string MaNganh);
 
 
         //khai báo service 
@@ -209,6 +210,10 @@ namespace GDU_Management
         private void btnXemDanhSachLop_Click(object sender, EventArgs e)
         {
             frmDanhSachLop frmDSLop = new frmDanhSachLop();
+            SendMaKhoaHocMaNganhToFrmDanhSachLop senMaKhoaHocMaNganh = new SendMaKhoaHocMaNganhToFrmDanhSachLop(frmDSLop.FunDatafrmDanhSachLopToFrmQLSV);
+            string maNganhKL = cboChonNganh.SelectedValue.ToString();
+            string maKhoaHocKL = txtMaKhoaHoc.Text.Trim();
+            senMaKhoaHocMaNganh(maNganhKL, maKhoaHocKL);
             frmDSLop.ShowDialog();
         }
 
@@ -266,7 +271,6 @@ namespace GDU_Management
                 khoaService.CreateKhoa(khoa);
                 LoadDanhSachKhoaToDatagridview();
                 MessageBox.Show("Thêm Thành Công...", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 btnSaveKhoa.Enabled = false;
             }
             else
@@ -337,7 +341,7 @@ namespace GDU_Management
 
         private void cboChonNganh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+           // MessageBox.Show(cboChonNganh.SelectedValue.ToString());
         }
 
         private void btnNewKhoaHoc_Click(object sender, EventArgs e)
@@ -349,6 +353,26 @@ namespace GDU_Management
             btnSaveKhoaHoc.Enabled = true;
             btnUpdateKhoaHoc.Enabled = false;
             btnDeleteKhoaHoc.Enabled = false;
+        }
+
+        private void txtTimKiem_QLK_TextChanged(object sender, EventArgs e)
+        {
+            dgvDanhSachKhoa.DataSource = khoaService.TimKiemKhoaByTenKhoa(txtTimKiem_QLK.Text).ToList();
+        }
+
+        private void txtTimKiem_QLK_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtTimKiem_QLK.Clear();
+        }
+
+        private void btnSaveKhoaHoc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdateKhoaHoc_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

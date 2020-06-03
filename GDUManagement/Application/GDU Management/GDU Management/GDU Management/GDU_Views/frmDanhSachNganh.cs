@@ -31,8 +31,7 @@ namespace GDU_Management
         {
             string maKhoa;
             maKhoa = lblMaKhoa.Text;
-              dgvDSNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
-
+             dgvDSNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
         }
 
         //load data lên textbox
@@ -55,13 +54,16 @@ namespace GDU_Management
             }
             return true;
         }
-        //Kết Thúc Danh sách Hàm PUBLIC
 
-
+        //hàm nhận text maKhoa từ frmQLSV
         public void FunData(TextBox txtFrmDanhSachKhoa)
         {
             lblMaKhoa.Text = txtFrmDanhSachKhoa.Text;
         }
+        //Kết Thúc Danh sách Hàm PUBLIC
+
+
+
         private void pnDanhSachNganh_Paint(object sender, PaintEventArgs e)
         {
 

@@ -34,7 +34,7 @@ namespace GDU_Management.Service
             lopIDao.UpdateLop(lop);
         }
 
-        List<Lop> GetDanhSachLopByMaNganhVaMaKhoaHoc(string maNganh, string maKhoaHoc)
+        public List<Lop> GetDanhSachLopByMaNganhVaMaKhoaHoc(string maNganh, string maKhoaHoc)
         {
             return lopIDao.GetDanhSachLopByMaNganhVaMaKhoaHoc(maNganh, maKhoaHoc);
         }
