@@ -19,9 +19,7 @@ namespace GDU_Management
         {
             InitializeComponent();
             NgayGio();
-            btnSaveKhoa.Enabled = false;
-            btnUpdateKhoa.Enabled = false;
-            btnDeleteKhoa.Enabled = false; 
+            EnableFalseButton();
         }
 
         //các delegate dùng để truyền id qua các form con
@@ -34,6 +32,7 @@ namespace GDU_Management
         KhoaService khoaService = new KhoaService();
         KhoaHocService khoaHocService = new KhoaHocService();
         NganhHocService nganhHocService = new NganhHocService();
+        LopService lopService = new LopService();
 
       //------------------------DS HÀM PUBLIC---------------------//
 
@@ -60,7 +59,7 @@ namespace GDU_Management
         //load danh sach sinh viên lên datagridview
         public void LoadDanhSachSinhVienToDatagridview()
         {
-            dgvDSSV.DataSource = sinhVienService.GetAllSinhVien();
+            //dgvDSSV.DataSource = sinhVienService.GetAllSinhVien();
         }
 
         //laod danh sach khoa lên datagridview
@@ -73,6 +72,24 @@ namespace GDU_Management
         public void LoadDanhSachKhoaHocToDatagridview()
         {
             dgvDanhSachKhoaHoc.DataSource = khoaHocService.GetAllKhoaHoc();
+        }
+
+        //Load danh sách lớp học vào treeview 
+        public void LoadDanhSachLopHocToTreeview()
+        {
+            string maNganh = cboChonNganhSV.SelectedValue.ToString();
+            string maKhoaHoc = cboChonKhoaHocSV.SelectedValue.ToString();
+            GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
+            var listLp = from x in db.Lops where x.MaNganh == maNganh && x.MaKhoaHoc == maKhoaHoc select x;
+            trvDSLop.Nodes.Clear();
+            foreach (var lp in listLp)
+            {
+                TreeNode treeNode = new TreeNode("Danh Sách Lớp", 0, 0);
+                treeNode.Name = lp.MaLop;
+                treeNode.Text = lp.TenLop;
+                trvDSLop.Nodes.Add(treeNode);
+            }
+            trvDSLop.ExpandAll();
         }
 
         //hàm show dữ liệu dgv lên textbox
@@ -102,21 +119,74 @@ namespace GDU_Management
         //show dữ liệu lên combox
         public void LoadDataToCombox()
         {
+            //tab Khóa & Lớp
             cboChonKhoa.DataSource = khoaService.GetAllKhoa();
             cboChonKhoa.DisplayMember = "TenKhoa";
             cboChonKhoa.ValueMember = "MaKhoa";
+
+            //tab Sinh Viên
+            cboChonKhoaSV.DataSource = khoaService.GetAllKhoa();
+            cboChonKhoaSV.DisplayMember = "TenKhoa";
+            cboChonKhoaSV.ValueMember = "MaKhoa";
+
+            string maKhoa = cboChonKhoa.SelectedValue.ToString();
+            cboChonNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
+            cboChonNganh.DisplayMember = "TenNganh";
+            cboChonNganh.ValueMember = "MaNganh";
+            btnXemDanhSachLop.Enabled = true;
         }
 
-        //hàm check data 
+        //hàm check data khoa
         public bool checkDataKHOA()
         {
             if (string.IsNullOrEmpty(txtTenKhoa.Text))
             {
-                MessageBox.Show("Tên Khoa Không được bỏ trống, vui lòng kiểm tra lại...");
+                MessageBox.Show("Tên Khoa Không được bỏ trống, vui lòng kiểm tra lại...","Cảnh Báo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 txtTenKhoa.Focus();
                 return false;
             }
             return true;
+        }
+
+        //hàm check data khóa học
+        public bool checkDataKHOAHOC()
+        {
+            if (string.IsNullOrEmpty(txtMaKhoaHoc.Text))
+            {
+                MessageBox.Show("Mã Khóa Học Không được bỏ trống, vui lòng kiểm tra lại...","Cảnh Báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMaKhoaHoc.Focus();
+                txtMaKhoaHoc.ReadOnly = false;
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtTenKhoaHoc.Text))
+            {
+                MessageBox.Show("Tên Khóa Học Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenKhoaHoc.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtNienKhoa.Text))
+            {
+                MessageBox.Show("Niên Khóa Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNienKhoa.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        //hàm các đóng kích hoạt các button khi hệ thống bắt đầu
+        public void EnableFalseButton()
+        {
+            //tab  Khoa & Ngành
+            btnSaveKhoa.Enabled = false;
+            btnUpdateKhoa.Enabled = false;
+            btnDeleteKhoa.Enabled = false;
+           // btnDSNganh.Enabled = false;
+
+            //tab Khóa & Lớp
+            btnSaveKhoaHoc.Enabled = false;
+            btnUpdateKhoaHoc.Enabled = false;
+            btnDeleteKhoaHoc.Enabled = false;
+           // btnXemDanhSachLop.Enabled = false;
         }
 
         //KẾT THÚC DS HÀM PUBLIC
@@ -201,20 +271,36 @@ namespace GDU_Management
 
         private void btnDSNganh_Click(object sender, EventArgs e)
         {
-            frmDanhSachNganh frmDSNganh = new frmDanhSachNganh();
-            SendMaKhoaToFrmDanhSachKhoa sendMaKhoa = new SendMaKhoaToFrmDanhSachKhoa(frmDSNganh.FunData);
-            sendMaKhoa(this.txtMaKhoa);
-            frmDSNganh.ShowDialog();
+            try
+            {
+                frmDanhSachNganh frmDSNganh = new frmDanhSachNganh();
+                SendMaKhoaToFrmDanhSachKhoa sendMaKhoa = new SendMaKhoaToFrmDanhSachKhoa(frmDSNganh.FunData);
+                sendMaKhoa(this.txtMaKhoa);
+                frmDSNganh.ShowDialog();
+            }
+            catch 
+            {
+                MessageBox.Show("Chưa Chọn Ngành, Vui Lòng Chọn 1 Ngành", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
         }
 
         private void btnXemDanhSachLop_Click(object sender, EventArgs e)
         {
-            frmDanhSachLop frmDSLop = new frmDanhSachLop();
-            SendMaKhoaHocMaNganhToFrmDanhSachLop senMaKhoaHocMaNganh = new SendMaKhoaHocMaNganhToFrmDanhSachLop(frmDSLop.FunDatafrmDanhSachLopToFrmQLSV);
-            string maNganhKL = cboChonNganh.SelectedValue.ToString();
-            string maKhoaHocKL = txtMaKhoaHoc.Text.Trim();
-            senMaKhoaHocMaNganh(maNganhKL, maKhoaHocKL);
-            frmDSLop.ShowDialog();
+            try
+            {
+                frmDanhSachLop frmDSLop = new frmDanhSachLop();
+                SendMaKhoaHocMaNganhToFrmDanhSachLop senMaKhoaHocMaNganh = new SendMaKhoaHocMaNganhToFrmDanhSachLop(frmDSLop.FunDatafrmDanhSachLopToFrmQLSV);
+                string maNganhKL = cboChonNganh.SelectedValue.ToString();
+                string maKhoaHocKL = txtMaKhoaHoc.Text.Trim();
+                senMaKhoaHocMaNganh(maNganhKL, maKhoaHocKL);
+                frmDSLop.ShowDialog();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa Chọn Ngành Hoặc Khóa, Vui Lòng Kiểm Tra Lại...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
         }
 
         private void btnHome_QLK_Click(object sender, EventArgs e)
@@ -254,6 +340,7 @@ namespace GDU_Management
 
         private void dgvDanhSachKhoa_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnDSNganh.Enabled = true;
             btnSaveKhoa.Enabled = false;
             btnUpdateKhoa.Enabled = true;
             btnDeleteKhoa.Enabled = true;
@@ -290,12 +377,19 @@ namespace GDU_Management
 
         private void btnUpdateKhoa_Click(object sender, EventArgs e)
         {
-            Khoa kh = new Khoa();
-            kh.MaKhoa = txtMaKhoa.Text;
-            kh.TenKhoa = txtTenKhoa.Text;
-            khoaService.UpdateKhoa(kh);
-            MessageBox.Show("Cập nhật thông tin '"+txtMaKhoa+"' Thành Công", "THÔNG BÁO", MessageBoxButtons.OK,MessageBoxIcon.Information);
-            LoadDanhSachKhoaToDatagridview();
+            if (string.IsNullOrEmpty(txtMaKhoa.Text))
+            {
+                MessageBox.Show("Cập nhật thông tin '" + txtMaKhoa + "' Thất bại, Vui Lòng Kiểm Tra Lại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Khoa kh = new Khoa();
+                kh.MaKhoa = txtMaKhoa.Text;
+                kh.TenKhoa = txtTenKhoa.Text;
+                khoaService.UpdateKhoa(kh);
+                MessageBox.Show("Cập nhật thông tin '" + txtMaKhoa + "' Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadDanhSachKhoaToDatagridview();
+            }
         }
 
         private void btnDeleteKhoa_Click(object sender, EventArgs e)
@@ -337,6 +431,7 @@ namespace GDU_Management
             cboChonNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
             cboChonNganh.DisplayMember = "TenNganh";
             cboChonNganh.ValueMember = "MaNganh";
+            btnXemDanhSachLop.Enabled = true;
         }
 
         private void cboChonNganh_SelectedIndexChanged(object sender, EventArgs e)
@@ -357,7 +452,8 @@ namespace GDU_Management
 
         private void txtTimKiem_QLK_TextChanged(object sender, EventArgs e)
         {
-            dgvDanhSachKhoa.DataSource = khoaService.TimKiemKhoaByTenKhoa(txtTimKiem_QLK.Text).ToList();
+            dgvDanhSachKhoa.DataSource = khoaService.SearchKhoaByTenKhoa(txtTimKiem_QLK.Text).ToList();
+            dgvDanhSachKhoa.DataSource = khoaService.SearchKhoaByMaKhoa(txtTimKiem_QLK.Text).ToList();
         }
 
         private void txtTimKiem_QLK_MouseClick(object sender, MouseEventArgs e)
@@ -367,12 +463,106 @@ namespace GDU_Management
 
         private void btnSaveKhoaHoc_Click(object sender, EventArgs e)
         {
+            if (checkDataKHOAHOC())
+            {
+                KhoaHoc khoaHoc = new KhoaHoc();
+                khoaHoc.MaKhoaHoc = txtMaKhoaHoc.Text.Trim();
+                khoaHoc.TenKhoaHoc = txtTenKhoaHoc.Text.Trim();
+                khoaHoc.NienKhoa = txtNienKhoa.Text.Trim();
 
+                khoaHocService.CreateKhoaHoc(khoaHoc);
+                LoadDanhSachKhoaHocToDatagridview();
+                MessageBox.Show("Thêm Thành Công...", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtMaKhoaHoc.Clear();
+                txtTenKhoaHoc.Clear();
+                txtNienKhoa.Clear();
+                btnSaveKhoaHoc.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Thêm Thất Bại, Vui Lòng Kiểm Tra Lạ...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnUpdateKhoaHoc_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtMaKhoaHoc.Text))
+            {
+                MessageBox.Show("Cập Nhật Thông Tin '" + txtMaKhoaHoc.Text + "' Thất bại, Vui Lòng Kiểm Tra lại...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                KhoaHoc khoaHoc = new KhoaHoc();
+                khoaHoc.MaKhoaHoc = txtMaKhoaHoc.Text.Trim();
+                khoaHoc.TenKhoaHoc = txtTenKhoaHoc.Text.Trim();
+                khoaHoc.NienKhoa = txtNienKhoa.Text.Trim();
+                khoaHocService.UpdateKhoaHoc(khoaHoc);
+                LoadDanhSachKhoaHocToDatagridview();
+                MessageBox.Show("Cập Nhật Thông Tin '" + txtMaKhoaHoc.Text + "' Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
+        private void dgvDanhSachKhoaHoc_MouseClick(object sender, MouseEventArgs e)
+        {
+            ShowDataTuDataGridViewToTextBox();
+            btnSaveKhoaHoc.Enabled = false;
+            btnUpdateKhoaHoc.Enabled = true;
+            btnDeleteKhoaHoc.Enabled = true;
+        }
+
+        private void btnDeleteKhoaHoc_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn Có Muốn Xóa '" + txtMaKhoaHoc.Text + "' ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                string maKhoaHoc = txtMaKhoaHoc.Text;
+                if (string.IsNullOrEmpty(txtMaKhoaHoc.Text))
+                {
+                    MessageBox.Show("Xóa Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    khoaHocService.DeleteKhoaHoc(maKhoaHoc);
+                    LoadDanhSachKhoaHocToDatagridview();
+                    MessageBox.Show("Xóa Thành Công...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtMaKhoaHoc.Text = "";
+                    txtTenKhoaHoc.Text = "";
+                    txtNienKhoa.Text = "";
+                    btnDeleteKhoa.Enabled = false;
+                    btnUpdateKhoa.Enabled = false;
+                }
+            }
+         }
+
+        private void txtTimKiemKhoaHocKL_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtTimKiemKhoaHocKL.Clear();
+        }
+
+        private void txtTimKiemKhoaHocKL_TextChanged(object sender, EventArgs e)
+        {
+            dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByMaKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+            dgvDanhSachKhoaHoc.DataSource=khoaHocService.SearchKhoaHocByTenKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+            dgvDanhSachKhoaHoc.DataSource=khoaHocService.SearchKhoaHocByNienKhoa(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+        }
+
+        private void cboChonKhoaSV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string maKhoa = cboChonKhoaSV.SelectedValue.ToString();
+            cboChonNganhSV.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
+            cboChonNganhSV.DisplayMember = "TenNganh";
+            cboChonNganhSV.ValueMember = "MaNganh";
+        }
+
+        private void cboChonNganhSV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboChonKhoaHocSV.DataSource = khoaHocService.GetAllKhoaHoc();
+            cboChonKhoaHocSV.DisplayMember = "TenKhoaHoc";
+            cboChonKhoaHocSV.ValueMember = "MaKhoaHoc";
+        }
+
+        private void cboChonKhoaHocSV_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            LoadDanhSachLopHocToTreeview();
         }
     }
 }

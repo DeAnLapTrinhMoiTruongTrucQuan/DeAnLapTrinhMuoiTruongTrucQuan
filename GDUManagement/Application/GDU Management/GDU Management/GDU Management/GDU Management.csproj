@@ -56,6 +56,7 @@
     <Compile Include="DaoImpl\MonHocImpl.cs" />
     <Compile Include="DaoImpl\NganhHocImpl.cs" />
     <Compile Include="DaoImpl\SinhVienImpl.cs" />
+    <Compile Include="DaoImpl\ThoiKhoaBieuImpl.cs" />
     <Compile Include="GDU_Views\frmAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +132,7 @@
     <Compile Include="IDao\IDaoMonHoc.cs" />
     <Compile Include="IDao\IDaoNganhHoc.cs" />
     <Compile Include="IDao\IDaoSinhVien.cs" />
+    <Compile Include="IDao\IDaoThoiKhoaBieu.cs" />
     <Compile Include="Model\GDUDataConnections.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,6 +149,7 @@
     <Compile Include="Service\MonHocService.cs" />
     <Compile Include="Service\NganhHocService.cs" />
     <Compile Include="Service\SinhVienService.cs" />
+    <Compile Include="Service\ThoiKhoaBieuService.cs" />
     <EmbeddedResource Include="GDU_Views\frmAccount.resx">
       <DependentUpon>frmAccount.cs</DependentUpon>
     </EmbeddedResource>

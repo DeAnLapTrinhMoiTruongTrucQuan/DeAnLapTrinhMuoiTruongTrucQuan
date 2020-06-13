@@ -43,9 +43,17 @@ namespace GDU_Management.Service
             return khoaIDao.GetKhoaByMaKhoa(maKhoa);
         }
 
-        public List<Khoa> TimKiemKhoaByTenKhoa(string tenKhoa)
+        //tìm kiếm theo tên khoa
+        public List<Khoa> SearchKhoaByTenKhoa(string tenKhoa)
         {
-            return khoaIDao.TimKiemKhoaByTenKhoa(tenKhoa);
+            return khoaIDao.SearchKhoaByTenKhoa(tenKhoa);
         }
+
+        //tìm kiếm theo mã khoa
+        public List<Khoa> SearchKhoaByMaKhoa(string maKhoa)
+        {
+            return khoaIDao.SearchKhoaByMaKhoa(maKhoa);
+        }
+
     }
 }

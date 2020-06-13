@@ -28,14 +28,18 @@ namespace GDU_Management.DaoImpl
         public KhoaHoc CreateKhoaHoc(KhoaHoc khoaHoc)
         {
             db = new GDUDataConnectionsDataContext();
-            KhoaHoc khoaHocs = new KhoaHoc();
-
-            return null;
+            db.KhoaHocs.InsertOnSubmit(khoaHoc);
+            db.SubmitChanges();
+            return khoaHoc;
         }
 
         public void DeleteKhoaHoc(string maKhoaHoc)
         {
-            //code content
+            db = new GDUDataConnectionsDataContext();
+            KhoaHoc khoaHoc = new KhoaHoc();
+            khoaHoc = db.KhoaHocs.Single(x => x.MaKhoaHoc == maKhoaHoc);
+            db.KhoaHocs.DeleteOnSubmit(khoaHoc);
+            db.SubmitChanges();
         }
 
         public List<KhoaHoc> GetAllKhoaHoc()
@@ -46,9 +50,38 @@ namespace GDU_Management.DaoImpl
             return listkhoaHoc; ;
         }
 
+        public List<KhoaHoc> SearchKhoaHocByMaKhoaHoc(string maKhoaHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var khoaHoc = from x in db.KhoaHocs where x.MaKhoaHoc.Contains(maKhoaHoc) select x;
+            listkhoaHoc = khoaHoc.ToList();
+            return listkhoaHoc;
+        }
+
+        public List<KhoaHoc> SearchKhoaHocByNienKhoa(string nienKhoa)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var khoaHoc = from x in db.KhoaHocs where x.NienKhoa.Contains(nienKhoa) select x;
+            listkhoaHoc = khoaHoc.ToList();
+            return listkhoaHoc;
+        }
+
+        public List<KhoaHoc> SearchKhoaHocByTenKhoaHoc(string tenKhoaHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var khoaHoc = from x in db.KhoaHocs where x.TenKhoaHoc.Contains(tenKhoaHoc) select x;
+            listkhoaHoc = khoaHoc.ToList();
+            return listkhoaHoc;
+        }
+
         public void UpdateKhoaHoc(KhoaHoc khoaHoc)
         {
-            //code content
+            db = new GDUDataConnectionsDataContext();
+            KhoaHoc khoaHocs = new KhoaHoc();
+            khoaHocs = db.KhoaHocs.Single(x => x.MaKhoaHoc == khoaHoc.MaKhoaHoc);
+            khoaHocs.TenKhoaHoc = khoaHoc.TenKhoaHoc;
+            khoaHocs.NienKhoa = khoaHoc.NienKhoa;
+            db.SubmitChanges();
         }
     }
 }

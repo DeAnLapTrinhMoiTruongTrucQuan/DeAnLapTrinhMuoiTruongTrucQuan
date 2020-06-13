@@ -60,6 +60,7 @@ namespace GDU_Management
         {
             lblMaKhoa.Text = txtFrmDanhSachKhoa.Text;
         }
+
         //Kết Thúc Danh sách Hàm PUBLIC
 
 

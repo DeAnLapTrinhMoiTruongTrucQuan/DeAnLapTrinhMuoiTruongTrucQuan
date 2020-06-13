@@ -13,5 +13,8 @@ namespace GDU_Management.IDao
         KhoaHoc CreateKhoaHoc(KhoaHoc khoaHoc);
         void DeleteKhoaHoc(string maKhoaHoc);
         void UpdateKhoaHoc(KhoaHoc khoaHoc);
+        List<KhoaHoc> SearchKhoaHocByMaKhoaHoc(string maKhoaHoc);
+        List<KhoaHoc> SearchKhoaHocByTenKhoaHoc(string tenKhoaHoc);
+        List<KhoaHoc> SearchKhoaHocByNienKhoa(string nienKhoa);
     }
 }

@@ -66,7 +66,15 @@ namespace GDU_Management.DaoImpl
             return listKhoas;
         }
 
-        public List<Khoa> TimKiemKhoaByTenKhoa(string tenKhoa)
+        public List<Khoa> SearchKhoaByMaKhoa(string maKhoa)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var khoa = from x in db.Khoas where x.MaKhoa.Contains(maKhoa) select x;
+            listKhoas = khoa.ToList();
+            return listKhoas;
+        }
+
+        public List<Khoa> SearchKhoaByTenKhoa(string tenKhoa)
         {
             db = new GDUDataConnectionsDataContext();
             var khoa = from x in db.Khoas where x.TenKhoa.Contains(tenKhoa) select x;

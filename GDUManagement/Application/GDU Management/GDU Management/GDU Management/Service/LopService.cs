@@ -19,7 +19,7 @@ namespace GDU_Management.Service
             return lopIDao.getAllLop();
         }
         //tạo lớp
-        public Lop CreateKhoa(Lop lop)
+        public Lop CreateLop(Lop lop)
         {
             return lopIDao.CreateLop(lop);
         }
@@ -34,6 +34,7 @@ namespace GDU_Management.Service
             lopIDao.UpdateLop(lop);
         }
 
+        //lấy danh sách lớp theo mã ngành & mã khóa học
         public List<Lop> GetDanhSachLopByMaNganhVaMaKhoaHoc(string maNganh, string maKhoaHoc)
         {
             return lopIDao.GetDanhSachLopByMaNganhVaMaKhoaHoc(maNganh, maKhoaHoc);

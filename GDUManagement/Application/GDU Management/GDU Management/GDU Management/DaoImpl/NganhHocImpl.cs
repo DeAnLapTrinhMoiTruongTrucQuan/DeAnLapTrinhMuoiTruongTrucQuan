@@ -71,7 +71,6 @@ namespace GDU_Management.DaoImpl
         //cập nhật ngành
         public void UpdateNganhHoc(NganhHoc nganhHoc)
         {
-
             db = new GDUDataConnectionsDataContext();
             NganhHoc nh = new NganhHoc();
             nh = db.NganhHocs.Single(x => x.MaNganh == nganhHoc.MaNganh);
