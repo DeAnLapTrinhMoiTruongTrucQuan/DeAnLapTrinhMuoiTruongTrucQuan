@@ -61,7 +61,39 @@ namespace GDU_Management
             lblMaKhoa.Text = txtFrmDanhSachKhoa.Text;
         }
 
-        //Kết Thúc Danh sách Hàm PUBLIC
+        //hàm tạo id tự động
+        public void AutoIDNganh()
+        {
+            int count = 0;
+            string chuoi_id = "";
+            int chuoi_id_key = 0;
+
+            string maKhoa = lblMaKhoa.Text;
+            string lastID = maKhoa.Substring(8); //lay 2 so cuoi cua ma khoa
+
+            count = dgvDSNganh.Rows.Count;
+            if(count == 0)
+            {
+                txtMaNganh.Text = "M4716" + lastID + "000";
+            }
+            else
+            {
+                chuoi_id = Convert.ToString(dgvDSNganh.Rows[count - 1].Cells[1].Value);
+                chuoi_id_key = Convert.ToInt32(chuoi_id.Remove(0, 9));
+
+                if (chuoi_id_key + 1 < 10)
+                {
+                    txtMaNganh.Text = "M4716" + lastID + "00" + (chuoi_id_key + 1).ToString();
+                }
+                else if (chuoi_id_key + 1 >= 10)
+                {
+                    txtMaNganh.Text = "M4716" + lastID + "0" + (chuoi_id_key + 1).ToString();
+                }
+            }
+        }
+
+        //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
+        //--------------------------------------------------------------------------------------//
 
 
 
@@ -143,11 +175,29 @@ namespace GDU_Management
 
         private void btnNewNganh_Click(object sender, EventArgs e)
         {
-            txtMaNganh.Text = "";
+            AutoIDNganh();
             txtTenNganh.Text = "";
             btnSaveNganh.Enabled = true;
             btnUpdateNganh.Enabled = false;
             btnDeleteNganh.Enabled = false;
+        }
+
+        private void txtTimKiemNganh_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtTimKiemNganh.Clear();
+        }
+
+        private void txtTimKiemNganh_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtTimKiemNganh.Text))
+            {
+                LoadDanhSachNganh();
+            }
+            else
+            {
+                dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByMaNganh(txtTimKiemNganh.Text.Trim()).ToList();
+                dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByTenNganh(txtTimKiemNganh.Text.Trim()).ToList();
+            }
         }
     }
 }

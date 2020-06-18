@@ -22,7 +22,7 @@ namespace GDU_Management
         //khai báo các service 
         LopService lopService = new LopService();
 
-        //---------------HÀM PUBLIC-------------------
+        //---------------HÀM PUBLIC-------------------//
 
             // hàm nhận mã ngành và khóa học từ frmQLSV
         public void FunDatafrmDanhSachLopToFrmQLSV(string txtMaNganh, string txtMaKhoaHoc)
@@ -31,6 +31,7 @@ namespace GDU_Management
             lblKhoaHoc.Text = txtMaKhoaHoc;
         }
 
+        //hàm check data
         public bool checkDataLOP()
         {
             if (string.IsNullOrEmpty(txtMaLop.Text))
@@ -51,10 +52,10 @@ namespace GDU_Management
         //hàm load data từ datagridview lên textbox
         public void ShowdataTuDatagridviewToTextbox()
         {
-            txtMaLop.Clear();
-            txtMaLop.DataBindings.Add("text",dgvDanhSachLop.DataSource, "MaLop");
-            txtTenLop.Clear();
-            txtTenLop.DataBindings.Add("text",dgvDanhSachLop.DataSource,"TenLop");
+            txtMaLop.DataBindings.Clear();
+            txtMaLop.DataBindings.Add("text", dgvDanhSachLop.DataSource, "MaLop");
+            txtTenLop.DataBindings.Clear();
+            txtTenLop.DataBindings.Add("text", dgvDanhSachLop.DataSource, "TenLop");
         }
 
         //show danh sách lớp theo ngành và khóa học
@@ -62,7 +63,7 @@ namespace GDU_Management
         {
             string maKhoaHoc = lblKhoaHoc.Text;
             string maNganh = lblMaNganh.Text;
-            dgvDanhSachLop.DataSource = lopService.GetDanhSachLopByMaNganhVaMaKhoaHoc(maNganh,maKhoaHoc).ToList();
+            dgvDanhSachLop.DataSource = lopService.GetDanhSachLopByMaNganhVaMaKhoaHoc(maNganh, maKhoaHoc).ToList();
         }
 
         //----------KẾT THÚC HÀM PUPLIC-----------
@@ -80,19 +81,19 @@ namespace GDU_Management
                 Lop lop = new Lop();
                 lop.MaLop = txtMaLop.Text.Trim();
                 lop.TenLop = txtTenLop.Text.Trim();
-               lop.MaNganh = lblMaNganh.Text.Trim();
-               lop.MaKhoaHoc = lblKhoaHoc.Text.Trim();
+                lop.MaNganh = lblMaNganh.Text.Trim();
+                lop.MaKhoaHoc = lblKhoaHoc.Text.Trim();
                 lopService.CreateLop(lop);
                 LoadDanhSachLopToDatagridview();
-                txtMaLop.Clear();
-                txtTenLop.Clear();
+                txtMaLop.Text = "";
+                txtTenLop.Text = "";
                 btnSaveLop.Enabled = false;
                 MessageBox.Show("Thêm Mới Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-             }
+            }
             else
             {
                 MessageBox.Show("Thêm Mới Thất Bại, vui lòng kiểm tra lại...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }           
+            }
         }
 
         private void btnNewLop_Click(object sender, EventArgs e)
@@ -108,24 +109,16 @@ namespace GDU_Management
                 Lop lp = new Lop();
                 lp.MaLop = txtMaLop.Text.Trim();
                 lp.TenLop = txtTenLop.Text.Trim();
-               lp.MaNganh = lblMaNganh.Text.Trim();
-              lp.MaKhoaHoc = lblKhoaHoc.Text.Trim();
-                MessageBox.Show("Up 1 '" + txtMaLop.Text + "' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lp.MaNganh = lblMaNganh.Text.Trim();
+                lp.MaKhoaHoc = lblKhoaHoc.Text.Trim();
                 lopService.UpdateLop(lp);
-                MessageBox.Show("Up2 '" + txtMaLop.Text + "' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 LoadDanhSachLopToDatagridview();
-                // txtMaLop.Text = "";
-                // txtTenLop.Text = "";
-                // btnUpdateLop.Enabled = false;
-                // btnSaveLop.Enabled = false;
-                // btnDeleteLop.Enabled = false;
-                MessageBox.Show("Ma Lop '" + txtMaLop.Text + "' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Ten Lop'" + txtTenLop.Text + "' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Ma Nganh '" + lblMaNganh.Text + "' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show("Ma Khóa Học '" + lblKhoaHoc.Text + "' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                MessageBox.Show("Cập nhật thông tin '"+txtMaLop.Text+"' thành công","Thông Báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                txtMaLop.Text = "";
+                txtTenLop.Text = "";
+                btnUpdateLop.Enabled = false;
+                btnSaveLop.Enabled = false;
+                btnDeleteLop.Enabled = false;
+                MessageBox.Show("Cập nhật thông tin '" + txtMaLop.Text + "' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -140,15 +133,15 @@ namespace GDU_Management
 
         private void dgvDanhSachLop_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //btnUpdateLop.Enabled = true;
-           // btnSaveLop.Enabled = false;
-           // btnDeleteLop.Enabled = true;
+            btnUpdateLop.Enabled = true;
+            btnSaveLop.Enabled = false;
+           btnDeleteLop.Enabled = true;
             ShowdataTuDatagridviewToTextbox();
         }
 
         private void btnDeleteLop_Click(object sender, EventArgs e)
         {
-           if(MessageBox.Show("Bạn Có Muốn Xóa  '" + txtMaLop.Text + "'", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn Có Muốn Xóa  '" + txtMaLop.Text + "'", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string maLop = txtMaLop.Text.Trim();
                 if (string.IsNullOrEmpty(txtMaLop.Text))
@@ -166,14 +159,29 @@ namespace GDU_Management
                     btnSaveLop.Enabled = false;
                     btnUpdateLop.Enabled = false;
                 }
-                
             }
-           
         }
 
         private void txtTenLop_TextChanged(object sender, EventArgs e)
         {
             btnSaveLop.Enabled = true;
+        }
+
+        private void txtTimKiemLop_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtTimKiemLop.Clear();
+        }
+
+        private void txtTimKiemLop_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtTimKiemLop.Text))
+            {
+                LoadDanhSachLopToDatagridview();
+            }
+            else
+            {
+                dgvDanhSachLop.DataSource = lopService.SearchLopHocByTenLop(txtTimKiemLop.Text.Trim());
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace GDU_Management.DaoImpl
     {
         //tao ket noi database
         GDUDataConnectionsDataContext db;
-        List<NganhHoc> nganhHocs;
+        List<NganhHoc> listNganhHoc;
 
         //lấy database từ cơ sở dữ liệu
         public NganhHocImpl()
@@ -23,7 +23,7 @@ namespace GDU_Management.DaoImpl
             {
                 var nganhHoc = from x in db.NganhHocs select x;
                 db.DeferredLoadingEnabled = true;
-                nganhHocs = nganhHoc.ToList();
+                listNganhHoc = nganhHoc.ToList();
             }
         }
 
@@ -53,22 +53,36 @@ namespace GDU_Management.DaoImpl
             return null;
         }
 
-        // lấy ngành học theo KHOA
-        //public NganhHoc GetNganhHocByKHOA(string maKhoa)
-        //{
-        //    db = new GDUDataConnectionsDataContext();
-        //    NganhHoc nganhHoc = new NganhHoc();
-        //    nganhHocs.ForEach(nganh =>
-        //    {
-        //        if( nganh.MaKhoa == maKhoa)
-        //        {
-        //            nganhHoc = nganh;
-        //        }
-        //    });
-        //    return nganhHoc;
-        //}
+        //lấy danh sách ngành học theo KHOA
+        public List<NganhHoc> GetNganhHocByKHOA(string maKhoa)
+        {
+            db = new GDUDataConnectionsDataContext();
+            List<NganhHoc> nganhHoc = db.NganhHocs.Where(p => p.MaKhoa.Equals(maKhoa)).ToList();
+            listNganhHoc = new List<NganhHoc>();
+            listNganhHoc = nganhHoc;
+            return listNganhHoc;
+        }
 
-        //cập nhật ngành
+        // tìm kiếm ngành học them mã ngành
+        public List<NganhHoc> SearchNganhHocByMaNganh(string maNganh)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var nganhHoc = from x in db.NganhHocs where x.MaNganh.Contains(maNganh) select x;
+            listNganhHoc = nganhHoc.ToList();
+            return listNganhHoc;
+        }
+
+        // tìm kiếm ngành học theo tên ngành
+        public List<NganhHoc> SearchNganhHocByTenNganh(string tenNganh)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var nganhHoc = from x in db.NganhHocs where x.TenNganh.Contains(tenNganh) select x;
+            listNganhHoc = nganhHoc.ToList();
+            return listNganhHoc;
+        }
+
+   
+        //update ngành học
         public void UpdateNganhHoc(NganhHoc nganhHoc)
         {
             db = new GDUDataConnectionsDataContext();
@@ -78,13 +92,6 @@ namespace GDU_Management.DaoImpl
             db.SubmitChanges();
         }
 
-        List<NganhHoc> IDaoNganhHoc.GetNganhHocByKHOA(string maKhoa)
-        {
-            db = new GDUDataConnectionsDataContext();
-            List<NganhHoc> nganhHoc = db.NganhHocs.Where(p => p.MaKhoa.Equals(maKhoa)).ToList();
-            nganhHocs = new List<NganhHoc>();
-            nganhHocs= nganhHoc;
-            return nganhHocs;
-        }
+
     }
 }

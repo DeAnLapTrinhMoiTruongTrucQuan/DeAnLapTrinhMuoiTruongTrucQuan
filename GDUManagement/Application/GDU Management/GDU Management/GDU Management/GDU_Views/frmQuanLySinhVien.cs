@@ -189,9 +189,37 @@ namespace GDU_Management
            // btnXemDanhSachLop.Enabled = false;
         }
 
-        //KẾT THÚC DS HÀM PUBLIC
+        //kiểm tra chuoi nhập vào có phải số hay không
+        public bool checkNumber(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (char.IsNumber(s[i]) == true)
+                    return true;
+            }
+            return false;
+        }
 
-     //--------------------------------------------------------------------------------------//
+        //hàm autoID khoa
+        public void AutoIDKhoa()
+        {
+            int count =  dgvDanhSachKhoa.Rows.Count; //đếm tất cả các dòng trong datagridview
+            string chuoi_id = "";
+            int chuoi_id_key = 0;
+            chuoi_id = Convert.ToString(dgvDanhSachKhoa.Rows[count-1].Cells[1].Value);
+            chuoi_id_key = Convert.ToInt32((chuoi_id.Remove(0, 9))); //loai bo cac ki tu so o dau id
+            if (chuoi_id_key+1 < 10)
+            {
+                txtMaKhoa.Text = "GD8085990" + (chuoi_id_key + 1).ToString();
+            }
+            else if (chuoi_id_key + 1 >= 10)
+            {
+                txtMaKhoa.Text = "GD808599" + (chuoi_id_key + 1).ToString();
+            }
+        }
+
+        //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
+        //--------------------------------------------------------------------------------------//
         private void timerTime_QLSV_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToLongTimeString();
@@ -368,10 +396,10 @@ namespace GDU_Management
 
         private void btnNewKhoa_Click(object sender, EventArgs e)
         {
+            AutoIDKhoa();
             btnSaveKhoa.Enabled = true;
             btnUpdateKhoa.Enabled = false;
             btnDeleteKhoa.Enabled = false;
-            txtMaKhoa.Text = "";
             txtTenKhoa.Text = "";
         }
 
@@ -379,7 +407,7 @@ namespace GDU_Management
         {
             if (string.IsNullOrEmpty(txtMaKhoa.Text))
             {
-                MessageBox.Show("Cập nhật thông tin '" + txtMaKhoa + "' Thất bại, Vui Lòng Kiểm Tra Lại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cập nhật thông tin '" + txtMaKhoa.Text + "' Thất bại, Vui Lòng Kiểm Tra Lại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -387,7 +415,7 @@ namespace GDU_Management
                 kh.MaKhoa = txtMaKhoa.Text;
                 kh.TenKhoa = txtTenKhoa.Text;
                 khoaService.UpdateKhoa(kh);
-                MessageBox.Show("Cập nhật thông tin '" + txtMaKhoa + "' Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cập nhật thông tin '" + txtMaKhoa.Text + "' Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadDanhSachKhoaToDatagridview();
             }
         }
@@ -538,11 +566,22 @@ namespace GDU_Management
             txtTimKiemKhoaHocKL.Clear();
         }
 
+
         private void txtTimKiemKhoaHocKL_TextChanged(object sender, EventArgs e)
         {
-            dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByMaKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
-            dgvDanhSachKhoaHoc.DataSource=khoaHocService.SearchKhoaHocByTenKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
-            dgvDanhSachKhoaHoc.DataSource=khoaHocService.SearchKhoaHocByNienKhoa(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+            //dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByMaKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+            //dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByTenKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+
+            //dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByNienKhoa(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+
+            if (checkNumber(txtTimKiemKhoaHocKL.Text))
+            {
+                dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByNienKhoa(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+            }
+            else
+            {
+                dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByTenKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
+            }
         }
 
         private void cboChonKhoaSV_SelectedIndexChanged(object sender, EventArgs e)

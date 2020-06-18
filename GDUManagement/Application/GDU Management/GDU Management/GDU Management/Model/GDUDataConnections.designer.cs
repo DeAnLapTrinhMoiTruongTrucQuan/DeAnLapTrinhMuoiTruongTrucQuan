@@ -22,7 +22,7 @@ namespace GDU_Management.Model
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="GDUmanagerment")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="GDUmanagement")]
 	public partial class GDUDataConnectionsDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -63,7 +63,7 @@ namespace GDU_Management.Model
     #endregion
 		
 		public GDUDataConnectionsDataContext() : 
-				base(global::GDU_Management.Properties.Settings.Default.GDUmanagermentConnectionString, mappingSource)
+				base(global::GDU_Management.Properties.Settings.Default.GDUmanagementConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

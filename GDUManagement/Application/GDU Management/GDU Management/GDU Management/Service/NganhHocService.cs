@@ -38,5 +38,17 @@ namespace GDU_Management.Service
         {
             return nganhHocIDao.GetNganhHocByKHOA(maKhoa);
         }
+
+        //tìm danh sách ngành học theo mã ngành
+        public List<NganhHoc> SearchNganhHocByMaNganh(string maNganh)
+        {
+            return nganhHocIDao.SearchNganhHocByMaNganh(maNganh);
+        }
+
+        //tìm danh sách ngành học theo tên ngành
+        public List<NganhHoc> SearchNganhHocByTenNganh(string tenNganh)
+        {
+            return nganhHocIDao.SearchNganhHocByTenNganh(tenNganh);
+        }
     }
 }
