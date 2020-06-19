@@ -18,3 +18,23 @@ D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Manageme
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmCheckAdmin.resources
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmCheckAdmin2.resources
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_View.frmAccount.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\bin\Debug\GDU Management.exe.config
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\bin\Debug\GDU Management.exe
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\bin\Debug\GDU Management.pdb
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU Management.csprojAssemblyReference.cache
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_View.frmAccount.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmCheckAdmin.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmCheckAdmin2.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDanhSachLop.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDanhSachNganh.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDiemAndMonHoc.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmGiaoVienAndTKB.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmPhanCongCongViec.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmQuanLySinhVien.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.GDUManagement.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.frmLogin.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU_Management.Properties.Resources.resources
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU Management.csproj.GenerateResource.cache
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU Management.csproj.CoreCompileInputs.cache
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU Management.exe
+F:\H.KÌ 3\LTTQ\GIT\DeAnLapTrinhMuoiTruongTrucQuan\GDUManagement\Application\GDU Management\GDU Management\GDU Management\obj\Debug\GDU Management.pdb

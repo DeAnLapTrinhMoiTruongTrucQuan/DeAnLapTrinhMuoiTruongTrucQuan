@@ -33,5 +33,15 @@ namespace GDU_Management.Service
         {
             monHocIDao.UpdateMonHoc(monHoc);
         }
+
+        public List<MonHoc> GetMonHocByMaNganh(string maNganh)
+        {
+            return monHocIDao.GetMonHocByMaNganh(maNganh);
+        }
+
+        public string GetSTCByMaMonHoc(string maMonHoc)
+        {
+            return monHocIDao.GetSTCByMaMonHoc(maMonHoc);
+        }
     }
 }
