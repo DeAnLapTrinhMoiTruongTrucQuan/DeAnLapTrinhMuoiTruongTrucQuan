@@ -39,7 +39,6 @@ namespace GDU_Management
         NganhHocService nganhHocService = new NganhHocService();
         KhoaHocService khoaHocService = new KhoaHocService();
         LopService lopHocService = new LopService();
-        //ThoiKhoaBieu thoiKhoaBieuService = new ThoiKhoaBieu();
         MonHocService monHocService = new MonHocService();
         ThoiKhoaBieuService thoiKhoaBieuService = new ThoiKhoaBieuService();
 
