@@ -46,7 +46,6 @@ namespace GDU_Management.Service
         //tìm kiếm theo tên khoa
         public List<Khoa> SearchKhoaByTenKhoa(string tenKhoa)
         {
-            
             return khoaIDao.SearchKhoaByTenKhoa(tenKhoa);
         }
 
