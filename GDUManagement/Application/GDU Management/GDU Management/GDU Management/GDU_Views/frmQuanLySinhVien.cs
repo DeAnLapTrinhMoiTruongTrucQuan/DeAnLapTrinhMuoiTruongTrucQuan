@@ -573,7 +573,7 @@ namespace GDU_Management
         private void txtTimKiem_QLK_TextChanged(object sender, EventArgs e)
         {
             dgvDanhSachKhoa.DataSource = khoaService.SearchKhoaByTenKhoa(txtTimKiem_QLK.Text).ToList();
-            dgvDanhSachKhoa.DataSource = khoaService.SearchKhoaByMaKhoa(txtTimKiem_QLK.Text).ToList();
+            //dgvDanhSachKhoa.DataSource = khoaService.SearchKhoaByMaKhoa(txtTimKiem_QLK.Text).ToList();
         }
 
         private void txtTimKiem_QLK_MouseClick(object sender, MouseEventArgs e)

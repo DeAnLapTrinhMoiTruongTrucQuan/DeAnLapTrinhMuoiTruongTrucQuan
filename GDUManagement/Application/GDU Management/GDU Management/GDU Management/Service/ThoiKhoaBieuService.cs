@@ -13,9 +13,17 @@ namespace GDU_Management.Service
     {
         IDaoThoiKhoaBieu TKBIdao = new ThoiKhoaBieuImpl();
 
-        public ThoiKhoaBieu CreateLop(ThoiKhoaBieu tkb)
+      
+
+        //Them 1 tkb moi
+        public ThoiKhoaBieu CreateThoiKhoaBieu(ThoiKhoaBieu thoiKhoaBieu)
         {
-            return TKBIdao.CreateThoiKhoaBieu(tkb);
+            return TKBIdao.CreateThoiKhoaBieu(thoiKhoaBieu);
+        }
+
+        public List<ThoiKhoaBieu> GetAllTKB()
+        {
+            return TKBIdao.GetAllTKB();
         }
     }
 }

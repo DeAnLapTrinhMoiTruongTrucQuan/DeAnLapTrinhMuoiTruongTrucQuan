@@ -9,6 +9,9 @@ namespace GDU_Management.IDao
 {
     interface IDaoThoiKhoaBieu
     {
+        List<ThoiKhoaBieu> GetAllTKB();
         ThoiKhoaBieu CreateThoiKhoaBieu(ThoiKhoaBieu tkb);
+
+       
     }
 }
