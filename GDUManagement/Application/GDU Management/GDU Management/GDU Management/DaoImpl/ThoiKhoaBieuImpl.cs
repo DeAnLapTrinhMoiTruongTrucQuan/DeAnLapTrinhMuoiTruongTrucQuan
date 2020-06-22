@@ -10,29 +10,10 @@ namespace GDU_Management.DaoImpl
 {
     class ThoiKhoaBieuImpl : IDaoThoiKhoaBieu
     {
-        GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
-        List<ThoiKhoaBieu> thoiKhoaBieu;
-
-        public ThoiKhoaBieu CreateThoiKhoaBieu(ThoiKhoaBieu thoiKhoaBieu)
+        public ThoiKhoaBieu CreateThoiKhoaBieu(ThoiKhoaBieu tkb)
         {
-
-            db = new GDUDataConnectionsDataContext();
-            ThoiKhoaBieu tkb = new ThoiKhoaBieu();
-            tkb = thoiKhoaBieu;
-            db.ThoiKhoaBieus.InsertOnSubmit(thoiKhoaBieu);
-            db.SubmitChanges();
-            return thoiKhoaBieu;
-
-        }
-
-        public List<ThoiKhoaBieu> GetAllTKB()
-        {
-        
-            db = new GDUDataConnectionsDataContext();
-            var tkb = from x in db.ThoiKhoaBieus select x;
-            thoiKhoaBieu = tkb.ToList();
-            return thoiKhoaBieu;
-
+            //code content
+            return null;
         }
     }
 }

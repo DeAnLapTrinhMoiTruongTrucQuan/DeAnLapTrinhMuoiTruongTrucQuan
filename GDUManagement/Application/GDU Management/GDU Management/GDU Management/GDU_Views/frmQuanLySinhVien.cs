@@ -34,9 +34,14 @@ namespace GDU_Management
         NganhHocService nganhHocService = new NganhHocService();
         LopService lopService = new LopService();
 
-      //------------------------DS HÀM PUBLIC---------------------//
 
-            //hàm lấy ngày giờ và điếm thời gian
+        //value public
+        string maLopSV;
+
+        //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
+        //--------------------------------------------------------------------------------------//
+
+        //hàm lấy ngày giờ và điếm thời gian
         public void NgayGio()
         {
             //get ngày
@@ -56,11 +61,6 @@ namespace GDU_Management
             gdu.ShowDialog();
         }
 
-        //load danh sach sinh viên lên datagridview
-        public void LoadDanhSachSinhVienToDatagridview()
-        {
-            //dgvDSSV.DataSource = sinhVienService.GetAllSinhVien();
-        }
 
         //laod danh sach khoa lên datagridview
         public void LoadDanhSachKhoaToDatagridview()
@@ -173,6 +173,36 @@ namespace GDU_Management
             return true;
         }
 
+        //hàm check data Sinh Viên
+        public bool checkDataSINHVIEN()
+        {
+            if (string.IsNullOrEmpty(txtTenSV.Text))
+            {
+                MessageBox.Show("Tên Sinh Viên Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenSV.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtEmail.Text))
+            {
+                MessageBox.Show("Email Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtSdt.Text))
+            {
+                MessageBox.Show("SĐT Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSdt.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(rtxtDiaChi.Text))
+            {
+                MessageBox.Show("SĐT Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                rtxtDiaChi.Focus();
+                return false;
+            }
+            return true;
+        }
+
         //hàm các đóng kích hoạt các button khi hệ thống bắt đầu
         public void EnableFalseButton()
         {
@@ -189,7 +219,32 @@ namespace GDU_Management
            // btnXemDanhSachLop.Enabled = false;
         }
 
-        //kiểm tra chuoi nhập vào có phải số hay không
+        //hàm show dữ liệu sih viên vên textbox, cbo,...
+        public void ShowDataSinhVienTuDatagridview()
+        {
+            lblMaSV.DataBindings.Clear();
+            lblMaSV.DataBindings.Add("text", dgvDanhSachSinhVien.DataSource, "MaSV");
+
+            txtTenSV.DataBindings.Clear();
+            txtTenSV.DataBindings.Add("text", dgvDanhSachSinhVien.DataSource, "TenSV");
+
+            //lblTenLop.DataBindings.Clear();
+            //lblTenLop.Text = maLopSV;
+
+            txtEmail.DataBindings.Clear();
+            txtEmail.DataBindings.Add("text", dgvDanhSachSinhVien.DataSource, "Email");
+
+            txtSdt.DataBindings.Clear();
+            txtSdt.DataBindings.Add("text", dgvDanhSachSinhVien.DataSource, "SDT");
+
+            rtxtDiaChi.DataBindings.Clear();
+            rtxtDiaChi.DataBindings.Add("text", dgvDanhSachSinhVien.DataSource, "DiaChi");
+
+            rtxtGhiChu.DataBindings.Clear();
+            rtxtGhiChu.DataBindings.Add("text", dgvDanhSachSinhVien.DataSource, "GhiChu");
+        }
+
+        //kiểm tra chuỗi nhập vào có phải số hay không
         public bool checkNumber(string s)
         {
             for (int i = 0; i < s.Length; i++)
@@ -203,9 +258,11 @@ namespace GDU_Management
         //hàm autoID khoa
         public void AutoIDKhoa()
         {
-            int count =  dgvDanhSachKhoa.Rows.Count; //đếm tất cả các dòng trong datagridview
-            string chuoi_id = "";
-            int chuoi_id_key = 0;
+            int count;
+            string chuoi_id;
+            int chuoi_id_key;
+
+            count = dgvDanhSachKhoa.Rows.Count; //đếm tất cả các dòng trong datagridview
             chuoi_id = Convert.ToString(dgvDanhSachKhoa.Rows[count-1].Cells[1].Value);
             chuoi_id_key = Convert.ToInt32((chuoi_id.Remove(0, 9))); //loai bo cac ki tu so o dau id
             if (chuoi_id_key+1 < 10)
@@ -217,6 +274,46 @@ namespace GDU_Management
                 txtMaKhoa.Text = "GD808599" + (chuoi_id_key + 1).ToString();
             }
         }
+
+        public void AutoIDSinhVien()
+        {
+            int count = dgvDanhSachSinhVien.Rows.Count;  //đếm tất cả các dòng trong datagridview
+
+            string maKhoaHoc = cboChonKhoaHocSV.SelectedValue.ToString();
+            string lastID = maKhoaHoc.Substring(1);
+
+            MessageBox.Show(maKhoaHoc);
+            MessageBox.Show(lastID);
+
+            if (count == 0)
+            {
+                lblMaSV.Text = "GDU1" + lastID + "000";
+            }
+            else
+            {
+                string chuoi_id;
+                int chuoi_id_key;
+
+                chuoi_id = Convert.ToString(dgvDanhSachSinhVien.Rows[count - 1].Cells[1].Value);
+                chuoi_id_key = Convert.ToInt32((chuoi_id.Remove(0, 5))); //loai bo cac ki tu so o dau id
+
+                if (chuoi_id_key + 1 < 10)
+                {
+                    txtMaKhoa.Text = "GDU1" + lastID +"00"+ (chuoi_id_key + 1).ToString();
+                }
+                else if (chuoi_id_key + 1 >= 10)
+                {
+                    txtMaKhoa.Text = "GDU1" + lastID + "0" + (chuoi_id_key + 1).ToString();
+                }
+                else if (chuoi_id_key + 1 >= 100)
+                {
+                    txtMaKhoa.Text = "GDU1" + lastID  + (chuoi_id_key + 1).ToString();
+                }
+            }
+        }
+
+
+
 
         //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
         //--------------------------------------------------------------------------------------//
@@ -285,7 +382,7 @@ namespace GDU_Management
 
         private void frmQuanLySinhVien_Load(object sender, EventArgs e)
         {
-            LoadDanhSachSinhVienToDatagridview();
+           // LoadDanhSachSinhVienToDatagridview();
             LoadDanhSachKhoaToDatagridview();
             LoadDanhSachKhoaHocToDatagridview();
             ShowDataTuDataGridViewToTextBox();
@@ -359,11 +456,6 @@ namespace GDU_Management
             {
                 Application.Exit();
             }
-        }
-
-        private void btnHome_SV_Click(object sender, EventArgs e)
-        {
-            goToGDUmanagement();
         }
 
         private void dgvDanhSachKhoa_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -481,7 +573,7 @@ namespace GDU_Management
         private void txtTimKiem_QLK_TextChanged(object sender, EventArgs e)
         {
             dgvDanhSachKhoa.DataSource = khoaService.SearchKhoaByTenKhoa(txtTimKiem_QLK.Text).ToList();
-            //dgvDanhSachKhoa.DataSource = khoaService.SearchKhoaByMaKhoa(txtTimKiem_QLK.Text).ToList();
+            dgvDanhSachKhoa.DataSource = khoaService.SearchKhoaByMaKhoa(txtTimKiem_QLK.Text).ToList();
         }
 
         private void txtTimKiem_QLK_MouseClick(object sender, MouseEventArgs e)
@@ -602,6 +694,82 @@ namespace GDU_Management
         private void cboChonKhoaHocSV_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             LoadDanhSachLopHocToTreeview();
+        }
+
+        private void trvDSLop_Click(object sender, EventArgs e)
+        {
+            //LoadDanhSachSinhVienToDatagridview();
+        }
+
+        private void trvDSLop_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            maLopSV = e.Node.Name;
+            lblTenLop.Text = e.Node.Text; 
+            dgvDanhSachSinhVien.DataSource = sinhVienService.GetSinhVienByMaLop(maLopSV);
+            btnNewSV.Enabled = true;
+        }
+
+        private void dgvDanhSachSinhVien_MouseClick(object sender, MouseEventArgs e)
+        {
+            ShowDataSinhVienTuDatagridview();
+        }
+
+        private void btnHome_SV_Click(object sender, EventArgs e)
+        {
+            goToGDUmanagement();
+        }
+
+        private void btnExitSV_Click(object sender, EventArgs e)
+        {
+            DialogResult dr;
+            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnSaveSV_Click(object sender, EventArgs e)
+        {
+            if (checkDataSINHVIEN())
+            {
+                SinhVien sv = new SinhVien();
+                sv.MaSV = lblMaSV.Text;
+                sv.TenSV = txtTenSV.Text;
+                if (radNam.Checked)
+                {
+                    sv.GioiTinh = radNam.Text;
+                }
+                else if (radNu.Checked)
+                {
+                    sv.GioiTinh = radNu.Text;
+                }
+                sv.Email = txtEmail.Text;
+                sv.Password = lblMaSV.Text;
+                sv.NamSinh = dtpNamSinh.Value.ToString();
+                sv.SDT = txtSdt.Text;
+                sv.DiaChi = rtxtDiaChi.Text;
+                sv.GhiChu = rtxtGhiChu.Text;
+                sv.MaLop = maLopSV;
+                sinhVienService.CreateSinhVien(sv);
+                dgvDanhSachSinhVien.DataSource = sinhVienService.GetSinhVienByMaLop(maLopSV);
+                MessageBox.Show("Thêm Thành Công...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtTenSV.Clear();
+                txtEmail.Clear();
+                txtSdt.Clear();
+                rtxtDiaChi.Clear();
+                rtxtGhiChu.Clear();
+            }
+        }
+
+        private void btnNewSV_Click(object sender, EventArgs e)
+        {
+            AutoIDSinhVien();
+            txtTenSV.Clear();
+            txtEmail.Clear();
+            txtSdt.Clear();
+            rtxtDiaChi.Clear();
+            rtxtGhiChu.Clear();
         }
     }
 }

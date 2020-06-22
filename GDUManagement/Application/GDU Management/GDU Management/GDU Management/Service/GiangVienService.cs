@@ -36,13 +36,5 @@ namespace GDU_Management.Service
         {
             giangVienIDao.UpdateGiangVien(giangVien);
         }
-
-        //Search 
-        public List<GiangVien> SearchGiangVienByTenGV(string tenGiangVien)
-        {
-            return giangVienIDao.SearchGiangVienByTenGV(tenGiangVien);
-        }
-
-        
     }
 }

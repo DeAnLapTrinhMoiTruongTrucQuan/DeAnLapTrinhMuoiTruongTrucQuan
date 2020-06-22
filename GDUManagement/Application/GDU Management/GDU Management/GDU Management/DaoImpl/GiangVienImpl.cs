@@ -15,70 +15,24 @@ namespace GDU_Management.DaoImpl
         List<GiangVien> giangVien;
         public GiangVien CreateGiangVien(GiangVien giangVien)
         {
-            db = new GDUDataConnectionsDataContext();
-            GiangVien gv = new GiangVien();
-            gv = giangVien;
-            db.GiangViens.InsertOnSubmit(gv);
-            db.SubmitChanges();
-            return gv;
+            //code content
+            return null;
         }
 
         public void DeleteGiangVien(string maGV)
         {
-            db = new GDUDataConnectionsDataContext();
-            GiangVien gv = new GiangVien();
-            gv = db.GiangViens.Single(x => x.MaGV == maGV);
-            db.GiangViens.DeleteOnSubmit(gv);
-            db.SubmitChanges();
+           //code content
         }
 
         public List<GiangVien> GetAllGiangVien()
         {
-            db = new GDUDataConnectionsDataContext();
-            var gv = from x in db.GiangViens select x;
-            giangVien = gv.ToList();
-            return giangVien;
+            //code content
+            return null;
         }
 
         public void UpdateGiangVien(GiangVien giangVien)
         {
-            db = new GDUDataConnectionsDataContext();
-            GiangVien gv = new GiangVien();
-            gv = db.GiangViens.Single(x => x.MaGV == giangVien.MaGV);
-            gv.TenGV = giangVien.TenGV;
-            gv.GioiTinh = giangVien.GioiTinh;
-            gv.TrinhDo = giangVien.TrinhDo;
-            gv.SDT = giangVien.SDT;
-            gv.Email = giangVien.Email;
-            gv.GhiChu = giangVien.GhiChu;
-            gv.DiaChi = giangVien.DiaChi;
-            db.SubmitChanges();
-        }
-
-        //public List<GiangVien> SearchKhoaByTenKhoa(string tenKhoa)
-        //{
-        //    db = new GDUDataConnectionsDataContext();
-        //    var khoa = from x in db.Khoas where x.TenKhoa.Contains(tenKhoa) select x;
-        //    listKhoas = khoa.ToList();
-        //    return listKhoas;
-        //}
-        public List<GiangVien> SearchGiangVienByTenGV(string tenGV)
-        {
-            db = new GDUDataConnectionsDataContext();
-            var giangViens = from x in db.GiangViens where x.TenGV.Contains(tenGV) select x;
-            giangVien = giangViens.ToList();
-            return giangVien;
-        }
-
-        public List<GiangVien> GetMaGVByTenGV(string maGV)
-        {
-           
-            db = new GDUDataConnectionsDataContext();
-            List<GiangVien> gv = db.GiangViens.Where(p => p.MaGV.Equals(maGV)).ToList();
-            giangVien = new List<GiangVien>();
-            giangVien = gv.ToList();
-            return giangVien;
-
+            //code content
         }
     }
 }
