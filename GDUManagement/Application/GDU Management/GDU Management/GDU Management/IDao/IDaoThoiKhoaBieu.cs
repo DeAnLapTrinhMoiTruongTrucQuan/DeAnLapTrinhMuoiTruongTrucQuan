@@ -11,6 +11,7 @@ namespace GDU_Management.IDao
     {
         List<ThoiKhoaBieu> GetAllTKB();
         ThoiKhoaBieu CreateThoiKhoaBieu(ThoiKhoaBieu tkb);
-        
+
+       
     }
 }

@@ -39,8 +39,9 @@ namespace GDU_Management
         NganhHocService nganhHocService = new NganhHocService();
         KhoaHocService khoaHocService = new KhoaHocService();
         LopService lopHocService = new LopService();
-        ThoiKhoaBieu thoiKhoaBieuService = new ThoiKhoaBieu();
+        //ThoiKhoaBieu thoiKhoaBieuService = new ThoiKhoaBieu();
         MonHocService monHocService = new MonHocService();
+        ThoiKhoaBieuService thoiKhoaBieuService = new ThoiKhoaBieuService();
 
 
         public void LoadDanhSachGiangVienToDatagridview()
@@ -93,8 +94,10 @@ namespace GDU_Management
             cboGiangVien.ValueMember = "MaGV";
 
             //Cbo Phòng
-               
 
+            cboPhong.DataSource = thoiKhoaBieuService.GetAllTKB();
+            cboPhong.DisplayMember = "PhongHoc";
+            cboPhong.ValueMember = "MaTKB";
 
         }
 
@@ -528,8 +531,8 @@ namespace GDU_Management
 
 
                
-                thoiKhoaBieuService.CreateThoiKhoaBieu(thoiKhoaBieu);
-                MessageBox.Show("Thêm thành công!", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //thoiKhoaBieuService.CreateThoiKhoaBieu(thoiKhoaBieu);
+                //MessageBox.Show("Thêm thành công!", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnSave.Enabled = false;
 
 

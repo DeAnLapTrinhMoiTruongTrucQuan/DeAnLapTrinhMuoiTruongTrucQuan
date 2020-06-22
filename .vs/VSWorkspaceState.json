@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GDUManagement",
+    "\\GDUManagement\\Application",
+    "\\GDUManagement\\Application\\GDU Management",
+    "\\GDUManagement\\Application\\GDU Management\\GDU Management",
+    "\\GDUManagement\\Application\\GDU Management\\GDU Management\\GDU Management",
+    "\\GDUManagement\\Application\\GDU Management\\GDU Management\\GDU Management\\Model"
   ],
+  "SelectedNode": "\\GDUManagement\\Application\\GDU Management\\GDU Management\\GDU Management\\Model\\GDUDataConnections.designer.cs",
   "PreviewInSolutionExplorer": false
 }
