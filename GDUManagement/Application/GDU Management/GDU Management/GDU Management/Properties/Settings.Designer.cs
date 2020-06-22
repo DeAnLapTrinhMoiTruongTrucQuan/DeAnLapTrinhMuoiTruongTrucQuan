@@ -48,22 +48,11 @@ namespace GDU_Management.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-DKHTJ30\\SQLEXPRESS01;Initial Catalog=GDUmanagement;Integrated" +
-            " Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=35.222.144.54;Initial Catalog=GDUmanagement;User ID=sqlserver;Passwor" +
+            "d=113114115")]
         public string GDUmanagementConnectionString1 {
             get {
                 return ((string)(this["GDUmanagementConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-DKHTJ30\\SQLEXPRESS01;Initial Catalog=GDUmanagement;User ID=ne" +
-            "w;Password=new123")]
-        public string GDUmanagementConnectionString2 {
-            get {
-                return ((string)(this["GDUmanagementConnectionString2"]));
             }
         }
     }

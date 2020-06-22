@@ -37,6 +37,7 @@ namespace GDU_Management.DaoImpl
             return null;
         }
 
+        //lấy danh sách lớp theo mã ngành và mã khóa học
         public List<Lop> GetDanhSachLopByMaNganhVaMaKhoaHoc(string maNganh, string maKhoaHoc)
         {
             db = new GDUDataConnectionsDataContext();
@@ -46,29 +47,25 @@ namespace GDU_Management.DaoImpl
             return listLop;
         }
 
+        //tìm kiếm lớp theo tên lớp
+        public List<Lop> SearchLopHocByTenLop(string tenLop)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var lop = from x in db.Lops where x.TenLop.Contains(tenLop) select x;
+            listLop = lop.ToList();
+            return listLop;
+        }
+
+        // update lop
         public void UpdateLop(Lop lop)
         {
             db = new GDUDataConnectionsDataContext();
             Lop lp = new Lop();
-            lp = db.Lops.Single(x => x.MaKhoaHoc == lop.MaKhoaHoc);
+            lp = db.Lops.Single(x => x.MaLop == lop.MaLop);
             lp.TenLop = lop.TenLop;
             lp.MaKhoaHoc = lop.MaKhoaHoc;
             lp.MaNganh = lop.MaNganh;
             db.SubmitChanges();
-            MessageBox.Show("sai o lopImpl");
-
-            //db = new GDUDataConnectionsDataContext();
-            //KhoaHoc khoaHocs = new KhoaHoc();
-            //khoaHocs = db.KhoaHocs.Single(x => x.MaKhoaHoc == khoaHoc.MaKhoaHoc);
-            //khoaHocs.TenKhoaHoc = khoaHoc.TenKhoaHoc;
-            //khoaHocs.NienKhoa = khoaHoc.NienKhoa;
-            //db.SubmitChanges();
-
-            //db = new GDUDataConnectionsDataContext();
-            //NganhHoc nh = new NganhHoc();
-            //nh = db.NganhHocs.Single(x => x.MaNganh == nganhHoc.MaNganh);
-            //nh.TenNganh = nganhHoc.TenNganh;
-            //db.SubmitChanges();
         }
     }
 }

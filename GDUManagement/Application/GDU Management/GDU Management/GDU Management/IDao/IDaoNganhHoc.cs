@@ -14,6 +14,8 @@ namespace GDU_Management.IDao
         void DeleteNganhHoc(string maNganhHoc);
         void UpdateNganhHoc(NganhHoc nganhHoc);
         List<NganhHoc> GetNganhHocByKHOA(string maKhoa);
+        List<NganhHoc> SearchNganhHocByMaNganh(string maNganh);
+        List<NganhHoc> SearchNganhHocByTenNganh(string tenNganh);
        
     }
 }

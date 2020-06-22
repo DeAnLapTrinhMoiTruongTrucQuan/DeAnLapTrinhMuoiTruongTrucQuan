@@ -35,6 +35,7 @@
             this.btnExportDSLop = new System.Windows.Forms.Button();
             this.txtTimKiemLop = new System.Windows.Forms.TextBox();
             this.pnControl = new System.Windows.Forms.Panel();
+            this.btnExitDSLop = new System.Windows.Forms.Button();
             this.btnDeleteLop = new System.Windows.Forms.Button();
             this.btnNewLop = new System.Windows.Forms.Button();
             this.btnUpdateLop = new System.Windows.Forms.Button();
@@ -58,7 +59,6 @@
             this.txtMaLop = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnExitDSLop = new System.Windows.Forms.Button();
             this.pnDanhSachLop.SuspendLayout();
             this.pnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachLop)).BeginInit();
@@ -120,6 +120,8 @@
             this.txtTimKiemLop.Size = new System.Drawing.Size(312, 27);
             this.txtTimKiemLop.TabIndex = 9;
             this.txtTimKiemLop.Text = "Nhập Thông Tin Để Tìm Kiếm";
+            this.txtTimKiemLop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTimKiemLop_MouseClick);
+            this.txtTimKiemLop.TextChanged += new System.EventHandler(this.txtTimKiemLop_TextChanged);
             // 
             // pnControl
             // 
@@ -132,6 +134,18 @@
             this.pnControl.Name = "pnControl";
             this.pnControl.Size = new System.Drawing.Size(790, 55);
             this.pnControl.TabIndex = 7;
+            // 
+            // btnExitDSLop
+            // 
+            this.btnExitDSLop.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnExitDSLop.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnExitDSLop.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
+            this.btnExitDSLop.Location = new System.Drawing.Point(626, 3);
+            this.btnExitDSLop.Name = "btnExitDSLop";
+            this.btnExitDSLop.Size = new System.Drawing.Size(156, 45);
+            this.btnExitDSLop.TabIndex = 7;
+            this.btnExitDSLop.UseVisualStyleBackColor = false;
+            this.btnExitDSLop.Click += new System.EventHandler(this.btnExitDSLop_Click);
             // 
             // btnDeleteLop
             // 
@@ -368,18 +382,6 @@
             this.label1.Size = new System.Drawing.Size(70, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã Lớp:";
-            // 
-            // btnExitDSLop
-            // 
-            this.btnExitDSLop.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnExitDSLop.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExitDSLop.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
-            this.btnExitDSLop.Location = new System.Drawing.Point(626, 3);
-            this.btnExitDSLop.Name = "btnExitDSLop";
-            this.btnExitDSLop.Size = new System.Drawing.Size(156, 45);
-            this.btnExitDSLop.TabIndex = 7;
-            this.btnExitDSLop.UseVisualStyleBackColor = false;
-            this.btnExitDSLop.Click += new System.EventHandler(this.btnExitDSLop_Click);
             // 
             // frmDanhSachLop
             // 

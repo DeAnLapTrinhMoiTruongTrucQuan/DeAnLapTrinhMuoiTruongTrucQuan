@@ -39,5 +39,11 @@ namespace GDU_Management.Service
         {
             return lopIDao.GetDanhSachLopByMaNganhVaMaKhoaHoc(maNganh, maKhoaHoc);
         }
+
+        //tìm kiếm lớp theo tên lớp
+        public List<Lop> SearchLopHocByTenLop(string tenLop)
+        {
+            return lopIDao.SearchLopHocByTenLop(tenLop);
+        }
     }
 }

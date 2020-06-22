@@ -55,6 +55,8 @@ namespace GDU_Management.DaoImpl
             return stc;
         }
 
+  
+
         public void UpdateMonHoc(MonHoc monHoc)
         {
            //code content
