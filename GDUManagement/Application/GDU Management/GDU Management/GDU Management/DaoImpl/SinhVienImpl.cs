@@ -13,55 +13,28 @@ namespace GDU_Management.DaoImpl
     {
         //tao ket noi database
         GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
-        List<SinhVien> listSinhViens;
+        List<SinhVien> sinhVien;
 
         public SinhVien CreateSinhVien(SinhVien sinhVien)
         {
-            db = new GDUDataConnectionsDataContext();
-            db.SinhViens.InsertOnSubmit(sinhVien);
-            db.SubmitChanges();
+            //code content
             return null;
         }
 
-        public void DeleteSinhVien(string maSV)
+        public void DeleteSinhVien(string MaSV)
         {
-            db = new GDUDataConnectionsDataContext();
-            SinhVien sv = new SinhVien();
-            sv = db.SinhViens.Single(p => p.MaSV == maSV);
-            db.SinhViens.DeleteOnSubmit(sv);
-            db.SubmitChanges();
+            //code content
         }
         public List<SinhVien> GetAllSinhVien()
         {
             var sv = from x in db.SinhViens select x;
-            listSinhViens = sv.ToList();
-            return listSinhViens;
-        }
-
-        public List<SinhVien> GetSinhVienByMaLop(string maLop)
-        {
-            db = new GDUDataConnectionsDataContext();
-            List<SinhVien> sv = db.SinhViens.Where(p => p.MaLop.Equals(maLop)).ToList();
-            listSinhViens = new List<SinhVien>();
-            listSinhViens = sv;
-            return listSinhViens;
+            sinhVien = sv.ToList();
+            return sinhVien;
         }
 
         public void UpdateSinhVien(SinhVien sinhVien)
         {
-            db = new GDUDataConnectionsDataContext();
-            SinhVien sv = new SinhVien();
-            sv = db.SinhViens.Single(p => p.MaSV == sinhVien.MaSV);
-            sv.TenSV = sinhVien.TenSV;
-            sv.GioiTinh = sinhVien.GioiTinh;
-            sv.Email = sinhVien.Email;
-            sv.Password = sinhVien.Password;
-            sv.NamSinh = sinhVien.NamSinh;
-            sv.SDT = sinhVien.SDT;
-            sv.DiaChi = sinhVien.DiaChi;
-            sv.GhiChu = sv.GhiChu;
-            sv.MaLop = sv.MaLop;
-            db.SubmitChanges();
+            //code content
         }
     }
 }

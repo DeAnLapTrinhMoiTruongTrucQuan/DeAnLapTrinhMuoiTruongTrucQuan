@@ -12,7 +12,8 @@ namespace GDU_Management.DaoImpl
     {
         //tao ket noi database
         GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
-        List<MonHoc> monHoc;
+        List<MonHoc> listMonHoc;
+        
 
         public SinhVien CreateMonHoc(MonHoc monHoc)
         {
@@ -27,8 +28,31 @@ namespace GDU_Management.DaoImpl
 
         public List<MonHoc> GetAllMonHoc()
         {
-            //code content
-            return null;
+            
+            db = new GDUDataConnectionsDataContext();
+            var k = from x in db.MonHocs select x;
+            listMonHoc = k.ToList();
+            return listMonHoc;
+
+        }
+
+        public List<MonHoc> GetMonHocByMaNganh(string maNganh)
+        {
+            db = new GDUDataConnectionsDataContext();
+            List<MonHoc> mh = db.MonHocs.Where(p => p.MaNganh.Equals(maNganh)).ToList();
+            listMonHoc = new List<MonHoc>();
+            listMonHoc = mh.ToList();
+            return listMonHoc;
+            
+        }
+
+        public string GetSTCByMaMonHoc(string maMonHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            string stc;
+            var soTC = from x in db.MonHocs where x.MaMonHoc == maMonHoc select x;
+            stc = soTC.ToString();
+            return stc;
         }
 
   
