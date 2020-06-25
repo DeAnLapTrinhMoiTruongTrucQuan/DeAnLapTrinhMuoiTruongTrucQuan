@@ -60,20 +60,22 @@
             this.txtTimKiemMonHoc = new System.Windows.Forms.TextBox();
             this.dgvDanhSachMonHoc = new System.Windows.Forms.DataGridView();
             this.STTMonHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaMonHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenMonHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoTinChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HocKi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maMonHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenMonHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sTCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nganhHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monHocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnMonHoc = new System.Windows.Forms.Panel();
-            this.numericSoTinChi = new System.Windows.Forms.NumericUpDown();
-            this.txtTenMon = new System.Windows.Forms.TextBox();
-            this.txtMaMon = new System.Windows.Forms.TextBox();
+            this.numericSoTinChi_MH = new System.Windows.Forms.NumericUpDown();
+            this.txtTenMon_MH = new System.Windows.Forms.TextBox();
+            this.txtMaMon_MH = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grbThongTinLop = new System.Windows.Forms.GroupBox();
-            this.cboChonNganhHS = new System.Windows.Forms.ComboBox();
-            this.cboChonKhoaHS = new System.Windows.Forms.ComboBox();
+            this.cboChonNganh_MH = new System.Windows.Forms.ComboBox();
+            this.cboChonKhoa_MH = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tabgQLDiem = new System.Windows.Forms.TabPage();
@@ -100,31 +102,32 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvDanhSachDiemSinhVien = new System.Windows.Forms.DataGridView();
-            this.STTDSD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Diem30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Diem70L1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Diem70L2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DTB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtTimKiemSinhVien = new System.Windows.Forms.TextBox();
+            this.txtTimKiemDiemSinhVien_QLD = new System.Windows.Forms.TextBox();
             this.pnThongTinLop = new System.Windows.Forms.Panel();
-            this.cboChonMon = new System.Windows.Forms.ComboBox();
+            this.cboChonMon_QLD = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.cboChonHocKi = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cboChonLop = new System.Windows.Forms.ComboBox();
+            this.cboChonLop_QLD = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.cboChonKhoaHoc = new System.Windows.Forms.ComboBox();
-            this.cboChonNganh = new System.Windows.Forms.ComboBox();
-            this.cboChonKhoa = new System.Windows.Forms.ComboBox();
+            this.cboChonKhoasHoc_QLD = new System.Windows.Forms.ComboBox();
+            this.cboChonNganh_QLD = new System.Windows.Forms.ComboBox();
+            this.cboChonKhoa_QLD = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.timerMonHoc = new System.Windows.Forms.Timer(this.components);
+            this.diemMonHocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.STTDSD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maSVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maMonHocDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diem30DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diem70L1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diem70L2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dTBDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diemChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ghiChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sinhVienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnQLDiem.SuspendLayout();
             this.tabQLDiem.SuspendLayout();
             this.tabgQL.SuspendLayout();
@@ -136,8 +139,9 @@
             this.grbDay.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachMonHoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monHocBindingSource)).BeginInit();
             this.pnMonHoc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericSoTinChi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericSoTinChi_MH)).BeginInit();
             this.grbThongTinLop.SuspendLayout();
             this.tabgQLDiem.SuspendLayout();
             this.pnDiem.SuspendLayout();
@@ -146,6 +150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachDiemSinhVien)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.pnThongTinLop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.diemMonHocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -332,6 +337,7 @@
             this.btnDeleteMonHoc.Size = new System.Drawing.Size(123, 45);
             this.btnDeleteMonHoc.TabIndex = 6;
             this.btnDeleteMonHoc.UseVisualStyleBackColor = false;
+            this.btnDeleteMonHoc.Click += new System.EventHandler(this.btnDeleteMonHoc_Click);
             // 
             // btnNewMonHoc
             // 
@@ -343,6 +349,7 @@
             this.btnNewMonHoc.Size = new System.Drawing.Size(123, 45);
             this.btnNewMonHoc.TabIndex = 3;
             this.btnNewMonHoc.UseVisualStyleBackColor = false;
+            this.btnNewMonHoc.Click += new System.EventHandler(this.btnNewMonHoc_Click);
             // 
             // btnUpdateMonHoc
             // 
@@ -353,6 +360,7 @@
             this.btnUpdateMonHoc.Size = new System.Drawing.Size(123, 45);
             this.btnUpdateMonHoc.TabIndex = 5;
             this.btnUpdateMonHoc.UseVisualStyleBackColor = false;
+            this.btnUpdateMonHoc.Click += new System.EventHandler(this.btnUpdateMonHoc_Click);
             // 
             // btnSaveMonHoc
             // 
@@ -363,6 +371,7 @@
             this.btnSaveMonHoc.Size = new System.Drawing.Size(123, 45);
             this.btnSaveMonHoc.TabIndex = 4;
             this.btnSaveMonHoc.UseVisualStyleBackColor = false;
+            this.btnSaveMonHoc.Click += new System.EventHandler(this.btnSaveMonHoc_Click);
             // 
             // label10
             // 
@@ -457,13 +466,16 @@
             // 
             this.dgvDanhSachMonHoc.AllowUserToAddRows = false;
             this.dgvDanhSachMonHoc.AllowUserToDeleteRows = false;
+            this.dgvDanhSachMonHoc.AutoGenerateColumns = false;
             this.dgvDanhSachMonHoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDanhSachMonHoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STTMonHoc,
-            this.MaMonHoc,
-            this.TenMonHoc,
-            this.SoTinChi,
-            this.HocKi});
+            this.maMonHocDataGridViewTextBoxColumn,
+            this.tenMonHocDataGridViewTextBoxColumn,
+            this.sTCDataGridViewTextBoxColumn,
+            this.maNganhDataGridViewTextBoxColumn,
+            this.nganhHocDataGridViewTextBoxColumn});
+            this.dgvDanhSachMonHoc.DataSource = this.monHocBindingSource;
             this.dgvDanhSachMonHoc.Location = new System.Drawing.Point(4, 320);
             this.dgvDanhSachMonHoc.Name = "dgvDanhSachMonHoc";
             this.dgvDanhSachMonHoc.ReadOnly = true;
@@ -471,6 +483,8 @@
             this.dgvDanhSachMonHoc.RowTemplate.Height = 24;
             this.dgvDanhSachMonHoc.Size = new System.Drawing.Size(1359, 375);
             this.dgvDanhSachMonHoc.TabIndex = 3;
+            this.dgvDanhSachMonHoc.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSachMonHoc_CellContentClick);
+            this.dgvDanhSachMonHoc.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvDanhSachMonHoc_MouseClick);
             // 
             // STTMonHoc
             // 
@@ -480,44 +494,62 @@
             this.STTMonHoc.ReadOnly = true;
             this.STTMonHoc.Width = 80;
             // 
-            // MaMonHoc
+            // maMonHocDataGridViewTextBoxColumn
             // 
-            this.MaMonHoc.HeaderText = "Mã Môn Học";
-            this.MaMonHoc.MinimumWidth = 6;
-            this.MaMonHoc.Name = "MaMonHoc";
-            this.MaMonHoc.ReadOnly = true;
-            this.MaMonHoc.Width = 200;
+            this.maMonHocDataGridViewTextBoxColumn.DataPropertyName = "MaMonHoc";
+            this.maMonHocDataGridViewTextBoxColumn.HeaderText = "MaMonHoc";
+            this.maMonHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maMonHocDataGridViewTextBoxColumn.Name = "maMonHocDataGridViewTextBoxColumn";
+            this.maMonHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maMonHocDataGridViewTextBoxColumn.Width = 125;
             // 
-            // TenMonHoc
+            // tenMonHocDataGridViewTextBoxColumn
             // 
-            this.TenMonHoc.HeaderText = "Tên Môn Học";
-            this.TenMonHoc.MinimumWidth = 6;
-            this.TenMonHoc.Name = "TenMonHoc";
-            this.TenMonHoc.ReadOnly = true;
-            this.TenMonHoc.Width = 400;
+            this.tenMonHocDataGridViewTextBoxColumn.DataPropertyName = "TenMonHoc";
+            this.tenMonHocDataGridViewTextBoxColumn.HeaderText = "TenMonHoc";
+            this.tenMonHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tenMonHocDataGridViewTextBoxColumn.Name = "tenMonHocDataGridViewTextBoxColumn";
+            this.tenMonHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenMonHocDataGridViewTextBoxColumn.Width = 200;
             // 
-            // SoTinChi
+            // sTCDataGridViewTextBoxColumn
             // 
-            this.SoTinChi.HeaderText = "STC";
-            this.SoTinChi.MinimumWidth = 6;
-            this.SoTinChi.Name = "SoTinChi";
-            this.SoTinChi.ReadOnly = true;
-            this.SoTinChi.Width = 80;
+            this.sTCDataGridViewTextBoxColumn.DataPropertyName = "STC";
+            this.sTCDataGridViewTextBoxColumn.HeaderText = "STC";
+            this.sTCDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.sTCDataGridViewTextBoxColumn.Name = "sTCDataGridViewTextBoxColumn";
+            this.sTCDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sTCDataGridViewTextBoxColumn.Width = 125;
             // 
-            // HocKi
+            // maNganhDataGridViewTextBoxColumn
             // 
-            this.HocKi.HeaderText = "Học Kì";
-            this.HocKi.MinimumWidth = 6;
-            this.HocKi.Name = "HocKi";
-            this.HocKi.ReadOnly = true;
-            this.HocKi.Width = 210;
+            this.maNganhDataGridViewTextBoxColumn.DataPropertyName = "MaNganh";
+            this.maNganhDataGridViewTextBoxColumn.HeaderText = "MaNganh";
+            this.maNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maNganhDataGridViewTextBoxColumn.Name = "maNganhDataGridViewTextBoxColumn";
+            this.maNganhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maNganhDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nganhHocDataGridViewTextBoxColumn
+            // 
+            this.nganhHocDataGridViewTextBoxColumn.DataPropertyName = "NganhHoc";
+            this.nganhHocDataGridViewTextBoxColumn.HeaderText = "NganhHoc";
+            this.nganhHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nganhHocDataGridViewTextBoxColumn.Name = "nganhHocDataGridViewTextBoxColumn";
+            this.nganhHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nganhHocDataGridViewTextBoxColumn.Visible = false;
+            this.nganhHocDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // monHocBindingSource
+            // 
+            this.monHocBindingSource.DataSource = typeof(GDU_Management.Model.MonHoc);
             // 
             // pnMonHoc
             // 
             this.pnMonHoc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnMonHoc.Controls.Add(this.numericSoTinChi);
-            this.pnMonHoc.Controls.Add(this.txtTenMon);
-            this.pnMonHoc.Controls.Add(this.txtMaMon);
+            this.pnMonHoc.Controls.Add(this.numericSoTinChi_MH);
+            this.pnMonHoc.Controls.Add(this.txtTenMon_MH);
+            this.pnMonHoc.Controls.Add(this.txtMaMon_MH);
             this.pnMonHoc.Controls.Add(this.label3);
             this.pnMonHoc.Controls.Add(this.label2);
             this.pnMonHoc.Controls.Add(this.label1);
@@ -526,26 +558,26 @@
             this.pnMonHoc.Size = new System.Drawing.Size(663, 157);
             this.pnMonHoc.TabIndex = 2;
             // 
-            // numericSoTinChi
+            // numericSoTinChi_MH
             // 
-            this.numericSoTinChi.Location = new System.Drawing.Point(201, 103);
-            this.numericSoTinChi.Name = "numericSoTinChi";
-            this.numericSoTinChi.Size = new System.Drawing.Size(80, 37);
-            this.numericSoTinChi.TabIndex = 7;
+            this.numericSoTinChi_MH.Location = new System.Drawing.Point(201, 103);
+            this.numericSoTinChi_MH.Name = "numericSoTinChi_MH";
+            this.numericSoTinChi_MH.Size = new System.Drawing.Size(80, 37);
+            this.numericSoTinChi_MH.TabIndex = 7;
             // 
-            // txtTenMon
+            // txtTenMon_MH
             // 
-            this.txtTenMon.Location = new System.Drawing.Point(201, 59);
-            this.txtTenMon.Name = "txtTenMon";
-            this.txtTenMon.Size = new System.Drawing.Size(440, 37);
-            this.txtTenMon.TabIndex = 5;
+            this.txtTenMon_MH.Location = new System.Drawing.Point(201, 59);
+            this.txtTenMon_MH.Name = "txtTenMon_MH";
+            this.txtTenMon_MH.Size = new System.Drawing.Size(440, 37);
+            this.txtTenMon_MH.TabIndex = 5;
             // 
-            // txtMaMon
+            // txtMaMon_MH
             // 
-            this.txtMaMon.Location = new System.Drawing.Point(201, 15);
-            this.txtMaMon.Name = "txtMaMon";
-            this.txtMaMon.Size = new System.Drawing.Size(220, 37);
-            this.txtMaMon.TabIndex = 4;
+            this.txtMaMon_MH.Location = new System.Drawing.Point(201, 15);
+            this.txtMaMon_MH.Name = "txtMaMon_MH";
+            this.txtMaMon_MH.Size = new System.Drawing.Size(220, 37);
+            this.txtMaMon_MH.TabIndex = 4;
             // 
             // label3
             // 
@@ -576,8 +608,8 @@
             // 
             // grbThongTinLop
             // 
-            this.grbThongTinLop.Controls.Add(this.cboChonNganhHS);
-            this.grbThongTinLop.Controls.Add(this.cboChonKhoaHS);
+            this.grbThongTinLop.Controls.Add(this.cboChonNganh_MH);
+            this.grbThongTinLop.Controls.Add(this.cboChonKhoa_MH);
             this.grbThongTinLop.Controls.Add(this.label19);
             this.grbThongTinLop.Controls.Add(this.label18);
             this.grbThongTinLop.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -588,21 +620,23 @@
             this.grbThongTinLop.TabStop = false;
             this.grbThongTinLop.Text = "Thông Tin Khoa";
             // 
-            // cboChonNganhHS
+            // cboChonNganh_MH
             // 
-            this.cboChonNganhHS.FormattingEnabled = true;
-            this.cboChonNganhHS.Location = new System.Drawing.Point(94, 85);
-            this.cboChonNganhHS.Name = "cboChonNganhHS";
-            this.cboChonNganhHS.Size = new System.Drawing.Size(547, 33);
-            this.cboChonNganhHS.TabIndex = 4;
+            this.cboChonNganh_MH.FormattingEnabled = true;
+            this.cboChonNganh_MH.Location = new System.Drawing.Point(94, 85);
+            this.cboChonNganh_MH.Name = "cboChonNganh_MH";
+            this.cboChonNganh_MH.Size = new System.Drawing.Size(547, 33);
+            this.cboChonNganh_MH.TabIndex = 4;
+            this.cboChonNganh_MH.SelectedIndexChanged += new System.EventHandler(this.cboChonNganh_MH_SelectedIndexChanged);
             // 
-            // cboChonKhoaHS
+            // cboChonKhoa_MH
             // 
-            this.cboChonKhoaHS.FormattingEnabled = true;
-            this.cboChonKhoaHS.Location = new System.Drawing.Point(96, 39);
-            this.cboChonKhoaHS.Name = "cboChonKhoaHS";
-            this.cboChonKhoaHS.Size = new System.Drawing.Size(545, 33);
-            this.cboChonKhoaHS.TabIndex = 3;
+            this.cboChonKhoa_MH.FormattingEnabled = true;
+            this.cboChonKhoa_MH.Location = new System.Drawing.Point(96, 39);
+            this.cboChonKhoa_MH.Name = "cboChonKhoa_MH";
+            this.cboChonKhoa_MH.Size = new System.Drawing.Size(545, 33);
+            this.cboChonKhoa_MH.TabIndex = 3;
+            this.cboChonKhoa_MH.SelectedIndexChanged += new System.EventHandler(this.cboChonKhoa_MH_SelectedIndexChanged);
             // 
             // label19
             // 
@@ -747,12 +781,13 @@
             this.btnSaveDiem.Size = new System.Drawing.Size(104, 40);
             this.btnSaveDiem.TabIndex = 14;
             this.btnSaveDiem.UseVisualStyleBackColor = false;
+            this.btnSaveDiem.Click += new System.EventHandler(this.btnSaveDiem_Click);
             // 
             // rtxtGhiChu
             // 
-            this.rtxtGhiChu.Location = new System.Drawing.Point(462, 42);
+            this.rtxtGhiChu.Location = new System.Drawing.Point(316, 42);
             this.rtxtGhiChu.Name = "rtxtGhiChu";
-            this.rtxtGhiChu.Size = new System.Drawing.Size(197, 96);
+            this.rtxtGhiChu.Size = new System.Drawing.Size(343, 96);
             this.rtxtGhiChu.TabIndex = 13;
             this.rtxtGhiChu.Text = "";
             // 
@@ -794,9 +829,9 @@
             // 
             // txtDiem30
             // 
-            this.txtDiem30.Location = new System.Drawing.Point(136, 122);
+            this.txtDiem30.Location = new System.Drawing.Point(180, 122);
             this.txtDiem30.Name = "txtDiem30";
-            this.txtDiem30.Size = new System.Drawing.Size(144, 33);
+            this.txtDiem30.Size = new System.Drawing.Size(100, 33);
             this.txtDiem30.TabIndex = 6;
             // 
             // label17
@@ -857,17 +892,21 @@
             // 
             this.dgvDanhSachDiemSinhVien.AllowUserToAddRows = false;
             this.dgvDanhSachDiemSinhVien.AllowUserToDeleteRows = false;
+            this.dgvDanhSachDiemSinhVien.AutoGenerateColumns = false;
             this.dgvDanhSachDiemSinhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDanhSachDiemSinhVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STTDSD,
-            this.MaSV,
-            this.TenSV,
-            this.GioiTinh,
-            this.Diem30,
-            this.Diem70L1,
-            this.Diem70L2,
-            this.DTB,
-            this.GhiChu});
+            this.maSVDataGridViewTextBoxColumn,
+            this.maMonHocDataGridViewTextBoxColumn1,
+            this.diem30DataGridViewTextBoxColumn,
+            this.diem70L1DataGridViewTextBoxColumn,
+            this.diem70L2DataGridViewTextBoxColumn,
+            this.dTBDataGridViewTextBoxColumn,
+            this.diemChuDataGridViewTextBoxColumn,
+            this.monHocDataGridViewTextBoxColumn,
+            this.ghiChuDataGridViewTextBoxColumn,
+            this.sinhVienDataGridViewTextBoxColumn});
+            this.dgvDanhSachDiemSinhVien.DataSource = this.diemMonHocBindingSource;
             this.dgvDanhSachDiemSinhVien.Location = new System.Drawing.Point(13, 331);
             this.dgvDanhSachDiemSinhVien.Name = "dgvDanhSachDiemSinhVien";
             this.dgvDanhSachDiemSinhVien.ReadOnly = true;
@@ -875,82 +914,11 @@
             this.dgvDanhSachDiemSinhVien.RowTemplate.Height = 24;
             this.dgvDanhSachDiemSinhVien.Size = new System.Drawing.Size(1353, 360);
             this.dgvDanhSachDiemSinhVien.TabIndex = 6;
-            // 
-            // STTDSD
-            // 
-            this.STTDSD.HeaderText = "STT";
-            this.STTDSD.MinimumWidth = 6;
-            this.STTDSD.Name = "STTDSD";
-            this.STTDSD.ReadOnly = true;
-            this.STTDSD.Width = 50;
-            // 
-            // MaSV
-            // 
-            this.MaSV.HeaderText = "Mã Sinh Viên";
-            this.MaSV.MinimumWidth = 6;
-            this.MaSV.Name = "MaSV";
-            this.MaSV.ReadOnly = true;
-            this.MaSV.Width = 155;
-            // 
-            // TenSV
-            // 
-            this.TenSV.HeaderText = "Tên Sinh Viên";
-            this.TenSV.MinimumWidth = 6;
-            this.TenSV.Name = "TenSV";
-            this.TenSV.ReadOnly = true;
-            this.TenSV.Width = 180;
-            // 
-            // GioiTinh
-            // 
-            this.GioiTinh.HeaderText = "Giới Tính";
-            this.GioiTinh.MinimumWidth = 6;
-            this.GioiTinh.Name = "GioiTinh";
-            this.GioiTinh.ReadOnly = true;
-            this.GioiTinh.Width = 125;
-            // 
-            // Diem30
-            // 
-            this.Diem30.HeaderText = "Điểm 30%";
-            this.Diem30.MinimumWidth = 6;
-            this.Diem30.Name = "Diem30";
-            this.Diem30.ReadOnly = true;
-            this.Diem30.Width = 120;
-            // 
-            // Diem70L1
-            // 
-            this.Diem70L1.HeaderText = "Điểm 70% L1";
-            this.Diem70L1.MinimumWidth = 6;
-            this.Diem70L1.Name = "Diem70L1";
-            this.Diem70L1.ReadOnly = true;
-            this.Diem70L1.Width = 155;
-            // 
-            // Diem70L2
-            // 
-            this.Diem70L2.HeaderText = "ĐIểm 70% L2";
-            this.Diem70L2.MinimumWidth = 6;
-            this.Diem70L2.Name = "Diem70L2";
-            this.Diem70L2.ReadOnly = true;
-            this.Diem70L2.Width = 155;
-            // 
-            // DTB
-            // 
-            this.DTB.HeaderText = "ĐTB";
-            this.DTB.MinimumWidth = 6;
-            this.DTB.Name = "DTB";
-            this.DTB.ReadOnly = true;
-            this.DTB.Width = 80;
-            // 
-            // GhiChu
-            // 
-            this.GhiChu.HeaderText = "Ghi Chú";
-            this.GhiChu.MinimumWidth = 6;
-            this.GhiChu.Name = "GhiChu";
-            this.GhiChu.ReadOnly = true;
-            this.GhiChu.Width = 125;
+            this.dgvDanhSachDiemSinhVien.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvDanhSachDiemSinhVien_MouseClick);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtTimKiemSinhVien);
+            this.groupBox2.Controls.Add(this.txtTimKiemDiemSinhVien_QLD);
             this.groupBox2.Location = new System.Drawing.Point(5, 219);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(663, 73);
@@ -958,25 +926,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
             // 
-            // txtTimKiemSinhVien
+            // txtTimKiemDiemSinhVien_QLD
             // 
-            this.txtTimKiemSinhVien.Location = new System.Drawing.Point(8, 30);
-            this.txtTimKiemSinhVien.Name = "txtTimKiemSinhVien";
-            this.txtTimKiemSinhVien.Size = new System.Drawing.Size(641, 33);
-            this.txtTimKiemSinhVien.TabIndex = 9;
+            this.txtTimKiemDiemSinhVien_QLD.Location = new System.Drawing.Point(8, 30);
+            this.txtTimKiemDiemSinhVien_QLD.Name = "txtTimKiemDiemSinhVien_QLD";
+            this.txtTimKiemDiemSinhVien_QLD.Size = new System.Drawing.Size(641, 33);
+            this.txtTimKiemDiemSinhVien_QLD.TabIndex = 9;
             // 
             // pnThongTinLop
             // 
             this.pnThongTinLop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnThongTinLop.Controls.Add(this.cboChonMon);
+            this.pnThongTinLop.Controls.Add(this.cboChonMon_QLD);
             this.pnThongTinLop.Controls.Add(this.label11);
-            this.pnThongTinLop.Controls.Add(this.cboChonHocKi);
-            this.pnThongTinLop.Controls.Add(this.label9);
-            this.pnThongTinLop.Controls.Add(this.cboChonLop);
+            this.pnThongTinLop.Controls.Add(this.cboChonLop_QLD);
             this.pnThongTinLop.Controls.Add(this.label8);
-            this.pnThongTinLop.Controls.Add(this.cboChonKhoaHoc);
-            this.pnThongTinLop.Controls.Add(this.cboChonNganh);
-            this.pnThongTinLop.Controls.Add(this.cboChonKhoa);
+            this.pnThongTinLop.Controls.Add(this.cboChonKhoasHoc_QLD);
+            this.pnThongTinLop.Controls.Add(this.cboChonNganh_QLD);
+            this.pnThongTinLop.Controls.Add(this.cboChonKhoa_QLD);
             this.pnThongTinLop.Controls.Add(this.label20);
             this.pnThongTinLop.Controls.Add(this.label5);
             this.pnThongTinLop.Controls.Add(this.label6);
@@ -985,13 +951,14 @@
             this.pnThongTinLop.Size = new System.Drawing.Size(663, 201);
             this.pnThongTinLop.TabIndex = 0;
             // 
-            // cboChonMon
+            // cboChonMon_QLD
             // 
-            this.cboChonMon.FormattingEnabled = true;
-            this.cboChonMon.Location = new System.Drawing.Point(86, 146);
-            this.cboChonMon.Name = "cboChonMon";
-            this.cboChonMon.Size = new System.Drawing.Size(563, 33);
-            this.cboChonMon.TabIndex = 17;
+            this.cboChonMon_QLD.FormattingEnabled = true;
+            this.cboChonMon_QLD.Location = new System.Drawing.Point(86, 146);
+            this.cboChonMon_QLD.Name = "cboChonMon_QLD";
+            this.cboChonMon_QLD.Size = new System.Drawing.Size(563, 33);
+            this.cboChonMon_QLD.TabIndex = 17;
+            this.cboChonMon_QLD.SelectedIndexChanged += new System.EventHandler(this.cboChonMon_QLD_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -1002,66 +969,52 @@
             this.label11.TabIndex = 16;
             this.label11.Text = "Môn:";
             // 
-            // cboChonHocKi
+            // cboChonLop_QLD
             // 
-            this.cboChonHocKi.FormattingEnabled = true;
-            this.cboChonHocKi.Location = new System.Drawing.Point(534, 104);
-            this.cboChonHocKi.Name = "cboChonHocKi";
-            this.cboChonHocKi.Size = new System.Drawing.Size(115, 33);
-            this.cboChonHocKi.TabIndex = 15;
-            this.cboChonHocKi.Text = "Học Kì 1";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(457, 107);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 25);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Học Kì:";
-            // 
-            // cboChonLop
-            // 
-            this.cboChonLop.FormattingEnabled = true;
-            this.cboChonLop.Location = new System.Drawing.Point(302, 104);
-            this.cboChonLop.Name = "cboChonLop";
-            this.cboChonLop.Size = new System.Drawing.Size(115, 33);
-            this.cboChonLop.TabIndex = 13;
-            this.cboChonLop.Text = "11DHPM";
+            this.cboChonLop_QLD.FormattingEnabled = true;
+            this.cboChonLop_QLD.Location = new System.Drawing.Point(457, 104);
+            this.cboChonLop_QLD.Name = "cboChonLop_QLD";
+            this.cboChonLop_QLD.Size = new System.Drawing.Size(192, 33);
+            this.cboChonLop_QLD.TabIndex = 13;
+            this.cboChonLop_QLD.Text = "Chọn Lớp";
+            this.cboChonLop_QLD.SelectedIndexChanged += new System.EventHandler(this.cboChonLop_QLD_SelectedIndexChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(249, 107);
+            this.label8.Location = new System.Drawing.Point(393, 107);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 25);
             this.label8.TabIndex = 12;
             this.label8.Text = "Lớp:";
             // 
-            // cboChonKhoaHoc
+            // cboChonKhoasHoc_QLD
             // 
-            this.cboChonKhoaHoc.FormattingEnabled = true;
-            this.cboChonKhoaHoc.Location = new System.Drawing.Point(86, 104);
-            this.cboChonKhoaHoc.Name = "cboChonKhoaHoc";
-            this.cboChonKhoaHoc.Size = new System.Drawing.Size(115, 33);
-            this.cboChonKhoaHoc.TabIndex = 11;
-            this.cboChonKhoaHoc.Text = "Khóa 11";
+            this.cboChonKhoasHoc_QLD.FormattingEnabled = true;
+            this.cboChonKhoasHoc_QLD.Location = new System.Drawing.Point(86, 104);
+            this.cboChonKhoasHoc_QLD.Name = "cboChonKhoasHoc_QLD";
+            this.cboChonKhoasHoc_QLD.Size = new System.Drawing.Size(202, 33);
+            this.cboChonKhoasHoc_QLD.TabIndex = 11;
+            this.cboChonKhoasHoc_QLD.Text = "Chọn Khóa";
+            this.cboChonKhoasHoc_QLD.SelectedIndexChanged += new System.EventHandler(this.cboChonKhoasHoc_QLD_SelectedIndexChanged);
             // 
-            // cboChonNganh
+            // cboChonNganh_QLD
             // 
-            this.cboChonNganh.FormattingEnabled = true;
-            this.cboChonNganh.Location = new System.Drawing.Point(86, 56);
-            this.cboChonNganh.Name = "cboChonNganh";
-            this.cboChonNganh.Size = new System.Drawing.Size(563, 33);
-            this.cboChonNganh.TabIndex = 10;
+            this.cboChonNganh_QLD.FormattingEnabled = true;
+            this.cboChonNganh_QLD.Location = new System.Drawing.Point(86, 56);
+            this.cboChonNganh_QLD.Name = "cboChonNganh_QLD";
+            this.cboChonNganh_QLD.Size = new System.Drawing.Size(563, 33);
+            this.cboChonNganh_QLD.TabIndex = 10;
+            this.cboChonNganh_QLD.SelectedIndexChanged += new System.EventHandler(this.cboChonNganh_QLD_SelectedIndexChanged);
             // 
-            // cboChonKhoa
+            // cboChonKhoa_QLD
             // 
-            this.cboChonKhoa.FormattingEnabled = true;
-            this.cboChonKhoa.Location = new System.Drawing.Point(86, 9);
-            this.cboChonKhoa.Name = "cboChonKhoa";
-            this.cboChonKhoa.Size = new System.Drawing.Size(563, 33);
-            this.cboChonKhoa.TabIndex = 9;
+            this.cboChonKhoa_QLD.FormattingEnabled = true;
+            this.cboChonKhoa_QLD.Location = new System.Drawing.Point(86, 9);
+            this.cboChonKhoa_QLD.Name = "cboChonKhoa_QLD";
+            this.cboChonKhoa_QLD.Size = new System.Drawing.Size(563, 33);
+            this.cboChonKhoa_QLD.TabIndex = 9;
+            this.cboChonKhoa_QLD.SelectedIndexChanged += new System.EventHandler(this.cboChonKhoa_QLD_SelectedIndexChanged);
             // 
             // label20
             // 
@@ -1095,6 +1048,110 @@
             this.timerMonHoc.Interval = 1000;
             this.timerMonHoc.Tick += new System.EventHandler(this.timerMonHoc_Tick);
             // 
+            // diemMonHocBindingSource
+            // 
+            this.diemMonHocBindingSource.DataSource = typeof(GDU_Management.Model.DiemMonHoc);
+            // 
+            // STTDSD
+            // 
+            this.STTDSD.HeaderText = "STT";
+            this.STTDSD.MinimumWidth = 6;
+            this.STTDSD.Name = "STTDSD";
+            this.STTDSD.ReadOnly = true;
+            this.STTDSD.Width = 50;
+            // 
+            // maSVDataGridViewTextBoxColumn
+            // 
+            this.maSVDataGridViewTextBoxColumn.DataPropertyName = "MaSV";
+            this.maSVDataGridViewTextBoxColumn.HeaderText = "MaSV";
+            this.maSVDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maSVDataGridViewTextBoxColumn.Name = "maSVDataGridViewTextBoxColumn";
+            this.maSVDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maSVDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // maMonHocDataGridViewTextBoxColumn1
+            // 
+            this.maMonHocDataGridViewTextBoxColumn1.DataPropertyName = "MaMonHoc";
+            this.maMonHocDataGridViewTextBoxColumn1.HeaderText = "MaMonHoc";
+            this.maMonHocDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.maMonHocDataGridViewTextBoxColumn1.Name = "maMonHocDataGridViewTextBoxColumn1";
+            this.maMonHocDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.maMonHocDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // diem30DataGridViewTextBoxColumn
+            // 
+            this.diem30DataGridViewTextBoxColumn.DataPropertyName = "Diem30";
+            this.diem30DataGridViewTextBoxColumn.HeaderText = "Diem30";
+            this.diem30DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diem30DataGridViewTextBoxColumn.Name = "diem30DataGridViewTextBoxColumn";
+            this.diem30DataGridViewTextBoxColumn.ReadOnly = true;
+            this.diem30DataGridViewTextBoxColumn.Width = 125;
+            // 
+            // diem70L1DataGridViewTextBoxColumn
+            // 
+            this.diem70L1DataGridViewTextBoxColumn.DataPropertyName = "Diem70L1";
+            this.diem70L1DataGridViewTextBoxColumn.HeaderText = "Diem70L1";
+            this.diem70L1DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diem70L1DataGridViewTextBoxColumn.Name = "diem70L1DataGridViewTextBoxColumn";
+            this.diem70L1DataGridViewTextBoxColumn.ReadOnly = true;
+            this.diem70L1DataGridViewTextBoxColumn.Width = 125;
+            // 
+            // diem70L2DataGridViewTextBoxColumn
+            // 
+            this.diem70L2DataGridViewTextBoxColumn.DataPropertyName = "Diem70L2";
+            this.diem70L2DataGridViewTextBoxColumn.HeaderText = "Diem70L2";
+            this.diem70L2DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diem70L2DataGridViewTextBoxColumn.Name = "diem70L2DataGridViewTextBoxColumn";
+            this.diem70L2DataGridViewTextBoxColumn.ReadOnly = true;
+            this.diem70L2DataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dTBDataGridViewTextBoxColumn
+            // 
+            this.dTBDataGridViewTextBoxColumn.DataPropertyName = "DTB";
+            this.dTBDataGridViewTextBoxColumn.HeaderText = "DTB";
+            this.dTBDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dTBDataGridViewTextBoxColumn.Name = "dTBDataGridViewTextBoxColumn";
+            this.dTBDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dTBDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // diemChuDataGridViewTextBoxColumn
+            // 
+            this.diemChuDataGridViewTextBoxColumn.DataPropertyName = "DiemChu";
+            this.diemChuDataGridViewTextBoxColumn.HeaderText = "DiemChu";
+            this.diemChuDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diemChuDataGridViewTextBoxColumn.Name = "diemChuDataGridViewTextBoxColumn";
+            this.diemChuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diemChuDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // monHocDataGridViewTextBoxColumn
+            // 
+            this.monHocDataGridViewTextBoxColumn.DataPropertyName = "MonHoc";
+            this.monHocDataGridViewTextBoxColumn.HeaderText = "MonHoc";
+            this.monHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.monHocDataGridViewTextBoxColumn.Name = "monHocDataGridViewTextBoxColumn";
+            this.monHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.monHocDataGridViewTextBoxColumn.Visible = false;
+            this.monHocDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // ghiChuDataGridViewTextBoxColumn
+            // 
+            this.ghiChuDataGridViewTextBoxColumn.DataPropertyName = "GhiChu";
+            this.ghiChuDataGridViewTextBoxColumn.HeaderText = "GhiChu";
+            this.ghiChuDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.ghiChuDataGridViewTextBoxColumn.Name = "ghiChuDataGridViewTextBoxColumn";
+            this.ghiChuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ghiChuDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // sinhVienDataGridViewTextBoxColumn
+            // 
+            this.sinhVienDataGridViewTextBoxColumn.DataPropertyName = "SinhVien";
+            this.sinhVienDataGridViewTextBoxColumn.HeaderText = "SinhVien";
+            this.sinhVienDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.sinhVienDataGridViewTextBoxColumn.Name = "sinhVienDataGridViewTextBoxColumn";
+            this.sinhVienDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sinhVienDataGridViewTextBoxColumn.Visible = false;
+            this.sinhVienDataGridViewTextBoxColumn.Width = 125;
+            // 
             // frmDiemAndMonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1105,6 +1162,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmDiemAndMonHoc";
+            this.Load += new System.EventHandler(this.frmDiemAndMonHoc_Load);
             this.pnQLDiem.ResumeLayout(false);
             this.tabQLDiem.ResumeLayout(false);
             this.tabgQL.ResumeLayout(false);
@@ -1120,9 +1178,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachMonHoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monHocBindingSource)).EndInit();
             this.pnMonHoc.ResumeLayout(false);
             this.pnMonHoc.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericSoTinChi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericSoTinChi_MH)).EndInit();
             this.grbThongTinLop.ResumeLayout(false);
             this.grbThongTinLop.PerformLayout();
             this.tabgQLDiem.ResumeLayout(false);
@@ -1135,6 +1194,7 @@
             this.groupBox2.PerformLayout();
             this.pnThongTinLop.ResumeLayout(false);
             this.pnThongTinLop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.diemMonHocBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1148,14 +1208,14 @@
         private System.Windows.Forms.TabPage tabgQLDiem;
         private System.Windows.Forms.Panel pnQLMonHoc;
         private System.Windows.Forms.GroupBox grbThongTinLop;
-        private System.Windows.Forms.ComboBox cboChonNganhHS;
-        private System.Windows.Forms.ComboBox cboChonKhoaHS;
+        private System.Windows.Forms.ComboBox cboChonNganh_MH;
+        private System.Windows.Forms.ComboBox cboChonKhoa_MH;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel pnMonHoc;
-        private System.Windows.Forms.NumericUpDown numericSoTinChi;
-        private System.Windows.Forms.TextBox txtTenMon;
-        private System.Windows.Forms.TextBox txtMaMon;
+        private System.Windows.Forms.NumericUpDown numericSoTinChi_MH;
+        private System.Windows.Forms.TextBox txtTenMon_MH;
+        private System.Windows.Forms.TextBox txtMaMon_MH;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -1175,27 +1235,20 @@
         private System.Windows.Forms.Button btnSaveMonHoc;
         private System.Windows.Forms.TextBox txtTimKiemMonHoc;
         private System.Windows.Forms.Button btnExportDSMonHoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STTMonHoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaMonHoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenMonHoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoTinChi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HocKi;
         private System.Windows.Forms.Panel pnDiem;
         private System.Windows.Forms.Panel pnThongTinLop;
-        private System.Windows.Forms.ComboBox cboChonKhoaHoc;
-        private System.Windows.Forms.ComboBox cboChonNganh;
-        private System.Windows.Forms.ComboBox cboChonKhoa;
+        private System.Windows.Forms.ComboBox cboChonKhoasHoc_QLD;
+        private System.Windows.Forms.ComboBox cboChonNganh_QLD;
+        private System.Windows.Forms.ComboBox cboChonKhoa_QLD;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cboChonHocKi;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cboChonLop;
+        private System.Windows.Forms.ComboBox cboChonLop_QLD;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cboChonMon;
+        private System.Windows.Forms.ComboBox cboChonMon_QLD;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtTimKiemSinhVien;
+        private System.Windows.Forms.TextBox txtTimKiemDiemSinhVien_QLD;
         private System.Windows.Forms.DataGridView dgvDanhSachDiemSinhVien;
         private System.Windows.Forms.Panel pnNhapDiem;
         private System.Windows.Forms.Label label14;
@@ -1217,15 +1270,6 @@
         private System.Windows.Forms.TextBox txtDiem70L2;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtDiem70L1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STTDSD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaSV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenSV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GioiTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Diem30;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Diem70L1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Diem70L2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DTB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GhiChu;
         private System.Windows.Forms.Timer timerMonHoc;
         private System.Windows.Forms.Panel pnBoDiemGio;
         private System.Windows.Forms.Label lblAnimation3;
@@ -1237,5 +1281,24 @@
         private System.Windows.Forms.Label lblPhut;
         private System.Windows.Forms.Panel pnControl_QLD;
         private System.Windows.Forms.Button btnHomeMenu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STTMonHoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maMonHocDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenMonHocDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sTCDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maNganhDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nganhHocDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource monHocBindingSource;
+        private System.Windows.Forms.BindingSource diemMonHocBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STTDSD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maSVDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maMonHocDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diem30DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diem70L1DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diem70L2DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dTBDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diemChuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn monHocDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ghiChuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sinhVienDataGridViewTextBoxColumn;
     }
 }

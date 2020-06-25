@@ -22,21 +22,21 @@ namespace GDU_Management
         //khai báo các service 
         LopService lopService = new LopService();
 
-        //---------------HÀM PUBLIC-------------------//
+        //------------------------------------HÀM PUBLIC------------------------------------------//
+        //---------------------------------------------------------------------------------------------//
 
-            // hàm nhận mã ngành và khóa học từ frmQLSV
+        // hàm nhận mã ngành và khóa học từ frmQLSV
         public void FunDatafrmDanhSachLopToFrmQLSV(string txtMaNganh, string txtMaKhoaHoc)
         {
             lblMaNganh.Text = txtMaNganh;
-            lblKhoaHoc.Text = txtMaKhoaHoc;
+            lblMaKhoasHoc.Text = txtMaKhoaHoc;
         }
 
         //hàm check data
         public bool checkDataLOP()
         {
-            if (string.IsNullOrEmpty(txtMaLop.Text))
+            if (string.IsNullOrEmpty(lblMaLop.Text))
             {
-                txtMaLop.Focus();
                 MessageBox.Show("Mã Lớp Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
@@ -52,8 +52,8 @@ namespace GDU_Management
         //hàm load data từ datagridview lên textbox
         public void ShowdataTuDatagridviewToTextbox()
         {
-            txtMaLop.DataBindings.Clear();
-            txtMaLop.DataBindings.Add("text", dgvDanhSachLop.DataSource, "MaLop");
+            lblMaLop.DataBindings.Clear();
+            lblMaLop.DataBindings.Add("text", dgvDanhSachLop.DataSource, "MaLop");
             txtTenLop.DataBindings.Clear();
             txtTenLop.DataBindings.Add("text", dgvDanhSachLop.DataSource, "TenLop");
         }
@@ -61,12 +61,50 @@ namespace GDU_Management
         //show danh sách lớp theo ngành và khóa học
         public void LoadDanhSachLopToDatagridview()
         {
-            string maKhoaHoc = lblKhoaHoc.Text;
+            string maKhoaHoc = lblMaKhoasHoc.Text;
             string maNganh = lblMaNganh.Text;
             dgvDanhSachLop.DataSource = lopService.GetDanhSachLopByMaNganhVaMaKhoaHoc(maNganh, maKhoaHoc).ToList();
         }
 
-        //----------KẾT THÚC HÀM PUPLIC-----------
+        //hàm auto id lớp
+        public void AutoIDLop()
+        {
+            int count;
+            count = dgvDanhSachLop.Rows.Count;
+
+            string IdKhoas = lblMaKhoasHoc.Text;
+            string LastIdKhoas = IdKhoas.Substring(1);
+            //MessageBox.Show(LastIdKhoas);
+
+            string IdNganh = lblMaNganh.Text;
+            string LastIDNganh = IdNganh.Substring(8);
+            //MessageBox.Show(LastIDNganh);
+
+
+            if (count == 0)
+            {
+                lblMaLop.Text = "GDU" + LastIdKhoas + LastIDNganh + "00";
+            }
+            else
+            {
+                string chuoi_id = "";
+                int chuoi_id_key = 0;
+
+                chuoi_id = Convert.ToString(dgvDanhSachLop.Rows[count - 1].Cells[1].Value);
+                chuoi_id_key = Convert.ToInt32(chuoi_id.Remove(0, 7));
+                if (chuoi_id_key + 1 < 10)
+                {
+                    lblMaLop.Text = "GDU" + LastIdKhoas + LastIDNganh + "0" + (chuoi_id_key + 1);
+                }
+                else if (chuoi_id_key + 1 >= 10)
+                {
+                    lblMaLop.Text = "GDU" + LastIdKhoas + LastIDNganh + (chuoi_id_key + 1);
+                }
+            }
+        }
+
+        //-----------------------------------------KẾT THÚC HÀM PUPLIC--------------------------------//
+        //----------------------------------------------------------------------------------------------------//
         
         private void frmDanhSachLop_Load(object sender, EventArgs e)
         {
@@ -79,14 +117,12 @@ namespace GDU_Management
             if (checkDataLOP())
             {
                 Lop lop = new Lop();
-                lop.MaLop = txtMaLop.Text.Trim();
+                lop.MaLop = lblMaLop.Text.Trim();
                 lop.TenLop = txtTenLop.Text.Trim();
                 lop.MaNganh = lblMaNganh.Text.Trim();
-                lop.MaKhoaHoc = lblKhoaHoc.Text.Trim();
+                lop.MaKhoaHoc = lblMaKhoasHoc.Text.Trim();
                 lopService.CreateLop(lop);
                 LoadDanhSachLopToDatagridview();
-                txtMaLop.Text = "";
-                txtTenLop.Text = "";
                 btnSaveLop.Enabled = false;
                 MessageBox.Show("Thêm Mới Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -98,8 +134,9 @@ namespace GDU_Management
 
         private void btnNewLop_Click(object sender, EventArgs e)
         {
-            txtMaLop.Clear();
+            AutoIDLop();
             txtTenLop.Clear();
+            txtTenLop.Focus();
         }
 
         private void btnUpdateLop_Click(object sender, EventArgs e)
@@ -107,18 +144,16 @@ namespace GDU_Management
             if (checkDataLOP())
             {
                 Lop lp = new Lop();
-                lp.MaLop = txtMaLop.Text.Trim();
+                lp.MaLop = lblMaLop.Text.Trim();
                 lp.TenLop = txtTenLop.Text.Trim();
                 lp.MaNganh = lblMaNganh.Text.Trim();
-                lp.MaKhoaHoc = lblKhoaHoc.Text.Trim();
+                lp.MaKhoaHoc = lblMaKhoasHoc.Text.Trim();
                 lopService.UpdateLop(lp);
                 LoadDanhSachLopToDatagridview();
-                txtMaLop.Text = "";
-                txtTenLop.Text = "";
                 btnUpdateLop.Enabled = false;
                 btnSaveLop.Enabled = false;
                 btnDeleteLop.Enabled = false;
-                MessageBox.Show("Cập nhật thông tin '" + txtMaLop.Text + "' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cập nhật thông tin  ["+lblMaLop.Text+"]' thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -141,19 +176,21 @@ namespace GDU_Management
 
         private void btnDeleteLop_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn Có Muốn Xóa  '" + txtMaLop.Text + "'", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Xóa [" + lblMaLop.Text + "], Việc này sẽ xóa tất cả thông tin liên quan đến lớp bao gồm danh sách sinh viên trong lớp)", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                string maLop = txtMaLop.Text.Trim();
-                if (string.IsNullOrEmpty(txtMaLop.Text))
+                string maLop = lblMaLop.Text.Trim();
+                if (maLop.Equals("null"))
                 {
-                    MessageBox.Show("Xóa Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa thất bại, Không tồn tại mã lớp [--"+maLop+"--]", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
+                    SinhVienService sinhVienService = new SinhVienService();
+                    sinhVienService.DeleteAllSinhVienByMaLop(maLop);
                     lopService.DeleteLop(maLop);
                     LoadDanhSachLopToDatagridview();
-                    MessageBox.Show("Xóa Thành Công...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtMaLop.Clear();
+                    MessageBox.Show("Đã Xóa [" + lblMaLop.Text + "]", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lblMaLop.Text="null";
                     txtTenLop.Clear();
                     btnDeleteLop.Enabled = false;
                     btnSaveLop.Enabled = false;

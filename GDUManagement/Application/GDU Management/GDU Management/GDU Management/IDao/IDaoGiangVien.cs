@@ -13,7 +13,5 @@ namespace GDU_Management.IDao
         GiangVien CreateGiangVien(GiangVien giangVien);
         void DeleteGiangVien(string maGV);
         void UpdateGiangVien(GiangVien giangVien);
-        List<GiangVien> SearchGiangVienByTenGV(string tenGV);
-        List<GiangVien> GetMaGVByTenGV(string maGV);
     }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GDUmanagement" Class="GDUDataConnectionsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DKHTJ30\SQLEXPRESS01;Initial Catalog=GDUmanagement;Integrated Security=True" SettingsObjectName="GDU_Management.Properties.Settings" SettingsPropertyName="GDUmanagementConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-EUPI4M9;Initial Catalog=GDUmanagement;User ID=LH1999" SettingsObjectName="GDU_Management.Properties.Settings" SettingsPropertyName="GDUmanagementConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Admin" Member="Admins">
     <Type Name="Admin">
       <Column Name="MaAdmin" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -24,10 +24,6 @@
       <Column Name="NgayBatDau" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="NgayKetthuc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="PhongHoc" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="TenMonHoc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="TenGV" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="STC" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Thu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="GiangVien_ThoiKhoaBieu" Member="GiangVien" ThisKey="MaGV" OtherKey="MaGV" Type="GiangVien" IsForeignKey="true" />
       <Association Name="Lop_ThoiKhoaBieu" Member="Lop" ThisKey="MaLop" OtherKey="MaLop" Type="Lop" IsForeignKey="true" />
       <Association Name="MonHoc_ThoiKhoaBieu" Member="MonHoc" ThisKey="MaMonHoc" OtherKey="MaMonHoc" Type="MonHoc" IsForeignKey="true" />
@@ -39,9 +35,12 @@
       <Column Name="MaMonHoc" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Diem30" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Diem70L1" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Diem70L2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Diem70L2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="DTB" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="DiemChu" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="MonHoc_DiemMonHoc" Member="MonHoc" ThisKey="MaMonHoc" OtherKey="MaMonHoc" Type="MonHoc" IsForeignKey="true" />
+      <Association Name="SinhVien_DiemMonHoc" Member="SinhVien" ThisKey="MaSV" OtherKey="MaSV" Type="SinhVien" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.GiangVien" Member="GiangViens">
@@ -93,6 +92,7 @@
       <Column Name="STC" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaNganh" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="MonHoc_ThoiKhoaBieu" Member="ThoiKhoaBieus" ThisKey="MaMonHoc" OtherKey="MaMonHoc" Type="ThoiKhoaBieu" />
+      <Association Name="MonHoc_DiemMonHoc" Member="DiemMonHocs" ThisKey="MaMonHoc" OtherKey="MaMonHoc" Type="DiemMonHoc" />
       <Association Name="NganhHoc_MonHoc" Member="NganhHoc" ThisKey="MaNganh" OtherKey="MaNganh" Type="NganhHoc" IsForeignKey="true" />
     </Type>
   </Table>
@@ -118,6 +118,7 @@
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="MaLop" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="SinhVien_DiemMonHoc" Member="DiemMonHocs" ThisKey="MaSV" OtherKey="MaSV" Type="DiemMonHoc" />
       <Association Name="Lop_SinhVien" Member="Lop" ThisKey="MaLop" OtherKey="MaLop" Type="Lop" IsForeignKey="true" />
     </Type>
   </Table>

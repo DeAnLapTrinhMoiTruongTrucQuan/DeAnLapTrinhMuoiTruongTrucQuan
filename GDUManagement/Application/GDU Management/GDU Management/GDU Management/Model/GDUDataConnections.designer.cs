@@ -63,7 +63,7 @@ namespace GDU_Management.Model
     #endregion
 		
 		public GDUDataConnectionsDataContext() : 
-				base(global::GDU_Management.Properties.Settings.Default.GDUmanagementConnectionString2, mappingSource)
+				base(global::GDU_Management.Properties.Settings.Default.GDUmanagementConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -429,14 +429,6 @@ namespace GDU_Management.Model
 		
 		private string _PhongHoc;
 		
-		private string _TenMonHoc;
-		
-		private string _TenGV;
-		
-		private System.Nullable<int> _STC;
-		
-		private string _Thu;
-		
 		private EntityRef<GiangVien> _GiangVien;
 		
 		private EntityRef<Lop> _Lop;
@@ -467,14 +459,6 @@ namespace GDU_Management.Model
     partial void OnNgayKetthucChanged();
     partial void OnPhongHocChanging(string value);
     partial void OnPhongHocChanged();
-    partial void OnTenMonHocChanging(string value);
-    partial void OnTenMonHocChanged();
-    partial void OnTenGVChanging(string value);
-    partial void OnTenGVChanged();
-    partial void OnSTCChanging(System.Nullable<int> value);
-    partial void OnSTCChanged();
-    partial void OnThuChanging(string value);
-    partial void OnThuChanged();
     #endregion
 		
 		public ThoiKhoaBieu()
@@ -697,86 +681,6 @@ namespace GDU_Management.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenMonHoc", DbType="NVarChar(100)")]
-		public string TenMonHoc
-		{
-			get
-			{
-				return this._TenMonHoc;
-			}
-			set
-			{
-				if ((this._TenMonHoc != value))
-				{
-					this.OnTenMonHocChanging(value);
-					this.SendPropertyChanging();
-					this._TenMonHoc = value;
-					this.SendPropertyChanged("TenMonHoc");
-					this.OnTenMonHocChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenGV", DbType="NVarChar(150)")]
-		public string TenGV
-		{
-			get
-			{
-				return this._TenGV;
-			}
-			set
-			{
-				if ((this._TenGV != value))
-				{
-					this.OnTenGVChanging(value);
-					this.SendPropertyChanging();
-					this._TenGV = value;
-					this.SendPropertyChanged("TenGV");
-					this.OnTenGVChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STC", DbType="Int")]
-		public System.Nullable<int> STC
-		{
-			get
-			{
-				return this._STC;
-			}
-			set
-			{
-				if ((this._STC != value))
-				{
-					this.OnSTCChanging(value);
-					this.SendPropertyChanging();
-					this._STC = value;
-					this.SendPropertyChanged("STC");
-					this.OnSTCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thu", DbType="NVarChar(50)")]
-		public string Thu
-		{
-			get
-			{
-				return this._Thu;
-			}
-			set
-			{
-				if ((this._Thu != value))
-				{
-					this.OnThuChanging(value);
-					this.SendPropertyChanging();
-					this._Thu = value;
-					this.SendPropertyChanged("Thu");
-					this.OnThuChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GiangVien_ThoiKhoaBieu", Storage="_GiangVien", ThisKey="MaGV", OtherKey="MaGV", IsForeignKey=true)]
 		public GiangVien GiangVien
 		{
@@ -914,11 +818,17 @@ namespace GDU_Management.Model
 		
 		private System.Nullable<double> _Diem70L1;
 		
-		private System.Nullable<double> _Diem70L2;
+		private string _Diem70L2;
 		
 		private System.Nullable<double> _DTB;
 		
 		private string _DiemChu;
+		
+		private string _GhiChu;
+		
+		private EntityRef<MonHoc> _MonHoc;
+		
+		private EntityRef<SinhVien> _SinhVien;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -932,16 +842,20 @@ namespace GDU_Management.Model
     partial void OnDiem30Changed();
     partial void OnDiem70L1Changing(System.Nullable<double> value);
     partial void OnDiem70L1Changed();
-    partial void OnDiem70L2Changing(System.Nullable<double> value);
+    partial void OnDiem70L2Changing(string value);
     partial void OnDiem70L2Changed();
     partial void OnDTBChanging(System.Nullable<double> value);
     partial void OnDTBChanged();
     partial void OnDiemChuChanging(string value);
     partial void OnDiemChuChanged();
+    partial void OnGhiChuChanging(string value);
+    partial void OnGhiChuChanged();
     #endregion
 		
 		public DiemMonHoc()
 		{
+			this._MonHoc = default(EntityRef<MonHoc>);
+			this._SinhVien = default(EntityRef<SinhVien>);
 			OnCreated();
 		}
 		
@@ -956,6 +870,10 @@ namespace GDU_Management.Model
 			{
 				if ((this._MaSV != value))
 				{
+					if (this._SinhVien.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnMaSVChanging(value);
 					this.SendPropertyChanging();
 					this._MaSV = value;
@@ -976,6 +894,10 @@ namespace GDU_Management.Model
 			{
 				if ((this._MaMonHoc != value))
 				{
+					if (this._MonHoc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnMaMonHocChanging(value);
 					this.SendPropertyChanging();
 					this._MaMonHoc = value;
@@ -1025,8 +947,8 @@ namespace GDU_Management.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diem70L2", DbType="Float")]
-		public System.Nullable<double> Diem70L2
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diem70L2", DbType="VarChar(10)")]
+		public string Diem70L2
 		{
 			get
 			{
@@ -1081,6 +1003,94 @@ namespace GDU_Management.Model
 					this._DiemChu = value;
 					this.SendPropertyChanged("DiemChu");
 					this.OnDiemChuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(250)")]
+		public string GhiChu
+		{
+			get
+			{
+				return this._GhiChu;
+			}
+			set
+			{
+				if ((this._GhiChu != value))
+				{
+					this.OnGhiChuChanging(value);
+					this.SendPropertyChanging();
+					this._GhiChu = value;
+					this.SendPropertyChanged("GhiChu");
+					this.OnGhiChuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MonHoc_DiemMonHoc", Storage="_MonHoc", ThisKey="MaMonHoc", OtherKey="MaMonHoc", IsForeignKey=true)]
+		public MonHoc MonHoc
+		{
+			get
+			{
+				return this._MonHoc.Entity;
+			}
+			set
+			{
+				MonHoc previousValue = this._MonHoc.Entity;
+				if (((previousValue != value) 
+							|| (this._MonHoc.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MonHoc.Entity = null;
+						previousValue.DiemMonHocs.Remove(this);
+					}
+					this._MonHoc.Entity = value;
+					if ((value != null))
+					{
+						value.DiemMonHocs.Add(this);
+						this._MaMonHoc = value.MaMonHoc;
+					}
+					else
+					{
+						this._MaMonHoc = default(string);
+					}
+					this.SendPropertyChanged("MonHoc");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SinhVien_DiemMonHoc", Storage="_SinhVien", ThisKey="MaSV", OtherKey="MaSV", IsForeignKey=true)]
+		public SinhVien SinhVien
+		{
+			get
+			{
+				return this._SinhVien.Entity;
+			}
+			set
+			{
+				SinhVien previousValue = this._SinhVien.Entity;
+				if (((previousValue != value) 
+							|| (this._SinhVien.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SinhVien.Entity = null;
+						previousValue.DiemMonHocs.Remove(this);
+					}
+					this._SinhVien.Entity = value;
+					if ((value != null))
+					{
+						value.DiemMonHocs.Add(this);
+						this._MaSV = value.MaSV;
+					}
+					else
+					{
+						this._MaSV = default(string);
+					}
+					this.SendPropertyChanged("SinhVien");
 				}
 			}
 		}
@@ -1952,6 +1962,8 @@ namespace GDU_Management.Model
 		
 		private EntitySet<ThoiKhoaBieu> _ThoiKhoaBieus;
 		
+		private EntitySet<DiemMonHoc> _DiemMonHocs;
+		
 		private EntityRef<NganhHoc> _NganhHoc;
 		
     #region Extensibility Method Definitions
@@ -1971,6 +1983,7 @@ namespace GDU_Management.Model
 		public MonHoc()
 		{
 			this._ThoiKhoaBieus = new EntitySet<ThoiKhoaBieu>(new Action<ThoiKhoaBieu>(this.attach_ThoiKhoaBieus), new Action<ThoiKhoaBieu>(this.detach_ThoiKhoaBieus));
+			this._DiemMonHocs = new EntitySet<DiemMonHoc>(new Action<DiemMonHoc>(this.attach_DiemMonHocs), new Action<DiemMonHoc>(this.detach_DiemMonHocs));
 			this._NganhHoc = default(EntityRef<NganhHoc>);
 			OnCreated();
 		}
@@ -2072,6 +2085,19 @@ namespace GDU_Management.Model
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MonHoc_DiemMonHoc", Storage="_DiemMonHocs", ThisKey="MaMonHoc", OtherKey="MaMonHoc")]
+		public EntitySet<DiemMonHoc> DiemMonHocs
+		{
+			get
+			{
+				return this._DiemMonHocs;
+			}
+			set
+			{
+				this._DiemMonHocs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NganhHoc_MonHoc", Storage="_NganhHoc", ThisKey="MaNganh", OtherKey="MaNganh", IsForeignKey=true)]
 		public NganhHoc NganhHoc
 		{
@@ -2133,6 +2159,18 @@ namespace GDU_Management.Model
 		}
 		
 		private void detach_ThoiKhoaBieus(ThoiKhoaBieu entity)
+		{
+			this.SendPropertyChanging();
+			entity.MonHoc = null;
+		}
+		
+		private void attach_DiemMonHocs(DiemMonHoc entity)
+		{
+			this.SendPropertyChanging();
+			entity.MonHoc = this;
+		}
+		
+		private void detach_DiemMonHocs(DiemMonHoc entity)
 		{
 			this.SendPropertyChanging();
 			entity.MonHoc = null;
@@ -2372,6 +2410,8 @@ namespace GDU_Management.Model
 		
 		private string _MaLop;
 		
+		private EntitySet<DiemMonHoc> _DiemMonHocs;
+		
 		private EntityRef<Lop> _Lop;
 		
     #region Extensibility Method Definitions
@@ -2402,6 +2442,7 @@ namespace GDU_Management.Model
 		
 		public SinhVien()
 		{
+			this._DiemMonHocs = new EntitySet<DiemMonHoc>(new Action<DiemMonHoc>(this.attach_DiemMonHocs), new Action<DiemMonHoc>(this.detach_DiemMonHocs));
 			this._Lop = default(EntityRef<Lop>);
 			OnCreated();
 		}
@@ -2610,6 +2651,19 @@ namespace GDU_Management.Model
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SinhVien_DiemMonHoc", Storage="_DiemMonHocs", ThisKey="MaSV", OtherKey="MaSV")]
+		public EntitySet<DiemMonHoc> DiemMonHocs
+		{
+			get
+			{
+				return this._DiemMonHocs;
+			}
+			set
+			{
+				this._DiemMonHocs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lop_SinhVien", Storage="_Lop", ThisKey="MaLop", OtherKey="MaLop", IsForeignKey=true)]
 		public Lop Lop
 		{
@@ -2662,6 +2716,18 @@ namespace GDU_Management.Model
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_DiemMonHocs(DiemMonHoc entity)
+		{
+			this.SendPropertyChanging();
+			entity.SinhVien = this;
+		}
+		
+		private void detach_DiemMonHocs(DiemMonHoc entity)
+		{
+			this.SendPropertyChanging();
+			entity.SinhVien = null;
 		}
 	}
 }

@@ -11,7 +11,7 @@ namespace GDU_Management.Service
 {
     class KhoaHocService
     {
-        IDaoKhoaHoc khoaHocIDao = new KhoaHocImpl();
+        IDaoKhoasHoc khoaHocIDao = new KhoasHocImpl();
 
         //lấy danh sách khóa học
        public  List<KhoaHoc> GetAllKhoaHoc()

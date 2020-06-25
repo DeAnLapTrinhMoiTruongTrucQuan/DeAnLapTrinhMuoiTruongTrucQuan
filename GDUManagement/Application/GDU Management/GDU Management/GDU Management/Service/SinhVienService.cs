@@ -18,20 +18,41 @@ namespace GDU_Management.Service
         {
             return sinhVienIDao.GetAllSinhVien();
         }
+
         //thêm mới một sinh viên
         public SinhVien CreateSinhVien(SinhVien sinhVien)
         {
             return sinhVienIDao.CreateSinhVien(sinhVien);
         }
+
         //xóa sinh viên
         public void DeleteSinhVien(string maSV)
         {
             sinhVienIDao.DeleteSinhVien(maSV);
         }
+
         //cập nhật sinh viên
         public void UpdateSinhVien(SinhVien sinhVien)
         {
             sinhVienIDao.UpdateSinhVien(sinhVien);
+        }
+
+        //lấy danh sách sinh viên theo mã lớp
+        public List<SinhVien> GetSinhVienByMaLop(string maLop)
+        {
+            return sinhVienIDao.GetSinhVienByMaLop(maLop);
+        }
+
+        //tìm kiếm sinh viên theo tên
+        public List<SinhVien> SearchSinhVienByTenSinhVien(string tenSV)
+        {
+            return sinhVienIDao.SearchSinhVienByTenSinhVien(tenSV);
+        }
+
+        //xóa tất cả sinh viên
+        public void DeleteAllSinhVienByMaLop(string maLop)
+        {
+            sinhVienIDao.DeleteAllSinhVienByMaLop(maLop);
         }
     }
 }

@@ -12,7 +12,11 @@ namespace GDU_Management.IDao
     {
         List<SinhVien> GetAllSinhVien();
         SinhVien CreateSinhVien(SinhVien sinhVien);
-        void DeleteSinhVien(string MaSV);
+        void DeleteSinhVien(string maSV);
         void UpdateSinhVien(SinhVien sinhVien);
+        List<SinhVien> GetSinhVienByMaLop(string maLop);
+        List<SinhVien> SearchSinhVienByTenSinhVien(string tenSV);
+        void DeleteAllSinhVienByMaLop(string maLop);
+        
     }
 }

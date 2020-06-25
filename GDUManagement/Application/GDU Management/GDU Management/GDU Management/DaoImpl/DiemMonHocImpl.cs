@@ -12,7 +12,7 @@ namespace GDU_Management.DaoImpl
     {
         //tao ket noi database
         GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
-        List<DiemMonHoc> diemMonHoc;
+        List<DiemMonHoc> listDiemMonHocs;
         public DiemMonHoc AddDiemMonHoc(DiemMonHoc diemMonHoc)
         {
             //code content
@@ -30,9 +30,31 @@ namespace GDU_Management.DaoImpl
             return null;
         }
 
+        public List<DiemMonHoc> GetDanhSachMonByMaLopAndMaMonHoc(string maLop, string maMonHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listDiem = from dmh in db.DiemMonHocs
+                           join sv in db.SinhViens on dmh.MaSV equals sv.MaSV
+                           join lp in db.Lops on sv.MaLop equals lp.MaLop
+                           join mh in db.MonHocs on dmh.MaMonHoc equals mh.MaMonHoc
+                           where dmh.MaMonHoc == maMonHoc && lp.MaLop == maLop
+                           select dmh;
+            listDiemMonHocs = listDiem.ToList();
+            return listDiemMonHocs;
+        }
+
         public void UpdateDiemMonHoc(DiemMonHoc diemMonHoc)
         {
-            //code content
+            db = new GDUDataConnectionsDataContext();
+            DiemMonHoc dmh = new DiemMonHoc();
+            dmh = db.DiemMonHocs.Single(p => p.MaMonHoc == diemMonHoc.MaMonHoc && p.MaSV == diemMonHoc.MaSV);
+            dmh.Diem30 = diemMonHoc.Diem30;
+            dmh.Diem70L1 = diemMonHoc.Diem70L1;
+            dmh.Diem70L2 = diemMonHoc.Diem70L2;
+            dmh.DTB = diemMonHoc.DTB;
+            dmh.DiemChu = diemMonHoc.DiemChu;
+            dmh.GhiChu = diemMonHoc.GhiChu;
+            db.SubmitChanges();
         }
     }
 }

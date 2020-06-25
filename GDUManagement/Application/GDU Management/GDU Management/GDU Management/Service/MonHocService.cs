@@ -19,7 +19,7 @@ namespace GDU_Management.Service
             return monHocIDao.GetAllMonHoc();
         }
         //thêm mới một môn học
-        public SinhVien CreateMonHoc(MonHoc monHoc)
+        public MonHoc CreateMonHoc(MonHoc monHoc)
         {
             return monHocIDao.CreateMonHoc(monHoc);
         }
@@ -34,14 +34,9 @@ namespace GDU_Management.Service
             monHocIDao.UpdateMonHoc(monHoc);
         }
 
-        public List<MonHoc> GetMonHocByMaNganh(string maNganh)
+        public List<MonHoc> GetMonHocByNganh(string maNganh)
         {
-            return monHocIDao.GetMonHocByMaNganh(maNganh);
-        }
-
-        public string GetSTCByMaMonHoc(string maMonHoc)
-        {
-            return monHocIDao.GetSTCByMaMonHoc(maMonHoc);
+            return monHocIDao.GetMonHocByNganh(maNganh);
         }
     }
 }

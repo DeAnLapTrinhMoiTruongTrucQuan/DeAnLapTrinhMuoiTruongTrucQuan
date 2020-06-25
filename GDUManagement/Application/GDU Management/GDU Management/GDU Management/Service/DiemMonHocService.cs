@@ -36,5 +36,11 @@ namespace GDU_Management.Service
         {
             diemMonHocIDao.UpdateDiemMonHoc(diemMonHoc);
         }
+
+        //lấy danh sách điểm theo mã môn học và mã sinh viên
+        public List<DiemMonHoc> GetDanhSachMonByMaLopAndMaMonHoc(string maLop, string maMonHoc)
+        {
+            return diemMonHocIDao.GetDanhSachMonByMaLopAndMaMonHoc(maLop, maMonHoc);
+        }
     }
 }

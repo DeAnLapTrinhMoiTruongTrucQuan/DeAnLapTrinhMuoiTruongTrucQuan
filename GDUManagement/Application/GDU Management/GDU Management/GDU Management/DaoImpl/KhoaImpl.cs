@@ -38,6 +38,16 @@ namespace GDU_Management.DaoImpl
             return kh;
         }
 
+        public void DeleteAllKhoaByMaKhoa(string maKhoa)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteAllKhoasHocByMaKhoasHoc(string maKhoasHoc)
+        {
+            throw new NotImplementedException();
+        }
+
         //xóa khoa
         public void DeleteKhoa(string maKhoa)
         {

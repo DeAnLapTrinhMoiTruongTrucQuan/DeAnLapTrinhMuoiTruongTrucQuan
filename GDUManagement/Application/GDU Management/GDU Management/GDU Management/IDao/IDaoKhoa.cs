@@ -16,6 +16,7 @@ namespace GDU_Management.IDao
         List<Khoa> GetKhoaByMaKhoa(string maKhoa);
         List<Khoa> SearchKhoaByTenKhoa(string tenKhoa);
         List<Khoa> SearchKhoaByMaKhoa(string maKhoa);
+        void DeleteAllKhoaByMaKhoa(string maKhoa);
 
     }
 }

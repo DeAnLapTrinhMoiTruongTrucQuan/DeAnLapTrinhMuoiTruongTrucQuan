@@ -11,55 +11,51 @@ namespace GDU_Management.DaoImpl
     class MonHocImpl: IDaoMonHoc
     {
         //tao ket noi database
-        GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
-        List<MonHoc> listMonHoc;
-        
+        GDUDataConnectionsDataContext db;
+        List<MonHoc> listMonHocs;
 
-        public SinhVien CreateMonHoc(MonHoc monHoc)
+        public MonHoc CreateMonHoc(MonHoc monHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            MonHoc mhoc = new MonHoc();
+            mhoc = monHoc;
+            db.MonHocs.InsertOnSubmit(mhoc);
+            db.SubmitChanges();
+            return mhoc;
+        }
+
+        public void DeleteMonHoc(string maMonHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            MonHoc monhoc = new MonHoc();
+            monhoc = db.MonHocs.Single(x => x.MaMonHoc == maMonHoc);
+            db.MonHocs.DeleteOnSubmit(monhoc);
+            db.SubmitChanges();
+        }
+
+        public List<MonHoc> GetAllMonHoc()
         {
             //code content
             return null;
         }
 
-        public void DeleteMonHoc(string maMonHoc)
-        {
-            //code content
-        }
-
-        public List<MonHoc> GetAllMonHoc()
-        {
-            
-            db = new GDUDataConnectionsDataContext();
-            var k = from x in db.MonHocs select x;
-            listMonHoc = k.ToList();
-            return listMonHoc;
-
-        }
-
-        public List<MonHoc> GetMonHocByMaNganh(string maNganh)
+        public List<MonHoc> GetMonHocByNganh(string maNganh)
         {
             db = new GDUDataConnectionsDataContext();
-            List<MonHoc> mh = db.MonHocs.Where(p => p.MaNganh.Equals(maNganh)).ToList();
-            listMonHoc = new List<MonHoc>();
-            listMonHoc = mh.ToList();
-            return listMonHoc;
-            
+            List<MonHoc> monHoc = db.MonHocs.Where(p => p.MaNganh.Equals(maNganh)).ToList();
+            listMonHocs = new List<MonHoc>();
+            listMonHocs = monHoc.ToList();
+            return listMonHocs;
         }
-
-        public string GetSTCByMaMonHoc(string maMonHoc)
-        {
-            db = new GDUDataConnectionsDataContext();
-            string stc;
-            var soTC = from x in db.MonHocs where x.MaMonHoc == maMonHoc select x;
-            stc = soTC.ToString();
-            return stc;
-        }
-
-  
 
         public void UpdateMonHoc(MonHoc monHoc)
         {
-           //code content
+            db = new GDUDataConnectionsDataContext();
+            MonHoc mh = new MonHoc();
+            mh = db.MonHocs.Single(x => x.MaMonHoc == monHoc.MaMonHoc);
+            mh.TenMonHoc = monHoc.TenMonHoc;
+            mh.STC = monHoc.STC;
+            db.SubmitChanges();
         }
     }
 }
