@@ -16,6 +16,7 @@ namespace GDU_Management.IDao
         List<NganhHoc> GetNganhHocByKHOA(string maKhoa);
         List<NganhHoc> SearchNganhHocByMaNganh(string maNganh);
         List<NganhHoc> SearchNganhHocByTenNganh(string tenNganh);
-       
+        NganhHoc GetNganhHocByMaNganh(string maNganh);
+        List<NganhHoc> CheckKhoaByNganh();
     }
 }

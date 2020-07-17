@@ -13,7 +13,7 @@ namespace GDU_Management.Service
     {
         IDaoNganhHoc nganhHocIDao = new NganhHocImpl();
         //lấy danh sách ngành hoc
-        public List<NganhHoc> GetAllKhoa()
+        public List<NganhHoc> GetAllNganhHoc()
         {
             return nganhHocIDao.GetAllNganhhoc();
         }
@@ -49,6 +49,12 @@ namespace GDU_Management.Service
         public List<NganhHoc> SearchNganhHocByTenNganh(string tenNganh)
         {
             return nganhHocIDao.SearchNganhHocByTenNganh(tenNganh);
+        }
+
+        //lấy thông tin ngành học
+        public NganhHoc GetNganhHocByMaNganh(string maNganh)
+        {
+            return nganhHocIDao.GetNganhHocByMaNganh(maNganh);
         }
     }
 }

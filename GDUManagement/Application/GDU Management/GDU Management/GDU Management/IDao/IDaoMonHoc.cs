@@ -14,5 +14,6 @@ namespace GDU_Management.IDao
         void DeleteMonHoc(string maMonHoc);
         void UpdateMonHoc(MonHoc monHoc);
         List<MonHoc> GetMonHocByNganh(string maNganh);
+        MonHoc GetMonHocByMaMonHoc(string maMonHoc);
     }
 }

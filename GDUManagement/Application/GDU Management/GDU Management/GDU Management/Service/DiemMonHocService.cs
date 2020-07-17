@@ -42,5 +42,18 @@ namespace GDU_Management.Service
         {
             return diemMonHocIDao.GetDanhSachMonByMaLopAndMaMonHoc(maLop, maMonHoc);
         }
+
+        //xoa danh sach diem theo ma sinh vien
+        public void DeleteAllDiemMonHocByMaSinhVien(string maSV)
+        {
+            diemMonHocIDao.DeleteAllDiemMonHocByMaSinhVien(maSV);
+        }
+
+
+        //tìm kiếm điểm theo mã môn và mã sv
+        public List<DiemMonHoc> SearchDiemMonHocByMonHocAndMaSV(string maMonHoc, string MaSV)
+        {
+            return diemMonHocIDao.SearchDiemMonHocByMonHocAndMaSV(maMonHoc, MaSV);
+        }
     }
 }

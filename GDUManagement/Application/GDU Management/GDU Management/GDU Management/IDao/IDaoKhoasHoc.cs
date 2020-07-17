@@ -9,13 +9,15 @@ namespace GDU_Management.IDao
 {
     interface IDaoKhoasHoc
     {
-        List<KhoaHoc> GetAllKhoaHoc();
-        KhoaHoc CreateKhoaHoc(KhoaHoc khoaHoc);
+        List<KhoasHoc> GetAllKhoaHoc();
+        KhoasHoc CreateKhoaHoc(KhoasHoc khoaHoc);
         void DeleteKhoaHoc(string maKhoaHoc);
-        void UpdateKhoaHoc(KhoaHoc khoaHoc);
-        List<KhoaHoc> SearchKhoaHocByMaKhoaHoc(string maKhoaHoc);
-        List<KhoaHoc> SearchKhoaHocByTenKhoaHoc(string tenKhoaHoc);
-        List<KhoaHoc> SearchKhoaHocByNienKhoa(string nienKhoa);
+        void UpdateKhoaHoc(KhoasHoc khoaHoc);
+        List<KhoasHoc> SearchKhoaHocByMaKhoaHoc(string maKhoaHoc);
+        List<KhoasHoc> SearchKhoaHocByTenKhoaHoc(string tenKhoaHoc);
+        List<KhoasHoc> SearchKhoaHocByNienKhoa(string nienKhoa);
         void DeleteAllKhoasHocByMaKhoasHoc(string maKhoasHoc);
+
+        KhoasHoc GetKhoaHocByMaKhoaHoc(string maKhoasHoc);
     }
 }

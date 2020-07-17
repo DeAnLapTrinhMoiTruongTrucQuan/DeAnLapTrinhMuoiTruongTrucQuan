@@ -33,9 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.9.0.0\lib\net461\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,13 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DaoImpl\AdminImpl.cs" />
+    <Compile Include="DaoImpl\ContactsImpl.cs" />
     <Compile Include="DaoImpl\DiemMonHocImpl.cs" />
     <Compile Include="DaoImpl\GiangVienImpl.cs" />
+    <Compile Include="DaoImpl\HocKyImpl.cs" />
     <Compile Include="DaoImpl\KhoasHocImpl.cs" />
     <Compile Include="DaoImpl\KhoaImpl.cs" />
     <Compile Include="DaoImpl\LopImpl.cs" />
     <Compile Include="DaoImpl\MonHocImpl.cs" />
     <Compile Include="DaoImpl\NganhHocImpl.cs" />
+    <Compile Include="DaoImpl\PhongHocImpl.cs" />
     <Compile Include="DaoImpl\SinhVienImpl.cs" />
     <Compile Include="DaoImpl\ThoiKhoaBieuImpl.cs" />
     <Compile Include="GDU_Views\frmAccount.cs">
@@ -62,6 +69,12 @@
     </Compile>
     <Compile Include="GDU_Views\frmAccount.Designer.cs">
       <DependentUpon>frmAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmAddNewAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmAddNewAdmin.Designer.cs">
+      <DependentUpon>frmAddNewAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="GDU_Views\frmCheckAdmin.cs">
       <SubType>Form</SubType>
@@ -74,6 +87,12 @@
     </Compile>
     <Compile Include="GDU_Views\frmCheckAdmin2.Designer.cs">
       <DependentUpon>frmCheckAdmin2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmContacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmContacts.Designer.cs">
+      <DependentUpon>frmContacts.cs</DependentUpon>
     </Compile>
     <Compile Include="GDU_Views\frmDanhSachLop.cs">
       <SubType>Form</SubType>
@@ -93,17 +112,35 @@
     <Compile Include="GDU_Views\frmDiemAndMonHoc.Designer.cs">
       <DependentUpon>frmDiemAndMonHoc.cs</DependentUpon>
     </Compile>
-    <Compile Include="GDU_Views\frmGiaoVienAndTKB.cs">
+    <Compile Include="GDU_Views\frmGiangVienAndTKB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GDU_Views\frmGiaoVienAndTKB.Designer.cs">
-      <DependentUpon>frmGiaoVienAndTKB.cs</DependentUpon>
+    <Compile Include="GDU_Views\frmGiangVienAndTKB.Designer.cs">
+      <DependentUpon>frmGiangVienAndTKB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmInformaitonSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmInformaitonSinhVien.Designer.cs">
+      <DependentUpon>frmInformaitonSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmOptions.Designer.cs">
+      <DependentUpon>frmOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="GDU_Views\frmPhanCongCongViec.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GDU_Views\frmPhanCongCongViec.Designer.cs">
       <DependentUpon>frmPhanCongCongViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmPhongHoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmPhongHoc.Designer.cs">
+      <DependentUpon>frmPhongHoc.cs</DependentUpon>
     </Compile>
     <Compile Include="GDU_Views\frmQuanLySinhVien.cs">
       <SubType>Form</SubType>
@@ -123,14 +160,17 @@
     <Compile Include="GDU_Views\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="IDao\IDaoContacts.cs" />
     <Compile Include="IDao\IDaoAdmin.cs" />
     <Compile Include="IDao\IDaoDiemMonHoc.cs" />
     <Compile Include="IDao\IDaoGiangVien.cs" />
+    <Compile Include="IDao\IDaoHocKy.cs" />
     <Compile Include="IDao\IDaoKhoa.cs" />
     <Compile Include="IDao\IDaoKhoasHoc.cs" />
     <Compile Include="IDao\IDaoLop.cs" />
     <Compile Include="IDao\IDaoMonHoc.cs" />
     <Compile Include="IDao\IDaoNganhHoc.cs" />
+    <Compile Include="IDao\IDaoPhongHoc.cs" />
     <Compile Include="IDao\IDaoSinhVien.cs" />
     <Compile Include="IDao\IDaoThoiKhoaBieu.cs" />
     <Compile Include="Model\GDUDataConnections.designer.cs">
@@ -140,24 +180,34 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controller\SendMessage.cs" />
     <Compile Include="Service\AdminService.cs" />
+    <Compile Include="Service\ContactService.cs" />
     <Compile Include="Service\DiemMonHocService.cs" />
     <Compile Include="Service\GiangVienService.cs" />
-    <Compile Include="Service\KhoaHocService.cs" />
+    <Compile Include="Service\HocKyService.cs" />
+    <Compile Include="Service\KhoasHocService.cs" />
     <Compile Include="Service\KhoaService.cs" />
     <Compile Include="Service\LopService.cs" />
     <Compile Include="Service\MonHocService.cs" />
     <Compile Include="Service\NganhHocService.cs" />
+    <Compile Include="Service\PhongHocService.cs" />
     <Compile Include="Service\SinhVienService.cs" />
     <Compile Include="Service\ThoiKhoaBieuService.cs" />
     <EmbeddedResource Include="GDU_Views\frmAccount.resx">
       <DependentUpon>frmAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmAddNewAdmin.resx">
+      <DependentUpon>frmAddNewAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmCheckAdmin.resx">
       <DependentUpon>frmCheckAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmCheckAdmin2.resx">
       <DependentUpon>frmCheckAdmin2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmContacts.resx">
+      <DependentUpon>frmContacts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmDanhSachLop.resx">
       <DependentUpon>frmDanhSachLop.cs</DependentUpon>
@@ -168,11 +218,20 @@
     <EmbeddedResource Include="GDU_Views\frmDiemAndMonHoc.resx">
       <DependentUpon>frmDiemAndMonHoc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GDU_Views\frmGiaoVienAndTKB.resx">
-      <DependentUpon>frmGiaoVienAndTKB.cs</DependentUpon>
+    <EmbeddedResource Include="GDU_Views\frmGiangVienAndTKB.resx">
+      <DependentUpon>frmGiangVienAndTKB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmInformaitonSinhVien.resx">
+      <DependentUpon>frmInformaitonSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmOptions.resx">
+      <DependentUpon>frmOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmPhanCongCongViec.resx">
       <DependentUpon>frmPhanCongCongViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmPhongHoc.resx">
+      <DependentUpon>frmPhongHoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmQuanLySinhVien.resx">
       <DependentUpon>frmQuanLySinhVien.cs</DependentUpon>
@@ -196,13 +255,18 @@
       <LastGenOutput>GDUDataConnections.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\GDU_Management.Model.Admin.datasource" />
     <None Include="Properties\DataSources\GDU_Management.Model.DiemMonHoc.datasource" />
+    <None Include="Properties\DataSources\GDU_Management.Model.GiangVien.datasource" />
     <None Include="Properties\DataSources\GDU_Management.Model.Khoa.datasource" />
     <None Include="Properties\DataSources\GDU_Management.Model.KhoaHoc.datasource" />
     <None Include="Properties\DataSources\GDU_Management.Model.Lop.datasource" />
     <None Include="Properties\DataSources\GDU_Management.Model.MonHoc.datasource" />
     <None Include="Properties\DataSources\GDU_Management.Model.NganhHoc.datasource" />
+    <None Include="Properties\DataSources\GDU_Management.Model.PhongHoc.datasource" />
     <None Include="Properties\DataSources\GDU_Management.Model.SinhVien.datasource" />
+    <None Include="Properties\DataSources\GDU_Management.Model.ThoiKhoaBieu.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -440,9 +504,164 @@
   <ItemGroup>
     <None Include="Resources\img-check-admin-2.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icons8-view-16.png" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-view-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-open-in-popup-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-view-28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Training_Education_Instruction-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Training_Education_Instruction-50px.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Training_Education_Instruction-150px.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contact_Education_150px.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contact_Education%29145px.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contact_Education_145px.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-40px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-tag-64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-exit-sign-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-user-male-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt001_180x271.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt002_160x188.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-shield-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pxsolidwhiteborderedsvg-15161310048lcp4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-eye-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-shield-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-exit-sign-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contact_Education_140.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-44.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt003_160x190.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt004_jax_160x189.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-new-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-tag-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-user-group-man-man-42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-44.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt006_admin_default_160x193.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt007_user_default_160x187.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-password-reset-44.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons-gdu-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons-gdu-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-forgot-password-241.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

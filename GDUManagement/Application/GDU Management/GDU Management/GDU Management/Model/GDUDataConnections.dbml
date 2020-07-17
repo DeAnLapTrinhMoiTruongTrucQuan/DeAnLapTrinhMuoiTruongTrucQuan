@@ -1,43 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GDUmanagement" Class="GDUDataConnectionsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-EUPI4M9;Initial Catalog=GDUmanagement;User ID=LH1999" SettingsObjectName="GDU_Management.Properties.Settings" SettingsPropertyName="GDUmanagementConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-EUPI4M9;Initial Catalog=GDUmanagement;User ID=sqlserver" SettingsObjectName="GDU_Management.Properties.Settings" SettingsPropertyName="GDUmanagementConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Admin" Member="Admins">
     <Type Name="Admin">
       <Column Name="MaAdmin" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenAdmin" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Avt" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="NamSinh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="SDT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="StatusAcc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StartDay" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ThoiKhoaBieu" Member="ThoiKhoaBieus">
     <Type Name="ThoiKhoaBieu">
-      <Column Name="MaTKB" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaLop" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="MaMonHoc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="HocKi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Ngayhoc" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="MaLop" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaMonHoc" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaHocKy" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="MaGV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="ThoiGianHoc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="NgayBatDau" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="NgayKetthuc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="PhongHoc" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="NgayHoc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ThoiGianHoc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaPhongHoc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NgayBatDau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayKetThuc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Association Name="GiangVien_ThoiKhoaBieu" Member="GiangVien" ThisKey="MaGV" OtherKey="MaGV" Type="GiangVien" IsForeignKey="true" />
+      <Association Name="HocKy_ThoiKhoaBieu" Member="HocKy" ThisKey="MaHocKy" OtherKey="MaHocKy" Type="HocKy" IsForeignKey="true" />
       <Association Name="Lop_ThoiKhoaBieu" Member="Lop" ThisKey="MaLop" OtherKey="MaLop" Type="Lop" IsForeignKey="true" />
       <Association Name="MonHoc_ThoiKhoaBieu" Member="MonHoc" ThisKey="MaMonHoc" OtherKey="MaMonHoc" Type="MonHoc" IsForeignKey="true" />
+      <Association Name="PhongHoc_ThoiKhoaBieu" Member="PhongHoc" ThisKey="MaPhongHoc" OtherKey="MaPhongHoc" Type="PhongHoc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contacts" Member="Contacts">
+    <Type Name="Contact">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Pass" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Info" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.DiemMonHoc" Member="DiemMonHocs">
     <Type Name="DiemMonHoc">
       <Column Name="MaSV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaMonHoc" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Diem30" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Diem70L1" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Diem70L2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="DTB" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="DiemChu" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Diem30" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Diem70L1" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Diem70L2" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="DTB" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="Diem4" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="DiemChu" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="DiemSo" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Association Name="MonHoc_DiemMonHoc" Member="MonHoc" ThisKey="MaMonHoc" OtherKey="MaMonHoc" Type="MonHoc" IsForeignKey="true" />
       <Association Name="SinhVien_DiemMonHoc" Member="SinhVien" ThisKey="MaSV" OtherKey="MaSV" Type="SinhVien" IsForeignKey="true" />
@@ -55,22 +73,38 @@
       <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaKhoa" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NgayBatDau" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Avt" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="StatusAcc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="GiangVien_ThoiKhoaBieu" Member="ThoiKhoaBieus" ThisKey="MaGV" OtherKey="MaGV" Type="ThoiKhoaBieu" />
+      <Association Name="Khoa_GiangVien" Member="Khoa" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="Khoa" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HocKy" Member="HocKies">
+    <Type Name="HocKy">
+      <Column Name="MaHocKy" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenHocKy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="HocKy_ThoiKhoaBieu" Member="ThoiKhoaBieus" ThisKey="MaHocKy" OtherKey="MaHocKy" Type="ThoiKhoaBieu" />
     </Type>
   </Table>
   <Table Name="dbo.Khoa" Member="Khoas">
     <Type Name="Khoa">
       <Column Name="MaKhoa" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenKhoa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="Khoa_GiangVien" Member="GiangViens" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="GiangVien" />
       <Association Name="Khoa_NganhHoc" Member="NganhHocs" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="NganhHoc" />
     </Type>
   </Table>
-  <Table Name="dbo.KhoaHoc" Member="KhoaHocs">
-    <Type Name="KhoaHoc">
+  <Table Name="dbo.KhoasHoc" Member="KhoasHocs">
+    <Type Name="KhoasHoc">
       <Column Name="MaKhoaHoc" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenKhoaHoc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="NienKhoa" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="KhoaHoc_Lop" Member="Lops" ThisKey="MaKhoaHoc" OtherKey="MaKhoaHoc" Type="Lop" />
+      <Column Name="STT" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Association Name="KhoasHoc_Lop" Member="Lops" ThisKey="MaKhoaHoc" OtherKey="MaKhoaHoc" Type="Lop" />
     </Type>
   </Table>
   <Table Name="dbo.Lop" Member="Lops">
@@ -81,7 +115,7 @@
       <Column Name="MaKhoaHoc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="Lop_ThoiKhoaBieu" Member="ThoiKhoaBieus" ThisKey="MaLop" OtherKey="MaLop" Type="ThoiKhoaBieu" />
       <Association Name="Lop_SinhVien" Member="SinhViens" ThisKey="MaLop" OtherKey="MaLop" Type="SinhVien" />
-      <Association Name="KhoaHoc_Lop" Member="KhoaHoc" ThisKey="MaKhoaHoc" OtherKey="MaKhoaHoc" Type="KhoaHoc" IsForeignKey="true" />
+      <Association Name="KhoasHoc_Lop" Member="KhoasHoc" ThisKey="MaKhoaHoc" OtherKey="MaKhoaHoc" Type="KhoasHoc" IsForeignKey="true" />
       <Association Name="NganhHoc_Lop" Member="NganhHoc" ThisKey="MaNganh" OtherKey="MaNganh" Type="NganhHoc" IsForeignKey="true" />
     </Type>
   </Table>
@@ -106,6 +140,13 @@
       <Association Name="Khoa_NganhHoc" Member="Khoa" ThisKey="MaKhoa" OtherKey="MaKhoa" Type="Khoa" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.PhongHoc" Member="PhongHocs">
+    <Type Name="PhongHoc">
+      <Column Name="MaPhongHoc" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="PhongHoc_ThoiKhoaBieu" Member="ThoiKhoaBieus" ThisKey="MaPhongHoc" OtherKey="MaPhongHoc" Type="ThoiKhoaBieu" />
+    </Type>
+  </Table>
   <Table Name="dbo.SinhVien" Member="SinhViens">
     <Type Name="SinhVien">
       <Column Name="MaSV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -118,6 +159,9 @@
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="MaLop" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="STT" Type="System.String" DbType="NChar(5)" CanBeNull="true" />
+      <Column Name="Avt" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="StatusAcc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="SinhVien_DiemMonHoc" Member="DiemMonHocs" ThisKey="MaSV" OtherKey="MaSV" Type="DiemMonHoc" />
       <Association Name="Lop_SinhVien" Member="Lop" ThisKey="MaLop" OtherKey="MaLop" Type="Lop" IsForeignKey="true" />
     </Type>

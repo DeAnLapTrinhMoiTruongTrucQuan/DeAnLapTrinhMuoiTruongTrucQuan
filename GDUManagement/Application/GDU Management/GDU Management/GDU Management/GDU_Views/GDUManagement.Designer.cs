@@ -97,9 +97,9 @@
             this.pnContents.Controls.Add(this.pnStatusTopLeft);
             this.pnContents.Controls.Add(this.pnLogo);
             this.pnContents.ForeColor = System.Drawing.Color.Navy;
-            this.pnContents.Location = new System.Drawing.Point(13, 13);
+            this.pnContents.Location = new System.Drawing.Point(12, 13);
             this.pnContents.Name = "pnContents";
-            this.pnContents.Size = new System.Drawing.Size(1144, 609);
+            this.pnContents.Size = new System.Drawing.Size(1145, 609);
             this.pnContents.TabIndex = 0;
             this.pnContents.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -107,9 +107,9 @@
             // 
             this.pnTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnTitle.Controls.Add(this.lblTitle);
-            this.pnTitle.Location = new System.Drawing.Point(25, 157);
+            this.pnTitle.Location = new System.Drawing.Point(23, 166);
             this.pnTitle.Name = "pnTitle";
-            this.pnTitle.Size = new System.Drawing.Size(477, 28);
+            this.pnTitle.Size = new System.Drawing.Size(478, 28);
             this.pnTitle.TabIndex = 15;
             // 
             // lblTitle
@@ -142,7 +142,7 @@
             this.pnControl.Controls.Add(this.btnThoatChuongTrinh);
             this.pnControl.Location = new System.Drawing.Point(615, 520);
             this.pnControl.Name = "pnControl";
-            this.pnControl.Size = new System.Drawing.Size(471, 55);
+            this.pnControl.Size = new System.Drawing.Size(472, 55);
             this.pnControl.TabIndex = 13;
             // 
             // btnDangXuat
@@ -185,7 +185,7 @@
             this.pnMenu.Controls.Add(this.pnPhanCongCongViec);
             this.pnMenu.Location = new System.Drawing.Point(599, 6);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(517, 508);
+            this.pnMenu.Size = new System.Drawing.Size(507, 508);
             this.pnMenu.TabIndex = 12;
             // 
             // pnMonHoc_Diem
@@ -280,9 +280,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(17, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 25);
+            this.label3.Size = new System.Drawing.Size(125, 25);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Bạn đã ở đây:";
+            this.label3.Text = "You are here:";
             // 
             // label7
             // 
@@ -430,15 +430,15 @@
             this.pnStatusTopLeft.Controls.Add(this.grbDay);
             this.pnStatusTopLeft.Location = new System.Drawing.Point(25, 6);
             this.pnStatusTopLeft.Name = "pnStatusTopLeft";
-            this.pnStatusTopLeft.Size = new System.Drawing.Size(475, 142);
+            this.pnStatusTopLeft.Size = new System.Drawing.Size(476, 154);
             this.pnStatusTopLeft.TabIndex = 11;
             // 
             // lblLogoGDU
             // 
             this.lblLogoGDU.Image = global::GDU_Management.Properties.Resources.logo_03_03;
-            this.lblLogoGDU.Location = new System.Drawing.Point(232, 15);
+            this.lblLogoGDU.Location = new System.Drawing.Point(266, 15);
             this.lblLogoGDU.Name = "lblLogoGDU";
-            this.lblLogoGDU.Size = new System.Drawing.Size(238, 126);
+            this.lblLogoGDU.Size = new System.Drawing.Size(204, 126);
             this.lblLogoGDU.TabIndex = 3;
             this.lblLogoGDU.Click += new System.EventHandler(this.lblLogoGDU_Click);
             // 
@@ -469,7 +469,7 @@
             this.grbDay.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbDay.Location = new System.Drawing.Point(33, 73);
             this.grbDay.Name = "grbDay";
-            this.grbDay.Size = new System.Drawing.Size(192, 64);
+            this.grbDay.Size = new System.Drawing.Size(227, 68);
             this.grbDay.TabIndex = 1;
             this.grbDay.TabStop = false;
             this.grbDay.Text = "Day";
@@ -477,10 +477,10 @@
             // lblDay
             // 
             this.lblDay.AutoSize = true;
-            this.lblDay.Font = new System.Drawing.Font("Microsoft Yi Baiti", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDay.Font = new System.Drawing.Font("Microsoft Uighur", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDay.Location = new System.Drawing.Point(6, 27);
             this.lblDay.Name = "lblDay";
-            this.lblDay.Size = new System.Drawing.Size(129, 30);
+            this.lblDay.Size = new System.Drawing.Size(91, 37);
             this.lblDay.TabIndex = 0;
             this.lblDay.Text = "00/00/00";
             // 
@@ -491,9 +491,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnLogo.BackgroundImage = global::GDU_Management.Properties.Resources.icon_gdumanagement_ps_40;
             this.pnLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnLogo.Location = new System.Drawing.Point(25, 191);
+            this.pnLogo.Location = new System.Drawing.Point(25, 200);
             this.pnLogo.Name = "pnLogo";
-            this.pnLogo.Size = new System.Drawing.Size(475, 323);
+            this.pnLogo.Size = new System.Drawing.Size(476, 314);
             this.pnLogo.TabIndex = 10;
             // 
             // timerTime
@@ -509,11 +509,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Highlight;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1169, 634);
             this.Controls.Add(this.pnContents);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GDUManagement";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " GDU Management";
             this.Load += new System.EventHandler(this.GDUManagement_Load);
             this.pnContents.ResumeLayout(false);

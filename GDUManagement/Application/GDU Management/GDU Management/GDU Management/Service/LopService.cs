@@ -45,5 +45,11 @@ namespace GDU_Management.Service
         {
             return lopIDao.SearchLopHocByTenLop(tenLop);
         }
+
+        //lấy thông tin Lớp
+        public Lop GetLopByMaLop(string maLop)
+        {
+            return lopIDao.GetLopByMaLop(maLop);
+        }
     }
 }

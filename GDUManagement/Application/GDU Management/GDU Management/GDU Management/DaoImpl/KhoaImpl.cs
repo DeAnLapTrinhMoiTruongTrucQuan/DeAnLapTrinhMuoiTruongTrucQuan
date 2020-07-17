@@ -27,6 +27,11 @@ namespace GDU_Management.DaoImpl
             }
         }
 
+        public List<Khoa> CheckExistsKhoa(string maKhoa)
+        {
+            return null;
+        }
+
         //tạo một khoa mới
         public Khoa CreateKhoa(Khoa khoa)
         {
@@ -67,13 +72,13 @@ namespace GDU_Management.DaoImpl
             return listKhoas;
         }
 
-        //lấy danh sách khoa theo mã khoa
-        public List<Khoa> GetKhoaByMaKhoa(string maKhoa)
+        //lấy thông tin khoa theo mã khoa
+        public Khoa GetKhoaByMaKhoa(string maKhoa)
         {
             db = new GDUDataConnectionsDataContext();
-            var k = from x in db.Khoas where x.MaKhoa == maKhoa select x;
-            listKhoas = k.ToList();
-            return listKhoas;
+            Khoa kh = new Khoa();
+            kh = db.Khoas.Single(p=>p.MaKhoa == maKhoa);
+            return kh;
         }
 
         public List<Khoa> SearchKhoaByMaKhoa(string maKhoa)
@@ -101,5 +106,7 @@ namespace GDU_Management.DaoImpl
             kh.TenKhoa = khoa.TenKhoa;
             db.SubmitChanges();
         }
+
+
     }
 }

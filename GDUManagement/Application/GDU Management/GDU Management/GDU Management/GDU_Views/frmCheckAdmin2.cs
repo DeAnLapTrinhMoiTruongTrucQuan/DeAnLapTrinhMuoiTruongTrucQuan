@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GDU_Management.GDU_Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,8 +25,8 @@ namespace GDU_Management
             {
                 MessageBox.Show("Hay Lắm Thằng Ngu ạ, Câu trả lời đúng r", "Đúng Rồi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
-                frmPhanCongCongViec pccv = new frmPhanCongCongViec();
-                pccv.ShowDialog();
+                frmOptions frm_option = new frmOptions();
+                frm_option.ShowDialog();
             }
             else
             {

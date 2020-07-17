@@ -27,6 +27,11 @@ namespace GDU_Management.DaoImpl
             }
         }
 
+        public List<NganhHoc> CheckKhoaByNganh()
+        {
+            return null;
+        }
+
         // thêm ngành
         public NganhHoc CreateNganhHoc(NganhHoc nganhHoc)
         {
@@ -48,9 +53,13 @@ namespace GDU_Management.DaoImpl
             db.SubmitChanges();
         }
 
+        //lấy tất cả danh sách ngành học
         public List<NganhHoc> GetAllNganhhoc()
         {
-            return null;
+            db = new GDUDataConnectionsDataContext();
+            var nganhHoc = db.NganhHocs;
+            listNganhHoc = nganhHoc.ToList();
+            return listNganhHoc;
         }
 
         //lấy danh sách ngành học theo KHOA
@@ -63,7 +72,16 @@ namespace GDU_Management.DaoImpl
             return listNganhHoc;
         }
 
-        // tìm kiếm ngành học them mã ngành
+        //lấy thông tin ngành học
+        public NganhHoc GetNganhHocByMaNganh(string maNganh)
+        {
+            db = new GDUDataConnectionsDataContext();
+            NganhHoc nganhHoc = new NganhHoc();
+            nganhHoc = db.NganhHocs.Single(p=>p.MaNganh == maNganh);
+            return nganhHoc;
+        }
+
+        // tìm kiếm ngành học theo mã ngành
         public List<NganhHoc> SearchNganhHocByMaNganh(string maNganh)
         {
             db = new GDUDataConnectionsDataContext();

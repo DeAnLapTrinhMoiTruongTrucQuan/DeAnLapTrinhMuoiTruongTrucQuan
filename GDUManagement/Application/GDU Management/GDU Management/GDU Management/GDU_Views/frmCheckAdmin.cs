@@ -22,10 +22,9 @@ namespace GDU_Management
             string checkText = txtKetQua.Text;
             if (checkText.Equals("Không"))
             {
-                MessageBox.Show("Hay Lắm Thằng Ngu ạ, Câu trả lời đúng r", "Đúng Rồi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
-                frmCheckAdmin2 ck2 = new frmCheckAdmin2();
-                ck2.ShowDialog();
+                MessageBox.Show("Hay Lắm, đúng r", "Đúng Rồi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frmCheckAdmin2 frm_chk2 = new frmCheckAdmin2();
+                frm_chk2.Show();
             }
             else
             {

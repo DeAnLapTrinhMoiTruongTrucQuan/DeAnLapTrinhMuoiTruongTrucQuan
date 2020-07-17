@@ -17,10 +17,13 @@ namespace GDU_Management
         public frmDanhSachLop()
         {
             InitializeComponent();
+            EnableFalseButton();
         }
 
         //khai báo các service 
         LopService lopService = new LopService();
+        SinhVienService sinhVienService = new SinhVienService();
+        DiemMonHocService diemMonHocService = new DiemMonHocService();
 
         //------------------------------------HÀM PUBLIC------------------------------------------//
         //---------------------------------------------------------------------------------------------//
@@ -64,6 +67,7 @@ namespace GDU_Management
             string maKhoaHoc = lblMaKhoasHoc.Text;
             string maNganh = lblMaNganh.Text;
             dgvDanhSachLop.DataSource = lopService.GetDanhSachLopByMaNganhVaMaKhoaHoc(maNganh, maKhoaHoc).ToList();
+            CountRowsLop();
         }
 
         //hàm auto id lớp
@@ -74,16 +78,13 @@ namespace GDU_Management
 
             string IdKhoas = lblMaKhoasHoc.Text;
             string LastIdKhoas = IdKhoas.Substring(1);
-            //MessageBox.Show(LastIdKhoas);
 
             string IdNganh = lblMaNganh.Text;
-            string LastIDNganh = IdNganh.Substring(8);
-            //MessageBox.Show(LastIDNganh);
-
+            string LastIDNganh = IdNganh.Substring(6);
 
             if (count == 0)
             {
-                lblMaLop.Text = "GDU" + LastIdKhoas + LastIDNganh + "00";
+                lblMaLop.Text = LastIdKhoas + "GD" + LastIDNganh + "01";
             }
             else
             {
@@ -91,16 +92,35 @@ namespace GDU_Management
                 int chuoi_id_key = 0;
 
                 chuoi_id = Convert.ToString(dgvDanhSachLop.Rows[count - 1].Cells[1].Value);
-                chuoi_id_key = Convert.ToInt32(chuoi_id.Remove(0, 7));
+                chuoi_id_key = Convert.ToInt32(chuoi_id.Remove(0, 8));
                 if (chuoi_id_key + 1 < 10)
                 {
-                    lblMaLop.Text = "GDU" + LastIdKhoas + LastIDNganh + "0" + (chuoi_id_key + 1);
+                    //[mã khóa]+GD+[2 số cuối mã khoa]+[2 số cuối mã ngành]-[01]GD[00000][0]
+                    lblMaLop.Text = LastIdKhoas + "GD" + LastIDNganh + "0" + (chuoi_id_key + 1);
                 }
                 else if (chuoi_id_key + 1 >= 10)
                 {
-                    lblMaLop.Text = "GDU" + LastIdKhoas + LastIDNganh + (chuoi_id_key + 1);
+                    //[mã khóa]+GD+[2 số cuối mã khoa]+[2 số cuối mã ngành]-[01]GD[00000][0]
+                    lblMaLop.Text = LastIdKhoas + "GD" + LastIDNganh + (chuoi_id_key + 1);
                 }
             }
+        }
+
+        //đếm số thứ tự Lớp
+        public void CountRowsLop()
+        {
+            for(int i = 0; i < dgvDanhSachLop.Rows.Count; i++)
+            {
+                dgvDanhSachLop.Rows[i].Cells[0].Value = (i + 1);
+            }
+        }
+
+        //enableFalse button
+        public void EnableFalseButton()
+        {
+            btnSaveLop.Enabled = false;
+            btnDeleteLop.Enabled = false;
+            btnUpdateLop.Enabled = false;
         }
 
         //-----------------------------------------KẾT THÚC HÀM PUPLIC--------------------------------//
@@ -110,6 +130,7 @@ namespace GDU_Management
         {
             LoadDanhSachLopToDatagridview();
             ShowdataTuDatagridviewToTextbox();
+            EnableFalseButton();
         }
 
         private void btnSaveLop_Click(object sender, EventArgs e)
@@ -137,6 +158,9 @@ namespace GDU_Management
             AutoIDLop();
             txtTenLop.Clear();
             txtTenLop.Focus();
+            btnSaveLop.Enabled = true;
+            btnUpdateLop.Enabled = false;
+            btnDeleteLop.Enabled = false;
         }
 
         private void btnUpdateLop_Click(object sender, EventArgs e)
@@ -170,7 +194,7 @@ namespace GDU_Management
         {
             btnUpdateLop.Enabled = true;
             btnSaveLop.Enabled = false;
-           btnDeleteLop.Enabled = true;
+            btnDeleteLop.Enabled = true;
             ShowdataTuDatagridviewToTextbox();
         }
 
@@ -185,8 +209,18 @@ namespace GDU_Management
                 }
                 else
                 {
-                    SinhVienService sinhVienService = new SinhVienService();
+                    // xóa tất cả điểm 
+                    var listSV = sinhVienService.GetSinhVienByMaLop(maLop).ToList();
+                    foreach(var  sv in listSV)
+                    {
+                        string maSV = sv.MaSV;
+                        diemMonHocService.DeleteAllDiemMonHocByMaSinhVien(maSV);
+                    }
+
+                    //xóa tất cả sinh sinh viên trong lớp
                     sinhVienService.DeleteAllSinhVienByMaLop(maLop);
+
+                    //xóa lớp
                     lopService.DeleteLop(maLop);
                     LoadDanhSachLopToDatagridview();
                     MessageBox.Show("Đã Xóa [" + lblMaLop.Text + "]", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -201,7 +235,6 @@ namespace GDU_Management
 
         private void txtTenLop_TextChanged(object sender, EventArgs e)
         {
-            btnSaveLop.Enabled = true;
         }
 
         private void txtTimKiemLop_MouseClick(object sender, MouseEventArgs e)

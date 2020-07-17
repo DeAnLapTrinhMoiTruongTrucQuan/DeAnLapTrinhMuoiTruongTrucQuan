@@ -12,6 +12,11 @@ namespace GDU_Management.IDao
         List<Admin> GetAllAdmin();
         Admin CreateAdmin(Admin ad);
         void DeleteAdmin(string maAD );
-        void UpdateAdmin(Admin ad);
+        Admin GetAdminByMaAdmin(string idAdmin);
+        void UpadteAccount(Admin admin);
+        void UpdateInfomation(Admin admin);
+        void UpdateAdmin(Admin admin);
+        int CountAdmin();
+        List<Admin> SearchAdminEmail(string email);
     }
 }

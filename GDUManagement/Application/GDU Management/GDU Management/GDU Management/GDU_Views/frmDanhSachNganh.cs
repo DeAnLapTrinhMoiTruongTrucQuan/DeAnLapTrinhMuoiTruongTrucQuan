@@ -24,6 +24,7 @@ namespace GDU_Management
         
         //khai báo các service 
         NganhHocService nganhHocService = new NganhHocService();
+        LopService lopService = new LopService();
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
         //---------------------------------------------------------------------------------------//
@@ -41,7 +42,8 @@ namespace GDU_Management
         {
             string maKhoa;
             maKhoa = lblMaKhoa.Text;
-             dgvDSNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
+            dgvDSNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
+            CountRowsNganh();
         }
 
         //load data lên textbox
@@ -51,6 +53,7 @@ namespace GDU_Management
             lblMaNganh.DataBindings.Add("text", dgvDSNganh.DataSource, "MaNganh");
             txtTenNganh.DataBindings.Clear();
             txtTenNganh.DataBindings.Add("text", dgvDSNganh.DataSource, "TenNganh");
+            CheckDataDeleteNganh();
         }
 
         //check data
@@ -83,7 +86,7 @@ namespace GDU_Management
 
             if(count == 0)
             {
-                lblMaNganh.Text = "M4716" + lastID + "000";
+                lblMaNganh.Text = "M4716" + lastID + "001";
             }
             else
             {
@@ -100,6 +103,36 @@ namespace GDU_Management
                 else if (chuoi_id_key + 1 >= 10)
                 {
                     lblMaNganh.Text = "M4716" + lastID + "0" + (chuoi_id_key + 1).ToString();
+                }
+                else if (chuoi_id_key + 1 >= 100)
+                {
+                    lblMaNganh.Text = "M4716" + lastID + (chuoi_id_key + 1).ToString();
+                }
+            }
+        }
+
+        //đếm số thứ tự ngành
+        public void CountRowsNganh()
+        {
+            for(int i = 0; i < dgvDSNganh.Rows.Count; i++)
+            {
+                dgvDSNganh.Rows[i].Cells[0].Value = (i + 1);
+            }
+        }
+
+        //check dữ liệu trước khi xóa ngành
+        public void CheckDataDeleteNganh()
+        {
+            var listLop = lopService.GetAllLop();
+            foreach(var lp in listLop)
+            {
+                if(lp.MaNganh == lblMaNganh.Text)
+                {
+                    btnDeleteNganh.Enabled = false;
+                }
+                else
+                {
+                    btnDeleteNganh.Enabled = true;
                 }
             }
         }
@@ -188,10 +221,12 @@ namespace GDU_Management
         private void btnNewNganh_Click(object sender, EventArgs e)
         {
             AutoIDNganh();
+            txtTenNganh.Focus();
             txtTenNganh.Text = "";
             btnSaveNganh.Enabled = true;
             btnUpdateNganh.Enabled = false;
             btnDeleteNganh.Enabled = false;
+            LoadDanhSachNganh();
         }
 
         private void txtTimKiemNganh_MouseClick(object sender, MouseEventArgs e)
@@ -207,7 +242,7 @@ namespace GDU_Management
             }
             else
             {
-                dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByMaNganh(txtTimKiemNganh.Text.Trim()).ToList();
+                //dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByMaNganh(txtTimKiemNganh.Text.Trim()).ToList();
                 dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByTenNganh(txtTimKiemNganh.Text.Trim()).ToList();
             }
         }

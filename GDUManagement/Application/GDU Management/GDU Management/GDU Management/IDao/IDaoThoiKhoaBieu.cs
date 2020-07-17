@@ -10,5 +10,9 @@ namespace GDU_Management.IDao
     interface IDaoThoiKhoaBieu
     {
         ThoiKhoaBieu CreateThoiKhoaBieu(ThoiKhoaBieu tkb);
+        List<ThoiKhoaBieu> GetTKBByMaLopAndMaHK(string maLop, string maHK);
+        void UpdateThoiKhoaBieu(ThoiKhoaBieu tkb);
+        void DeleteThoiKhoaBieu(string maLop, string maHK);
+        ThoiKhoaBieu GetThoiKhoaBieuByMaLopMaMonHoc(string maLop, string maMH);
     }
 }

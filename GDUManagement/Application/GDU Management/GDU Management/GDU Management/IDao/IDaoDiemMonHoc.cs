@@ -14,5 +14,7 @@ namespace GDU_Management.IDao
         void DeleteDiemMonHoc(string maMonHoc , string MaSV);
         void UpdateDiemMonHoc(DiemMonHoc diemMonHoc);
         List<DiemMonHoc> GetDanhSachMonByMaLopAndMaMonHoc(string maLop, string maMonHoc);
+        void DeleteAllDiemMonHocByMaSinhVien(string maSV);
+        List<DiemMonHoc> SearchDiemMonHocByMonHocAndMaSV(string maMonHoc, string MaSV);
     }
 }

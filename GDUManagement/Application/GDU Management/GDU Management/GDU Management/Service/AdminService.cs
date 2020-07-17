@@ -36,5 +36,35 @@ namespace GDU_Management.Service
         {
             adminIDao.UpdateAdmin(ad);
         }
+
+        //cập nhật thông tin tài khoản admin
+        public void UpadteAccount(Admin admin)
+        {
+            adminIDao.UpadteAccount(admin);
+        }
+
+        //cập nhật thông tin cá nhân admin
+        public void UpdateInfomation(Admin admin)
+        {
+            adminIDao.UpdateInfomation(admin);
+        }
+
+        //lấy thông tin admin theo email
+        public Admin GetAdminByMaAdmin(string idAdmin)
+        {
+            return adminIDao.GetAdminByMaAdmin(idAdmin);
+        }
+
+        //đếm số lượng admin
+        public int CountAdmin()
+        {
+            return adminIDao.CountAdmin();
+        }
+
+        //tìm kiếm admin theo email
+        public List<Admin> SearchAdminEmail(string email)
+        {
+            return adminIDao.SearchAdminEmail(email);
+        }
     }
 }

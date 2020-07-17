@@ -36,5 +36,29 @@ namespace GDU_Management.Service
         {
             giangVienIDao.UpdateGiangVien(giangVien);
         }
+
+        //lấy danh sách giảng viên theo khoa
+        public List<GiangVien> GetGiangVienByMaKhoa(string maKhoa)
+        {
+            return giangVienIDao.GetGiangVienByMaKhoa(maKhoa);
+        }
+
+        //lấy thông tin giảng viên theo mã gv
+        public GiangVien GetGiangVienByMaGV(string maGV)
+        {
+            return giangVienIDao.GetGiangVienByMaGV(maGV);
+        }
+
+        //cập nhật tào khoản giảng viên
+        public void UpdateAccountGiangVien(GiangVien giangVien)
+        {
+            giangVienIDao.UpdateAccountGiangVien(giangVien);
+        }
+
+        //tìm kiếm account giảng viên 
+        public List<GiangVien> SearchGiangVienByEmail(string email)
+        {
+            return giangVienIDao.SearchGiangVienByEmail(email);
+        }
     }
 }

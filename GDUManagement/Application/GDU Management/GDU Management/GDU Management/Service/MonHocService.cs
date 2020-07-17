@@ -38,5 +38,11 @@ namespace GDU_Management.Service
         {
             return monHocIDao.GetMonHocByNganh(maNganh);
         }
+
+        //lấy thông tin môn học theo mã môn học
+        public MonHoc GetMonHocByMaMonHoc(string maMonHoc)
+        {
+            return monHocIDao.GetMonHocByMaMonHoc(maMonHoc);
+        }
     }
 }

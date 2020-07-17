@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using GDU_Management.IDao;
 using GDU_Management.Model;
 
@@ -17,13 +18,12 @@ namespace GDU_Management.DaoImpl
         public MonHoc CreateMonHoc(MonHoc monHoc)
         {
             db = new GDUDataConnectionsDataContext();
-            MonHoc mhoc = new MonHoc();
-            mhoc = monHoc;
-            db.MonHocs.InsertOnSubmit(mhoc);
+            db.MonHocs.InsertOnSubmit(monHoc);
             db.SubmitChanges();
-            return mhoc;
+            return monHoc;
         }
 
+        //xóa môn học
         public void DeleteMonHoc(string maMonHoc)
         {
             db = new GDUDataConnectionsDataContext();
@@ -37,6 +37,15 @@ namespace GDU_Management.DaoImpl
         {
             //code content
             return null;
+        }
+
+        //lấy thông tin môn học theo mã môn học
+        public MonHoc GetMonHocByMaMonHoc(string maMonHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            MonHoc mh = new MonHoc();
+            mh = db.MonHocs.Single(p => p.MaMonHoc.Equals(maMonHoc));
+            return mh;
         }
 
         public List<MonHoc> GetMonHocByNganh(string maNganh)

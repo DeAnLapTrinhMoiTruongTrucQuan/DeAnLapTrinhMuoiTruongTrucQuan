@@ -38,7 +38,7 @@ namespace GDU_Management.Service
         }
 
         //lấy danh sách khoa theo mã khoa
-        public List<Khoa> GetKhoaByMaKhoa(string maKhoa)
+        public Khoa GetKhoaByMaKhoa(string maKhoa)
         {
             return khoaIDao.GetKhoaByMaKhoa(maKhoa);
         }

@@ -40,17 +40,7 @@
             this.btnNewLop = new System.Windows.Forms.Button();
             this.btnUpdateLop = new System.Windows.Forms.Button();
             this.btnSaveLop = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.dgvDanhSachLop = new System.Windows.Forms.DataGridView();
-            this.lopBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.grbDanhSachLop = new System.Windows.Forms.GroupBox();
-            this.lblMaNganh = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblMaKhoasHoc = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtTenLop = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maLopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenLopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +48,16 @@
             this.maKhoaHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.khoaHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nganhHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lopBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.grbDanhSachLop = new System.Windows.Forms.GroupBox();
             this.lblMaLop = new System.Windows.Forms.Label();
+            this.lblMaNganh = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblMaKhoasHoc = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTenLop = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnDanhSachLop.SuspendLayout();
             this.pnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachLop)).BeginInit();
@@ -75,10 +74,9 @@
             this.pnDanhSachLop.Controls.Add(this.btnExportDSLop);
             this.pnDanhSachLop.Controls.Add(this.txtTimKiemLop);
             this.pnDanhSachLop.Controls.Add(this.pnControl);
-            this.pnDanhSachLop.Controls.Add(this.label3);
             this.pnDanhSachLop.Controls.Add(this.dgvDanhSachLop);
             this.pnDanhSachLop.Controls.Add(this.grbDanhSachLop);
-            this.pnDanhSachLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnDanhSachLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnDanhSachLop.ForeColor = System.Drawing.SystemColors.Highlight;
             this.pnDanhSachLop.Location = new System.Drawing.Point(12, 12);
             this.pnDanhSachLop.Name = "pnDanhSachLop";
@@ -115,7 +113,8 @@
             // 
             // txtTimKiemLop
             // 
-            this.txtTimKiemLop.Location = new System.Drawing.Point(145, 176);
+            this.txtTimKiemLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTimKiemLop.Location = new System.Drawing.Point(14, 176);
             this.txtTimKiemLop.Name = "txtTimKiemLop";
             this.txtTimKiemLop.Size = new System.Drawing.Size(312, 27);
             this.txtTimKiemLop.TabIndex = 9;
@@ -193,15 +192,6 @@
             this.btnSaveLop.UseVisualStyleBackColor = false;
             this.btnSaveLop.Click += new System.EventHandler(this.btnSaveLop_Click);
             // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(26, 176);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 27);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Tìm Kiếm:";
-            // 
             // dgvDanhSachLop
             // 
             this.dgvDanhSachLop.AllowUserToAddRows = false;
@@ -225,89 +215,6 @@
             this.dgvDanhSachLop.Size = new System.Drawing.Size(782, 170);
             this.dgvDanhSachLop.TabIndex = 1;
             this.dgvDanhSachLop.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDanhSachLop_CellMouseClick);
-            // 
-            // lopBindingSource
-            // 
-            this.lopBindingSource.DataSource = typeof(GDU_Management.Model.Lop);
-            // 
-            // grbDanhSachLop
-            // 
-            this.grbDanhSachLop.Controls.Add(this.lblMaLop);
-            this.grbDanhSachLop.Controls.Add(this.lblMaNganh);
-            this.grbDanhSachLop.Controls.Add(this.label8);
-            this.grbDanhSachLop.Controls.Add(this.lblMaKhoasHoc);
-            this.grbDanhSachLop.Controls.Add(this.label5);
-            this.grbDanhSachLop.Controls.Add(this.txtTenLop);
-            this.grbDanhSachLop.Controls.Add(this.label2);
-            this.grbDanhSachLop.Controls.Add(this.label1);
-            this.grbDanhSachLop.Location = new System.Drawing.Point(14, 4);
-            this.grbDanhSachLop.Name = "grbDanhSachLop";
-            this.grbDanhSachLop.Size = new System.Drawing.Size(449, 166);
-            this.grbDanhSachLop.TabIndex = 0;
-            this.grbDanhSachLop.TabStop = false;
-            this.grbDanhSachLop.Text = "THÔNG TIN LỚP";
-            // 
-            // lblMaNganh
-            // 
-            this.lblMaNganh.AutoSize = true;
-            this.lblMaNganh.Location = new System.Drawing.Point(131, 60);
-            this.lblMaNganh.Name = "lblMaNganh";
-            this.lblMaNganh.Size = new System.Drawing.Size(36, 20);
-            this.lblMaNganh.TabIndex = 7;
-            this.lblMaNganh.Text = "???";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 60);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 20);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Ngành:";
-            // 
-            // lblMaKhoasHoc
-            // 
-            this.lblMaKhoasHoc.AutoSize = true;
-            this.lblMaKhoasHoc.Location = new System.Drawing.Point(131, 27);
-            this.lblMaKhoasHoc.Name = "lblMaKhoasHoc";
-            this.lblMaKhoasHoc.Size = new System.Drawing.Size(36, 20);
-            this.lblMaKhoasHoc.TabIndex = 5;
-            this.lblMaKhoasHoc.Text = "???";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 20);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Khóa:";
-            // 
-            // txtTenLop
-            // 
-            this.txtTenLop.Location = new System.Drawing.Point(135, 131);
-            this.txtTenLop.Name = "txtTenLop";
-            this.txtTenLop.Size = new System.Drawing.Size(308, 27);
-            this.txtTenLop.TabIndex = 3;
-            this.txtTenLop.TextChanged += new System.EventHandler(this.txtTenLop_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 134);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Tên Lớp:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 93);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã Lớp:";
             // 
             // STT
             // 
@@ -376,17 +283,108 @@
             this.nganhHocDataGridViewTextBoxColumn.Visible = false;
             this.nganhHocDataGridViewTextBoxColumn.Width = 125;
             // 
+            // lopBindingSource
+            // 
+            this.lopBindingSource.DataSource = typeof(GDU_Management.Model.Lop);
+            // 
+            // grbDanhSachLop
+            // 
+            this.grbDanhSachLop.Controls.Add(this.lblMaLop);
+            this.grbDanhSachLop.Controls.Add(this.lblMaNganh);
+            this.grbDanhSachLop.Controls.Add(this.label8);
+            this.grbDanhSachLop.Controls.Add(this.lblMaKhoasHoc);
+            this.grbDanhSachLop.Controls.Add(this.label5);
+            this.grbDanhSachLop.Controls.Add(this.txtTenLop);
+            this.grbDanhSachLop.Controls.Add(this.label2);
+            this.grbDanhSachLop.Controls.Add(this.label1);
+            this.grbDanhSachLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbDanhSachLop.Location = new System.Drawing.Point(14, 4);
+            this.grbDanhSachLop.Name = "grbDanhSachLop";
+            this.grbDanhSachLop.Size = new System.Drawing.Size(449, 166);
+            this.grbDanhSachLop.TabIndex = 0;
+            this.grbDanhSachLop.TabStop = false;
+            this.grbDanhSachLop.Text = "LỚP";
+            // 
             // lblMaLop
             // 
             this.lblMaLop.AutoSize = true;
+            this.lblMaLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMaLop.Location = new System.Drawing.Point(131, 92);
             this.lblMaLop.Name = "lblMaLop";
-            this.lblMaLop.Size = new System.Drawing.Size(36, 20);
+            this.lblMaLop.Size = new System.Drawing.Size(32, 17);
             this.lblMaLop.TabIndex = 8;
             this.lblMaLop.Text = "???";
             // 
+            // lblMaNganh
+            // 
+            this.lblMaNganh.AutoSize = true;
+            this.lblMaNganh.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMaNganh.Location = new System.Drawing.Point(131, 60);
+            this.lblMaNganh.Name = "lblMaNganh";
+            this.lblMaNganh.Size = new System.Drawing.Size(32, 17);
+            this.lblMaNganh.TabIndex = 7;
+            this.lblMaNganh.Text = "???";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(7, 60);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 17);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Ngành:";
+            // 
+            // lblMaKhoasHoc
+            // 
+            this.lblMaKhoasHoc.AutoSize = true;
+            this.lblMaKhoasHoc.Location = new System.Drawing.Point(131, 27);
+            this.lblMaKhoasHoc.Name = "lblMaKhoasHoc";
+            this.lblMaKhoasHoc.Size = new System.Drawing.Size(32, 17);
+            this.lblMaKhoasHoc.TabIndex = 5;
+            this.lblMaKhoasHoc.Text = "???";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(7, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 17);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Khóa:";
+            // 
+            // txtTenLop
+            // 
+            this.txtTenLop.Location = new System.Drawing.Point(135, 131);
+            this.txtTenLop.Name = "txtTenLop";
+            this.txtTenLop.Size = new System.Drawing.Size(308, 22);
+            this.txtTenLop.TabIndex = 3;
+            this.txtTenLop.TextChanged += new System.EventHandler(this.txtTenLop_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(7, 134);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Tên Lớp:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 93);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Mã Lớp:";
+            // 
             // frmDanhSachLop
             // 
+            this.AcceptButton = this.btnSaveLop;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -419,7 +417,6 @@
         private System.Windows.Forms.Button btnNewLop;
         private System.Windows.Forms.Button btnUpdateLop;
         private System.Windows.Forms.Button btnSaveLop;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgvDanhSachLop;
         private System.Windows.Forms.GroupBox grbDanhSachLop;
         private System.Windows.Forms.TextBox txtTenLop;

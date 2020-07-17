@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GDU_Management.GDU_Views;
 
 namespace GDU_Management
 {
@@ -25,7 +26,7 @@ namespace GDU_Management
         {
             //get day
             DateTime ngay =  DateTime.Now;
-            lblDay.Text = ngay.ToString("dd/MM/yyyy");
+            lblDay.Text = ngay.ToString("dddd, dd-MM-yyyy");
 
             //get thời gian và bộ điếm 
             timerTime.Start();
@@ -229,9 +230,8 @@ namespace GDU_Management
             dr = MessageBox.Show("Đây là phần dành cho admin bạn cần phải xác minh trước khi bắt đầu truy cập", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                this.Hide();
-                frmCheckAdmin ck2 = new frmCheckAdmin();
-                ck2.ShowDialog();
+                frmOptions frm_opt = new frmOptions();
+                frm_opt.ShowDialog();
             }
         }
 

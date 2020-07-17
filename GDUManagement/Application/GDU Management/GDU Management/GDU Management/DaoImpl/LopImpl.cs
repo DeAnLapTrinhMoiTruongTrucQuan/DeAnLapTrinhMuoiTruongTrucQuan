@@ -1,4 +1,4 @@
-﻿using GDU_Management.IDao;
+﻿ using GDU_Management.IDao;
 using GDU_Management.Model;
 using System;
 using System.Collections.Generic;
@@ -33,9 +33,12 @@ namespace GDU_Management.DaoImpl
 
         public List<Lop> getAllLop()
         {
-            //code content
-            return null;
+            db = new GDUDataConnectionsDataContext();
+            var lop = db.Lops;
+            listLop = lop.ToList();
+            return listLop ;
         }
+
 
         //lấy danh sách lớp theo mã ngành và mã khóa học
         public List<Lop> GetDanhSachLopByMaNganhVaMaKhoaHoc(string maNganh, string maKhoaHoc)
@@ -45,6 +48,15 @@ namespace GDU_Management.DaoImpl
             listLop = new List<Lop>();
             listLop = lop.ToList();
             return listLop;
+        }
+
+        //lấy thông tin Lớp
+        public Lop GetLopByMaLop(string maLop)
+        {
+            db = new GDUDataConnectionsDataContext();
+            Lop lp = new Lop();
+            lp = db.Lops.Single(p => p.MaLop == maLop);
+            return lp;
         }
 
         //tìm kiếm lớp theo tên lớp
@@ -67,5 +79,7 @@ namespace GDU_Management.DaoImpl
             lp.MaNganh = lop.MaNganh;
             db.SubmitChanges();
         }
+
+
     }
 }

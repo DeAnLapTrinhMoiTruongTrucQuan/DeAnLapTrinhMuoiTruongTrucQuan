@@ -55,5 +55,16 @@ namespace GDU_Management.Properties {
                 return ((string)(this["GDUmanagementConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-EUPI4M9;Initial Catalog=GDUmanagement;User ID=sqlserver;Passw" +
+            "ord=113114115")]
+        public string GDUmanagementConnectionString2 {
+            get {
+                return ((string)(this["GDUmanagementConnectionString2"]));
+            }
+        }
     }
 }

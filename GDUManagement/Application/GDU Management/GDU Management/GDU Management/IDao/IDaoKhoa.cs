@@ -13,10 +13,10 @@ namespace GDU_Management.IDao
         Khoa CreateKhoa(Khoa khoa);
         void DeleteKhoa(string maKhoa);
         void UpdateKhoa(Khoa khoa);
-        List<Khoa> GetKhoaByMaKhoa(string maKhoa);
+        Khoa GetKhoaByMaKhoa(string maKhoa);
         List<Khoa> SearchKhoaByTenKhoa(string tenKhoa);
         List<Khoa> SearchKhoaByMaKhoa(string maKhoa);
         void DeleteAllKhoaByMaKhoa(string maKhoa);
-
+        List<Khoa> CheckExistsKhoa(string maKhoa);
     }
 }
