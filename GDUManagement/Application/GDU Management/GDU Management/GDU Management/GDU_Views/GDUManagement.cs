@@ -18,6 +18,14 @@ namespace GDU_Management
             InitializeComponent();
             getThoiGian_Animations();
         }
+
+        //delegate truyen data
+        delegate void SendEmailAdminToChkAdmin(string emailAdmin);
+
+        //public value
+        string _emailAdmin;
+
+
         private int khoangCach = 5;
         //DANH SÁCH HÀM PUBLIC
 
@@ -26,7 +34,7 @@ namespace GDU_Management
         {
             //get day
             DateTime ngay =  DateTime.Now;
-            lblDay.Text = ngay.ToString("dddd, dd-MM-yyyy");
+            lblDay.Text = ngay.ToString("dddd, dd/MM/yyyy");
 
             //get thời gian và bộ điếm 
             timerTime.Start();
@@ -35,6 +43,12 @@ namespace GDU_Management
             lblTitle.Text = "Hello Admin...!!! ^...^";
             timerChayChu.Start();
            
+        }
+
+        //hàm fundata nhận email từ frm login
+        public void FunData(string emailAdmin)
+        {
+            _emailAdmin = emailAdmin;
         }
 
         //4-hàm vào form QLSV
@@ -169,6 +183,107 @@ namespace GDU_Management
             }       
         }
 
+
+        private void btnDangXuat_MouseHover(object sender, EventArgs e)
+        {
+            this.btnDangXuat.BackColor = Color.White;
+            this.btnDangXuat.ForeColor = Color.Blue;
+        }
+
+        private void btnDangXuat_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnDangXuat.BackColor = Color.MediumBlue;
+            this.btnDangXuat.ForeColor = Color.White;
+        }
+
+        private void btnThoatChuongTrinh_MouseHover(object sender, EventArgs e)
+        {
+            this.btnThoatChuongTrinh.BackColor = Color.White;
+            this.btnThoatChuongTrinh.ForeColor = Color.MidnightBlue;
+        }
+
+        private void btnThoatChuongTrinh_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnThoatChuongTrinh.BackColor = Color.LightSlateGray;
+            this.btnThoatChuongTrinh.ForeColor = Color.White;
+        }
+
+        private void lblQLSV_MouseHover(object sender, EventArgs e)
+        {
+            this.lblQLSV.ForeColor = Color.MidnightBlue;
+        }
+        private void lblIconQLSV_MouseHover(object sender, EventArgs e)
+        {
+            this.lblQLSV.ForeColor = Color.MidnightBlue;
+        }
+
+        private void lblQLSV_MouseLeave(object sender, EventArgs e)
+        {
+            this.lblQLSV.ForeColor = Color.Blue;
+        }
+        private void lblIconQLSV_MouseLeave(object sender, EventArgs e)
+        {
+            this.lblQLSV.ForeColor = Color.Blue;
+        }
+
+        private void lblDiemMonHoc_MouseHover(object sender, EventArgs e)
+        {
+            this.lblDiemMonHoc.ForeColor = Color.MidnightBlue;
+        }
+        private void lblIconMonHoc_Diem_MouseHover(object sender, EventArgs e)
+        {
+            this.lblDiemMonHoc.ForeColor = Color.MidnightBlue;
+        }
+
+        private void lblDiemMonHoc_MouseLeave(object sender, EventArgs e)
+        {
+            this.lblDiemMonHoc.ForeColor = Color.Blue;
+        }
+        private void lblIconMonHoc_Diem_MouseLeave(object sender, EventArgs e)
+        {
+            this.lblDiemMonHoc.ForeColor = Color.Blue;
+        }
+
+        private void lblGV_TKB_MouseHover(object sender, EventArgs e)
+        {
+            this.lblGV_TKB.ForeColor = Color.MidnightBlue;
+        }
+
+        private void lblIconGV_TKB_MouseHover(object sender, EventArgs e)
+        {
+            this.lblGV_TKB.ForeColor = Color.MidnightBlue;
+        }
+        private void lblGV_TKB_MouseLeave(object sender, EventArgs e)
+        {
+            this.lblGV_TKB.ForeColor = Color.Blue;
+        }
+
+        private void lblIconGV_TKB_MouseLeave(object sender, EventArgs e)
+        {
+            this.lblGV_TKB.ForeColor = Color.Blue;
+        }
+
+        private void lblPhanCongCongViec_MouseHover(object sender, EventArgs e)
+        {
+            this.lblPhanCongCongViec.ForeColor = Color.MidnightBlue;
+        }
+
+        private void lblIconPhanCongCongViec_MouseHover(object sender, EventArgs e)
+        {
+            this.lblPhanCongCongViec.ForeColor = Color.MidnightBlue;
+        }
+
+        private void lblPhanCongCongViec_MouseLeave(object sender, EventArgs e)
+        {
+            this.lblPhanCongCongViec.ForeColor = Color.Blue;
+        }
+
+        private void lblIconPhanCongCongViec_MouseLeave(object sender, EventArgs e)
+        {
+            this.lblPhanCongCongViec.ForeColor = Color.Blue;
+        }
+
+
         private void pnQuanLySinhVien_MouseClick(object sender, MouseEventArgs e)
         {
             goToQLSV();
@@ -227,13 +342,16 @@ namespace GDU_Management
         private void lblLogoGDU_Click(object sender, EventArgs e)
         {
             DialogResult dr;
-            dr = MessageBox.Show("Đây là phần dành cho admin bạn cần phải xác minh trước khi bắt đầu truy cập", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            dr = MessageBox.Show("Đây là phần dành cho quản lý bạn cần phải xác minh trước khi truy cập", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                frmOptions frm_opt = new frmOptions();
-                frm_opt.ShowDialog();
+                frmCheckAdmin frm_chk = new frmCheckAdmin();
+                SendEmailAdminToChkAdmin sendEmail = new SendEmailAdminToChkAdmin(frm_chk.FunDataChkAcc);
+                sendEmail(_emailAdmin);
+                frm_chk.ShowDialog();
             }
         }
+
 
     }
 }

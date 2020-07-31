@@ -61,9 +61,9 @@
             // 
             this.lblContact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblContact.Image = global::GDU_Management.Properties.Resources.Training_Education_Instruction_150px;
-            this.lblContact.Location = new System.Drawing.Point(295, 3);
+            this.lblContact.Location = new System.Drawing.Point(295, 0);
             this.lblContact.Name = "lblContact";
-            this.lblContact.Size = new System.Drawing.Size(282, 246);
+            this.lblContact.Size = new System.Drawing.Size(282, 249);
             this.lblContact.TabIndex = 1;
             this.lblContact.Click += new System.EventHandler(this.lblContact_Click);
             // 

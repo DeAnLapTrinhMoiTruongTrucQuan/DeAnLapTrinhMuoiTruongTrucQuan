@@ -141,16 +141,16 @@ namespace GDU_Management.GDU_Views
             Admin ad = new Admin();
             if(Id_Admin == lblIDAdmin.Text)
             {
-                MessageBox.Show("update");
+                //UPDATE
                 ad.MaAdmin = lblIDAdmin.Text.Trim();
                 ad.TenAdmin=txtTenAdmin.Text.Trim();
                 ad.SDT=txtSdt.Text.Trim();
                 ad.Email=txtEmail.Text.Trim();
                 ad.DiaChi=rtxtDicChi.Text.Trim();
                 ad.GhiChu=rtxtGhiChu.Text.Trim();
-                ad.NamSinh = dtpNamSinh.Value.ToString().Trim();
-                ad.StartDay = dtpStartingDate.Value.ToString().Trim();
-                ad.StatusAcc = "activate";
+                ad.NamSinh = dtpNamSinh.Text.ToString().Trim();
+                ad.StartDay = dtpStartingDate.Text.ToString().Trim();
+                ad.StatusAcc = "Activate";
 
                 //update avatar
                 byte[] Image_admin = ImageToByteArray(picAvtAdmin.Image);   //lấy image từ picturebox
@@ -170,27 +170,26 @@ namespace GDU_Management.GDU_Views
                 ad.GioiTinh = gioiTinh;
                 adminService.UpdateAdmin(ad);
                 LoadAdmin();
+                MessageBox.Show("Update Information Successfully...<-/>!!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                
+                //SAVE
                 ad.MaAdmin = lblIDAdmin.Text.Trim();
                 ad.TenAdmin = txtTenAdmin.Text.Trim();
                 ad.SDT = txtSdt.Text.Trim();
                 ad.Email = txtEmail.Text.Trim();
                 ad.DiaChi = rtxtDicChi.Text.Trim();
                 ad.GhiChu = rtxtGhiChu.Text.Trim();
-                ad.NamSinh = dtpNamSinh.Value.ToString().Trim();
-                ad.StartDay = dtpStartingDate.Value.ToString().Trim();
+                ad.NamSinh = dtpNamSinh.Text.ToString().Trim();
+                ad.StartDay = dtpStartingDate.Text.ToString().Trim();
                 ad.Password = lblIDAdmin.Text.Trim();
-                ad.StatusAcc = "activate";
-
-                //update avatar
+                ad.StatusAcc = "Activate";
+                //iamge
                 byte[] Image_admin = ImageToByteArray(picAvtAdmin.Image);   //lấy image từ picturebox
                 System.Data.Linq.Binary img = new System.Data.Linq.Binary(Image_admin);  //chuyển image từ kiểu image về kiểu ByteArray
                 ad.Avt = img;
 
-                //update gioi tinh
                 string gioiTinh;
                 if (radNam.Checked)
                 {

@@ -66,5 +66,23 @@ namespace GDU_Management.Service
         {
             return adminIDao.SearchAdminEmail(email);
         }
+
+        //đăng nhập vào hệ thống
+        public List<Admin> LoginToSystem(string acc, string pass)
+        {
+            return adminIDao.LoginToSystem(acc, pass);
+        }
+
+        //lấy thông tin admin qua email
+        public Admin GetAdminByEmail(string email)
+        {
+            return adminIDao.GetAdminByEmail(email);
+        }
+
+        //cập nhật trạng thái tài khoản
+        public void UpdateStatusAccountByEmail(Admin admin)
+        {
+            adminIDao.UpdateStatusAccountByEmail(admin);
+        }
     }
 }

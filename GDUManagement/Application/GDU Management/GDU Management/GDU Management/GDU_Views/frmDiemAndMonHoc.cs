@@ -7,8 +7,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace GDU_Management
 {
@@ -44,7 +47,7 @@ namespace GDU_Management
         {
             //get ngày
             DateTime ngay = DateTime.Now;
-            lblDay.Text = ngay.ToString("dddd, dd-MM-yyyy");
+            lblDay.Text = ngay.ToString("dddd, dd/MMyyyy");
 
             //get thời gian
             timerMonHoc.Start();
@@ -86,6 +89,13 @@ namespace GDU_Management
             string maLop = cboChonLop_QLD.SelectedValue.ToString();
             string maMonHoc = cboChonMon_QLD.SelectedValue.ToString();
             dgvDanhSachDiemSinhVien.DataSource = diemMonHocService.GetDanhSachMonByMaLopAndMaMonHoc(maLop, maMonHoc);
+            SinhVien sv = new SinhVien();
+            for (int i = 0; i < dgvDanhSachDiemSinhVien.Rows.Count; i++)
+            {
+                string maSV = dgvDanhSachDiemSinhVien.Rows[i].Cells[2].Value.ToString();
+                sv = sinhVienService.GetSinhVienByMaSinhVien(maSV);
+                dgvDanhSachDiemSinhVien.Rows[i].Cells[3].Value = sv.TenSV;
+            }
         }
 
         //show data môn học to textbox
@@ -113,15 +123,20 @@ namespace GDU_Management
         {
             if (string.IsNullOrEmpty(txtTenMon_MH.Text))
             {
-                MessageBox.Show("Tên Môn Không được bỏ trống, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Tên Môn Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTenMon_MH.Focus();
                 return false;
             }
 
             int soTC = Convert.ToInt32(numericSoTinChi_MH.Value.ToString());
-            if (soTC <= 0)
+            if (soTC <= 0 )
             {
-                MessageBox.Show("STC không được nhỏ hơn hoặc bằng 0, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("STC không được nhỏ hơn hoặc bằng 0, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (soTC <= 0 || soTC > 10)
+            {
+                MessageBox.Show("STC không được lớn hơn 10, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -130,13 +145,14 @@ namespace GDU_Management
         //check data điểm
         public bool CheckDataDiem()
         {
-            if (string.IsNullOrEmpty(txtDiem30.Text.Trim()))
+            if (string.IsNullOrEmpty(txtDiem30.Text.Trim()) && Convert.ToDouble(txtDiem30.Text) > 0 && Convert.ToDouble(txtDiem30.Text) <=10 )
             {
-                MessageBox.Show("Điểm 30% Trống, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Điểm 30% không đuợc trống họa nhỏ hơn 0, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDiem30.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txtDiem70L1.Text.Trim()))
+            
+            if (string.IsNullOrEmpty(txtDiem70L1.Text.Trim()) && Convert.ToDouble(txtDiem70L1.Text) > 0 && Convert.ToDouble(txtDiem70L1.Text) <= 10)
             {
                 MessageBox.Show("Điểm 70% Trống, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDiem70L1.Focus();
@@ -194,7 +210,6 @@ namespace GDU_Management
 
                 double thangDiem4 = DTB * 4 / 10;
                 Diem4 = Convert.ToString(thangDiem4);
-                MessageBox.Show("diem 4: " + Diem4);
             }
             else
             {
@@ -207,7 +222,6 @@ namespace GDU_Management
                 DTB = Math.Round(valueTB, 2);
                 double thangDiem4 = DTB * 4 / 10;
                 Diem4 = Convert.ToString(thangDiem4);
-                MessageBox.Show("diem 4: " + Diem4);
             }
 
             if (DTB >= 8.5)
@@ -261,13 +275,19 @@ namespace GDU_Management
             dmh.Diem4 = Diem4.Trim(); 
             dmh.DiemChu = DiemChu.Trim();
             dmh.DiemSo = DiemSo.Trim();
-            dmh.GhiChu = rtxtGhiChu.Text.Trim();
 
+            if (DTB >= 4)
+            {
+                dmh.GhiChu = "Pass";
+            }
+            else
+            {
+                dmh.GhiChu = "Fail";
+            }
             if (string.IsNullOrEmpty(txtDiem70L2.Text.Trim()))
             {
                 dmh.Diem70L2 = null;
             }
-
             diemMonHocService.UpdateDiemMonHoc(dmh);
         }
 
@@ -283,10 +303,17 @@ namespace GDU_Management
         //đóng các button mặc định
         public void EnableFalseButton()
         {
+            //tab mon hoc
             btnNewMonHoc.Enabled = false;
             btnSaveMonHoc.Enabled = false;
             btnUpdateMonHoc.Enabled = false;
             btnDeleteMonHoc.Enabled = false;
+
+            //tab diem 
+            txtDiem30.Enabled = false;
+            txtDiem70L1.Enabled = false;
+            txtDiem70L2.Enabled = false;
+            btnSaveDiem.Enabled = false;
         }
         //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
         //--------------------------------------------------------------------------------------//
@@ -532,32 +559,40 @@ namespace GDU_Management
         private void cboChonMon_QLD_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDanhSachDiemSinhVienToDatagridview();
-            int countRows = dgvDanhSachDiemSinhVien.Rows.Count;
-            if (countRows == 0)
-            {
-                dgvDanhSachDiemSinhVien.Enabled = false;
-            }
-            else
-            {
-                dgvDanhSachDiemSinhVien.Enabled = true;
-            }
         }
 
         private void dgvDanhSachDiemSinhVien_MouseClick(object sender, MouseEventArgs e)
         {
-            lblMaSV.DataBindings.Clear();
-            lblMaSV.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "MaSV");
-            txtDiem30.DataBindings.Clear();
-            txtDiem30.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "Diem30");
-             txtDiem70L1.DataBindings.Clear();
-             txtDiem70L1.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "Diem70L1");
-             txtDiem70L2.DataBindings.Clear();
-             txtDiem70L2.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "Diem70L2");
+            if (dgvDanhSachDiemSinhVien.Rows.Count <= 0)
+            {
+                dgvDanhSachDiemSinhVien.Enabled = false;
+                MessageBox.Show("khong sho");
+            }
+            else
+            {
+                MessageBox.Show("show len");
+                dgvDanhSachDiemSinhVien.Enabled = true;
+                btnSaveDiem.Enabled = true;
+                lblMaSV.DataBindings.Clear();
+                lblMaSV.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "MaSV");
+                txtDiem30.DataBindings.Clear();
+                txtDiem30.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "Diem30");
+                txtDiem70L1.DataBindings.Clear();
+                txtDiem70L1.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "Diem70L1");
+                txtDiem70L2.DataBindings.Clear();
+                txtDiem70L2.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "Diem70L2");
+                //rtxtGhiChu.DataBindings.Clear();
+                // rtxtGhiChu.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "GhiChu");
 
-            SinhVien sv = new SinhVien();
-            sv = sinhVienService.GetSinhVienByMaSinhVien(lblMaSV.Text.Trim());
-            lbltenSV.Text = sv.TenSV;
-            lblGioiTinh.Text = sv.GioiTinh;
+                SinhVien sv = new SinhVien();
+                sv = sinhVienService.GetSinhVienByMaSinhVien(lblMaSV.Text.Trim());
+                lbltenSV.Text = sv.TenSV;
+                lblGioiTinh.Text = sv.GioiTinh;
+
+                txtDiem30.Enabled = true;
+                txtDiem70L1.Enabled = true;
+                txtDiem70L2.Enabled = true;
+            }   
         }
 
         private void btnSaveDiem_Click(object sender, EventArgs e)
@@ -569,6 +604,16 @@ namespace GDU_Management
                 MessageBox.Show("Cập nhật điểm thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
          }
+
+        private void txtDiem70L2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDiem70L1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void txtDiem30_TextChanged(object sender, EventArgs e)
         {
@@ -601,6 +646,35 @@ namespace GDU_Management
                 maMonHoc = cboChonMon_QLD.SelectedValue.ToString().Trim();
                 dgvDanhSachDiemSinhVien.DataSource = diemMonHocService.SearchDiemMonHocByMonHocAndMaSV(maMonHoc, txtTimKiemDiemSinhVien_QLD.Text.Trim()).ToList();
             }
+        }
+
+        private void txtDiem30_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar.ToString() != ".")
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDiem70L1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar.ToString() != ".")
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDiem70L2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar.ToString() != ".")
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnEXIT_QLD_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

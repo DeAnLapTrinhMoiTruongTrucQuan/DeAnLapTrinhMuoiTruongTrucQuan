@@ -18,6 +18,12 @@ namespace GDU_Management.GDU_Views
             InitializeComponent();
         }
 
+        string _emailAdmin;
+        public void FunDataOption(string emailAd)
+        {
+            _emailAdmin = emailAd;
+        }
+
         private void lblManagerAccount_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -35,6 +41,7 @@ namespace GDU_Management.GDU_Views
         private void lblCloseOption_Click(object sender, EventArgs e)
         {
             this.Close();
+            
         }
     }
 }

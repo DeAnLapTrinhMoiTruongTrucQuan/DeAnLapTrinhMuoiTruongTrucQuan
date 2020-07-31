@@ -22,6 +22,17 @@ namespace GDU_Management.DaoImpl
             return lop;
         }
 
+        //Xóa tất cả lớp trong ngành
+        public void DeleteAllLopInNganh(string maKhoasHoc, string maNganh)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listLop = from x in db.Lops.Where(p=>p.MaKhoaHoc == maKhoasHoc & p.MaNganh == maNganh) select x;
+            List<Lop> listLopDeleteAll = new List<Lop>();
+            listLopDeleteAll = listLop.ToList();
+            db.Lops.DeleteAllOnSubmit(listLopDeleteAll);
+            db.SubmitChanges();
+        }
+
         public void DeleteLop(string maLop)
         {
             db = new GDUDataConnectionsDataContext();
@@ -38,7 +49,6 @@ namespace GDU_Management.DaoImpl
             listLop = lop.ToList();
             return listLop ;
         }
-
 
         //lấy danh sách lớp theo mã ngành và mã khóa học
         public List<Lop> GetDanhSachLopByMaNganhVaMaKhoaHoc(string maNganh, string maKhoaHoc)
@@ -60,10 +70,10 @@ namespace GDU_Management.DaoImpl
         }
 
         //tìm kiếm lớp theo tên lớp
-        public List<Lop> SearchLopHocByTenLop(string tenLop)
+        public List<Lop> SearchLopHocByTenLop(string maNganh, string tenLop)
         {
             db = new GDUDataConnectionsDataContext();
-            var lop = from x in db.Lops where x.TenLop.Contains(tenLop) select x;
+            var lop = from x in db.Lops.Where(p=>p.MaNganh == maNganh& p.TenLop.Contains(tenLop)) select x;
             listLop = lop.ToList();
             return listLop;
         }

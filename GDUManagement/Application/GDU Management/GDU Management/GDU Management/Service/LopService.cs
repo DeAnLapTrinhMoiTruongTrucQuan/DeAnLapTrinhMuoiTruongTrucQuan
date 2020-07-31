@@ -41,15 +41,21 @@ namespace GDU_Management.Service
         }
 
         //tìm kiếm lớp theo tên lớp
-        public List<Lop> SearchLopHocByTenLop(string tenLop)
+        public List<Lop> SearchLopHocByTenLop(string maNganh, string tenLop)
         {
-            return lopIDao.SearchLopHocByTenLop(tenLop);
+            return lopIDao.SearchLopHocByTenLop(maNganh, tenLop);
         }
 
         //lấy thông tin Lớp
         public Lop GetLopByMaLop(string maLop)
         {
             return lopIDao.GetLopByMaLop(maLop);
+        }
+
+        //Xóa tất cả lớp trong ngành
+        public void DeleteAllLopInNganh(string maKhoasHoc, string maNganh)
+        {
+            lopIDao.DeleteAllLopInNganh(maKhoasHoc, maNganh);
         }
     }
 }

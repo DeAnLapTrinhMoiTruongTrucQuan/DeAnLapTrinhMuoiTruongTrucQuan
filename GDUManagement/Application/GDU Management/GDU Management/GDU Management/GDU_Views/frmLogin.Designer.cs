@@ -60,6 +60,7 @@
             // 
             // pnSystem
             // 
+            this.pnSystem.BackColor = System.Drawing.Color.White;
             this.pnSystem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnSystem.Controls.Add(this.panel1);
             this.pnSystem.Controls.Add(this.lblReset);
@@ -75,37 +76,44 @@
             // 
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Location = new System.Drawing.Point(32, 289);
+            this.panel1.Location = new System.Drawing.Point(32, 275);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 55);
+            this.panel1.Size = new System.Drawing.Size(332, 69);
             this.panel1.TabIndex = 8;
             // 
             // btnLogin
             // 
-            this.btnLogin.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnLogin.BackColor = System.Drawing.Color.White;
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLogin.Location = new System.Drawing.Point(175, 5);
+            this.btnLogin.ForeColor = System.Drawing.Color.Blue;
+            this.btnLogin.Location = new System.Drawing.Point(7, 7);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(150, 45);
+            this.btnLogin.Size = new System.Drawing.Size(160, 52);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
+            this.btnLogin.MouseHover += new System.EventHandler(this.btnLogin_MouseHover);
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.Color.White;
             this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExit.Location = new System.Drawing.Point(6, 5);
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.btnExit.Location = new System.Drawing.Point(173, 7);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(150, 45);
+            this.btnExit.Size = new System.Drawing.Size(153, 52);
             this.btnExit.TabIndex = 4;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Text = "EXIT";
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.MouseLeave += new System.EventHandler(this.btnExit_MouseLeave);
+            this.btnExit.MouseHover += new System.EventHandler(this.btnExit_MouseHover);
             // 
             // lblReset
             // 
@@ -146,6 +154,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(319, 31);
             this.txtUsername.TabIndex = 0;
+            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
             // 
             // grbPassword
             // 
@@ -160,12 +169,13 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Yi Baiti", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Yi Baiti", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(7, 31);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(319, 31);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // pnLogoGDU
             // 
@@ -190,6 +200,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login to System";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.pnContents.ResumeLayout(false);
             this.pnSystem.ResumeLayout(false);
             this.pnSystem.PerformLayout();
@@ -208,14 +219,14 @@
         private System.Windows.Forms.GroupBox grbUsername;
         private System.Windows.Forms.Label lblLoginToSYS;
         private System.Windows.Forms.GroupBox grbPassword;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Panel pnLogoGDU;
         private System.Windows.Forms.Panel pnSystem;
         private System.Windows.Forms.Label lblReset;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnExit;
     }
 }
 

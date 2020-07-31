@@ -15,7 +15,7 @@ namespace GDU_Management.IDao
         void UpdateNganhHoc(NganhHoc nganhHoc);
         List<NganhHoc> GetNganhHocByKHOA(string maKhoa);
         List<NganhHoc> SearchNganhHocByMaNganh(string maNganh);
-        List<NganhHoc> SearchNganhHocByTenNganh(string tenNganh);
+        List<NganhHoc> SearchNganhHocByTenNganh(string maKhoa, string tenNganh);
         NganhHoc GetNganhHocByMaNganh(string maNganh);
         List<NganhHoc> CheckKhoaByNganh();
     }

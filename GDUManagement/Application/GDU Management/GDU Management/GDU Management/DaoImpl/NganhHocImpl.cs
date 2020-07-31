@@ -91,10 +91,10 @@ namespace GDU_Management.DaoImpl
         }
 
         // tìm kiếm ngành học theo tên ngành
-        public List<NganhHoc> SearchNganhHocByTenNganh(string tenNganh)
+        public List<NganhHoc> SearchNganhHocByTenNganh(string maKhoa, string tenNganh)
         {
             db = new GDUDataConnectionsDataContext();
-            var nganhHoc = from x in db.NganhHocs where x.TenNganh.Contains(tenNganh) select x;
+            var nganhHoc = from x in db.NganhHocs.Where(p=>p.MaKhoa == maKhoa & p.TenNganh.Contains(tenNganh)) select x;
             listNganhHoc = nganhHoc.ToList();
             return listNganhHoc;
         }

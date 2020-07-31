@@ -36,9 +36,6 @@ namespace GDU_Management.Model
     partial void InsertThoiKhoaBieu(ThoiKhoaBieu instance);
     partial void UpdateThoiKhoaBieu(ThoiKhoaBieu instance);
     partial void DeleteThoiKhoaBieu(ThoiKhoaBieu instance);
-    partial void InsertContact(Contact instance);
-    partial void UpdateContact(Contact instance);
-    partial void DeleteContact(Contact instance);
     partial void InsertDiemMonHoc(DiemMonHoc instance);
     partial void UpdateDiemMonHoc(DiemMonHoc instance);
     partial void DeleteDiemMonHoc(DiemMonHoc instance);
@@ -48,6 +45,9 @@ namespace GDU_Management.Model
     partial void InsertHocKy(HocKy instance);
     partial void UpdateHocKy(HocKy instance);
     partial void DeleteHocKy(HocKy instance);
+    partial void InsertInforContact(InforContact instance);
+    partial void UpdateInforContact(InforContact instance);
+    partial void DeleteInforContact(InforContact instance);
     partial void InsertKhoa(Khoa instance);
     partial void UpdateKhoa(Khoa instance);
     partial void DeleteKhoa(Khoa instance);
@@ -69,6 +69,9 @@ namespace GDU_Management.Model
     partial void InsertSinhVien(SinhVien instance);
     partial void UpdateSinhVien(SinhVien instance);
     partial void DeleteSinhVien(SinhVien instance);
+    partial void InsertCheckAccount(CheckAccount instance);
+    partial void UpdateCheckAccount(CheckAccount instance);
+    partial void DeleteCheckAccount(CheckAccount instance);
     #endregion
 		
 		public GDUDataConnectionsDataContext() : 
@@ -117,14 +120,6 @@ namespace GDU_Management.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<Contact> Contacts
-		{
-			get
-			{
-				return this.GetTable<Contact>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DiemMonHoc> DiemMonHocs
 		{
 			get
@@ -146,6 +141,14 @@ namespace GDU_Management.Model
 			get
 			{
 				return this.GetTable<HocKy>();
+			}
+		}
+		
+		public System.Data.Linq.Table<InforContact> InforContacts
+		{
+			get
+			{
+				return this.GetTable<InforContact>();
 			}
 		}
 		
@@ -202,6 +205,14 @@ namespace GDU_Management.Model
 			get
 			{
 				return this.GetTable<SinhVien>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CheckAccount> CheckAccounts
+		{
+			get
+			{
+				return this.GetTable<CheckAccount>();
 			}
 		}
 	}
@@ -990,188 +1001,6 @@ namespace GDU_Management.Model
 						this._MaPhongHoc = default(string);
 					}
 					this.SendPropertyChanged("PhongHoc");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Contacts")]
-	public partial class Contact : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _Email;
-		
-		private string _Pass;
-		
-		private string _Title;
-		
-		private string _Message;
-		
-		private string _Info;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPassChanging(string value);
-    partial void OnPassChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnMessageChanging(string value);
-    partial void OnMessageChanged();
-    partial void OnInfoChanging(string value);
-    partial void OnInfoChanged();
-    #endregion
-		
-		public Contact()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pass", DbType="VarChar(100)")]
-		public string Pass
-		{
-			get
-			{
-				return this._Pass;
-			}
-			set
-			{
-				if ((this._Pass != value))
-				{
-					this.OnPassChanging(value);
-					this.SendPropertyChanging();
-					this._Pass = value;
-					this.SendPropertyChanged("Pass");
-					this.OnPassChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(MAX)")]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(MAX)")]
-		public string Message
-		{
-			get
-			{
-				return this._Message;
-			}
-			set
-			{
-				if ((this._Message != value))
-				{
-					this.OnMessageChanging(value);
-					this.SendPropertyChanging();
-					this._Message = value;
-					this.SendPropertyChanged("Message");
-					this.OnMessageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Info", DbType="NVarChar(MAX)")]
-		public string Info
-		{
-			get
-			{
-				return this._Info;
-			}
-			set
-			{
-				if ((this._Info != value))
-				{
-					this.OnInfoChanging(value);
-					this.SendPropertyChanging();
-					this._Info = value;
-					this.SendPropertyChanged("Info");
-					this.OnInfoChanged();
 				}
 			}
 		}
@@ -2138,6 +1967,212 @@ namespace GDU_Management.Model
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.InforContact")]
+	public partial class InforContact : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _ID;
+		
+		private string _TenContacts;
+		
+		private string _Email;
+		
+		private string _Pass;
+		
+		private string _Subject;
+		
+		private string _Message;
+		
+		private string _InfoOther;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(string value);
+    partial void OnIDChanged();
+    partial void OnTenContactsChanging(string value);
+    partial void OnTenContactsChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnPassChanging(string value);
+    partial void OnPassChanged();
+    partial void OnSubjectChanging(string value);
+    partial void OnSubjectChanged();
+    partial void OnMessageChanging(string value);
+    partial void OnMessageChanged();
+    partial void OnInfoOtherChanging(string value);
+    partial void OnInfoOtherChanged();
+    #endregion
+		
+		public InforContact()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenContacts", DbType="VarChar(100)")]
+		public string TenContacts
+		{
+			get
+			{
+				return this._TenContacts;
+			}
+			set
+			{
+				if ((this._TenContacts != value))
+				{
+					this.OnTenContactsChanging(value);
+					this.SendPropertyChanging();
+					this._TenContacts = value;
+					this.SendPropertyChanged("TenContacts");
+					this.OnTenContactsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pass", DbType="VarChar(100)")]
+		public string Pass
+		{
+			get
+			{
+				return this._Pass;
+			}
+			set
+			{
+				if ((this._Pass != value))
+				{
+					this.OnPassChanging(value);
+					this.SendPropertyChanging();
+					this._Pass = value;
+					this.SendPropertyChanged("Pass");
+					this.OnPassChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Subject", DbType="NVarChar(MAX)")]
+		public string Subject
+		{
+			get
+			{
+				return this._Subject;
+			}
+			set
+			{
+				if ((this._Subject != value))
+				{
+					this.OnSubjectChanging(value);
+					this.SendPropertyChanging();
+					this._Subject = value;
+					this.SendPropertyChanged("Subject");
+					this.OnSubjectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(MAX)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this.OnMessageChanging(value);
+					this.SendPropertyChanging();
+					this._Message = value;
+					this.SendPropertyChanged("Message");
+					this.OnMessageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InfoOther", DbType="NVarChar(MAX)")]
+		public string InfoOther
+		{
+			get
+			{
+				return this._InfoOther;
+			}
+			set
+			{
+				if ((this._InfoOther != value))
+				{
+					this.OnInfoOtherChanging(value);
+					this.SendPropertyChanging();
+					this._InfoOther = value;
+					this.SendPropertyChanged("InfoOther");
+					this.OnInfoOtherChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Khoa")]
 	public partial class Khoa : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2482,8 +2517,6 @@ namespace GDU_Management.Model
 		
 		private EntitySet<ThoiKhoaBieu> _ThoiKhoaBieus;
 		
-		private EntitySet<SinhVien> _SinhViens;
-		
 		private EntityRef<KhoasHoc> _KhoasHoc;
 		
 		private EntityRef<NganhHoc> _NganhHoc;
@@ -2505,7 +2538,6 @@ namespace GDU_Management.Model
 		public Lop()
 		{
 			this._ThoiKhoaBieus = new EntitySet<ThoiKhoaBieu>(new Action<ThoiKhoaBieu>(this.attach_ThoiKhoaBieus), new Action<ThoiKhoaBieu>(this.detach_ThoiKhoaBieus));
-			this._SinhViens = new EntitySet<SinhVien>(new Action<SinhVien>(this.attach_SinhViens), new Action<SinhVien>(this.detach_SinhViens));
 			this._KhoasHoc = default(EntityRef<KhoasHoc>);
 			this._NganhHoc = default(EntityRef<NganhHoc>);
 			OnCreated();
@@ -2612,19 +2644,6 @@ namespace GDU_Management.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lop_SinhVien", Storage="_SinhViens", ThisKey="MaLop", OtherKey="MaLop")]
-		public EntitySet<SinhVien> SinhViens
-		{
-			get
-			{
-				return this._SinhViens;
-			}
-			set
-			{
-				this._SinhViens.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoasHoc_Lop", Storage="_KhoasHoc", ThisKey="MaKhoaHoc", OtherKey="MaKhoaHoc", IsForeignKey=true)]
 		public KhoasHoc KhoasHoc
 		{
@@ -2720,18 +2739,6 @@ namespace GDU_Management.Model
 		}
 		
 		private void detach_ThoiKhoaBieus(ThoiKhoaBieu entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lop = null;
-		}
-		
-		private void attach_SinhViens(SinhVien entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lop = this;
-		}
-		
-		private void detach_SinhViens(SinhVien entity)
 		{
 			this.SendPropertyChanging();
 			entity.Lop = null;
@@ -3316,15 +3323,13 @@ namespace GDU_Management.Model
 		
 		private string _MaLop;
 		
-		private string _STT;
+		private int _STT;
 		
 		private System.Data.Linq.Binary _Avt;
 		
 		private string _StatusAcc;
 		
 		private EntitySet<DiemMonHoc> _DiemMonHocs;
-		
-		private EntityRef<Lop> _Lop;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3350,7 +3355,7 @@ namespace GDU_Management.Model
     partial void OnGhiChuChanged();
     partial void OnMaLopChanging(string value);
     partial void OnMaLopChanged();
-    partial void OnSTTChanging(string value);
+    partial void OnSTTChanging(int value);
     partial void OnSTTChanged();
     partial void OnAvtChanging(System.Data.Linq.Binary value);
     partial void OnAvtChanged();
@@ -3361,7 +3366,6 @@ namespace GDU_Management.Model
 		public SinhVien()
 		{
 			this._DiemMonHocs = new EntitySet<DiemMonHoc>(new Action<DiemMonHoc>(this.attach_DiemMonHocs), new Action<DiemMonHoc>(this.detach_DiemMonHocs));
-			this._Lop = default(EntityRef<Lop>);
 			OnCreated();
 		}
 		
@@ -3556,10 +3560,6 @@ namespace GDU_Management.Model
 			{
 				if ((this._MaLop != value))
 				{
-					if (this._Lop.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnMaLopChanging(value);
 					this.SendPropertyChanging();
 					this._MaLop = value;
@@ -3569,8 +3569,8 @@ namespace GDU_Management.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STT", DbType="NChar(5)")]
-		public string STT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STT", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int STT
 		{
 			get
 			{
@@ -3642,40 +3642,6 @@ namespace GDU_Management.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lop_SinhVien", Storage="_Lop", ThisKey="MaLop", OtherKey="MaLop", IsForeignKey=true)]
-		public Lop Lop
-		{
-			get
-			{
-				return this._Lop.Entity;
-			}
-			set
-			{
-				Lop previousValue = this._Lop.Entity;
-				if (((previousValue != value) 
-							|| (this._Lop.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Lop.Entity = null;
-						previousValue.SinhViens.Remove(this);
-					}
-					this._Lop.Entity = value;
-					if ((value != null))
-					{
-						value.SinhViens.Add(this);
-						this._MaLop = value.MaLop;
-					}
-					else
-					{
-						this._MaLop = default(string);
-					}
-					this.SendPropertyChanged("Lop");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3706,6 +3672,116 @@ namespace GDU_Management.Model
 		{
 			this.SendPropertyChanging();
 			entity.SinhVien = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CheckAccount")]
+	public partial class CheckAccount : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Code;
+		
+		private string _MaAdmin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnMaAdminChanging(string value);
+    partial void OnMaAdminChanged();
+    #endregion
+		
+		public CheckAccount()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="VarChar(10)")]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaAdmin", DbType="VarChar(10)")]
+		public string MaAdmin
+		{
+			get
+			{
+				return this._MaAdmin;
+			}
+			set
+			{
+				if ((this._MaAdmin != value))
+				{
+					this.OnMaAdminChanging(value);
+					this.SendPropertyChanging();
+					this._MaAdmin = value;
+					this.SendPropertyChanged("MaAdmin");
+					this.OnMaAdminChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

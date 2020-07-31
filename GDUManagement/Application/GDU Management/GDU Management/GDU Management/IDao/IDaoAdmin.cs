@@ -18,5 +18,9 @@ namespace GDU_Management.IDao
         void UpdateAdmin(Admin admin);
         int CountAdmin();
         List<Admin> SearchAdminEmail(string email);
+        List<Admin> LoginToSystem(string acc, string pass);
+        Admin GetAdminByEmail(string email);
+        void UpdateStatusAccountByEmail(Admin admin);
+        
     }
 }

@@ -32,9 +32,9 @@ namespace GDU_Management.Service
         }
 
         //xóa 1 trường thời khóa biểu
-        public void DeleteThoiKhoaBieu(string maLop, string maHK)
+        public void DeleteThoiKhoaBieu(string maLop, string maMonHoc)
         {
-            TKBIdao.DeleteThoiKhoaBieu(maLop, maHK);
+            TKBIdao.DeleteThoiKhoaBieu(maLop, maMonHoc);
         }
 
         //lấy thông tin thời khóa biểu

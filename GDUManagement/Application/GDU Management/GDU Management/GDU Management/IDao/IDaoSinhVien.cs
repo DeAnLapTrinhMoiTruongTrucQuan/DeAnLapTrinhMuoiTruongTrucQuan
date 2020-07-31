@@ -15,7 +15,7 @@ namespace GDU_Management.IDao
         void DeleteSinhVien(string maSV);
         void UpdateSinhVien(SinhVien sinhVien);
         List<SinhVien> GetSinhVienByMaLop(string maLop);
-        List<SinhVien> SearchSinhVienByTenSinhVien(string tenSV);
+        List<SinhVien> SearchSinhVienByTenSinhVien(string maLop ,  string tenSV);
         void DeleteAllSinhVienByMaLop(string maLop);
         int CountSinhVien();
         SinhVien GetSinhVienByMaSinhVien(string maSV);
@@ -23,5 +23,6 @@ namespace GDU_Management.IDao
         List<SinhVien> GetSinhVienByMaNganh(string maNganh); 
         void UpdateAccountSinhVien(SinhVien sinhVien);
         List<SinhVien> SearchAccountSinhVienByEmail(string email);
+        List<SinhVien> SearchAllSinhVien(string maSV, string tenSV);
     }
 }

@@ -46,9 +46,9 @@ namespace GDU_Management.Service
         }
 
         //tìm danh sách ngành học theo tên ngành
-        public List<NganhHoc> SearchNganhHocByTenNganh(string tenNganh)
+        public List<NganhHoc> SearchNganhHocByTenNganh(string maKhoa, string tenNganh)
         {
-            return nganhHocIDao.SearchNganhHocByTenNganh(tenNganh);
+            return nganhHocIDao.SearchNganhHocByTenNganh(maKhoa, tenNganh);
         }
 
         //lấy thông tin ngành học

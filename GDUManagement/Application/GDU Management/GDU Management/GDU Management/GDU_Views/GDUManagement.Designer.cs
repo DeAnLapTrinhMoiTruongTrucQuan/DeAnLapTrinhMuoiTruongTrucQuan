@@ -39,7 +39,7 @@
             this.pnMenu = new System.Windows.Forms.Panel();
             this.pnMonHoc_Diem = new System.Windows.Forms.Panel();
             this.lblIconMonHoc_Diem = new System.Windows.Forms.Label();
-            this.lblDSV = new System.Windows.Forms.Label();
+            this.lblDiemMonHoc = new System.Windows.Forms.Label();
             this.pnBoDiemGio = new System.Windows.Forms.Panel();
             this.lblAnimation3 = new System.Windows.Forms.Label();
             this.lblAnimation2 = new System.Windows.Forms.Label();
@@ -147,8 +147,9 @@
             // 
             // btnDangXuat
             // 
-            this.btnDangXuat.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDangXuat.BackColor = System.Drawing.Color.MediumBlue;
             this.btnDangXuat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDangXuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDangXuat.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangXuat.ForeColor = System.Drawing.Color.White;
             this.btnDangXuat.Location = new System.Drawing.Point(6, 3);
@@ -158,12 +159,15 @@
             this.btnDangXuat.Text = "Đăng Xuất";
             this.btnDangXuat.UseVisualStyleBackColor = false;
             this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
+            this.btnDangXuat.MouseLeave += new System.EventHandler(this.btnDangXuat_MouseLeave);
+            this.btnDangXuat.MouseHover += new System.EventHandler(this.btnDangXuat_MouseHover);
             // 
             // btnThoatChuongTrinh
             // 
-            this.btnThoatChuongTrinh.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnThoatChuongTrinh.BackColor = System.Drawing.Color.LightSlateGray;
             this.btnThoatChuongTrinh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnThoatChuongTrinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoatChuongTrinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThoatChuongTrinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoatChuongTrinh.ForeColor = System.Drawing.Color.White;
             this.btnThoatChuongTrinh.Location = new System.Drawing.Point(250, 3);
             this.btnThoatChuongTrinh.Name = "btnThoatChuongTrinh";
@@ -172,6 +176,8 @@
             this.btnThoatChuongTrinh.Text = "Thoát Chương Trình";
             this.btnThoatChuongTrinh.UseVisualStyleBackColor = false;
             this.btnThoatChuongTrinh.Click += new System.EventHandler(this.btnThoatChuongTrinh_Click);
+            this.btnThoatChuongTrinh.MouseLeave += new System.EventHandler(this.btnThoatChuongTrinh_MouseLeave);
+            this.btnThoatChuongTrinh.MouseHover += new System.EventHandler(this.btnThoatChuongTrinh_MouseHover);
             // 
             // pnMenu
             // 
@@ -192,7 +198,7 @@
             // 
             this.pnMonHoc_Diem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnMonHoc_Diem.Controls.Add(this.lblIconMonHoc_Diem);
-            this.pnMonHoc_Diem.Controls.Add(this.lblDSV);
+            this.pnMonHoc_Diem.Controls.Add(this.lblDiemMonHoc);
             this.pnMonHoc_Diem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnMonHoc_Diem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.pnMonHoc_Diem.Location = new System.Drawing.Point(16, 178);
@@ -209,17 +215,22 @@
             this.lblIconMonHoc_Diem.Size = new System.Drawing.Size(100, 102);
             this.lblIconMonHoc_Diem.TabIndex = 2;
             this.lblIconMonHoc_Diem.Click += new System.EventHandler(this.lblIconMonHoc_Diem_Click);
+            this.lblIconMonHoc_Diem.MouseLeave += new System.EventHandler(this.lblIconMonHoc_Diem_MouseLeave);
+            this.lblIconMonHoc_Diem.MouseHover += new System.EventHandler(this.lblIconMonHoc_Diem_MouseHover);
             // 
-            // lblDSV
+            // lblDiemMonHoc
             // 
-            this.lblDSV.AutoSize = true;
-            this.lblDSV.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDSV.Location = new System.Drawing.Point(109, 34);
-            this.lblDSV.Name = "lblDSV";
-            this.lblDSV.Size = new System.Drawing.Size(301, 53);
-            this.lblDSV.TabIndex = 1;
-            this.lblDSV.Text = "MÔN HỌC and ĐIỂM";
-            this.lblDSV.Click += new System.EventHandler(this.lblDSV_Click);
+            this.lblDiemMonHoc.AutoSize = true;
+            this.lblDiemMonHoc.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiemMonHoc.ForeColor = System.Drawing.Color.Blue;
+            this.lblDiemMonHoc.Location = new System.Drawing.Point(109, 34);
+            this.lblDiemMonHoc.Name = "lblDiemMonHoc";
+            this.lblDiemMonHoc.Size = new System.Drawing.Size(301, 53);
+            this.lblDiemMonHoc.TabIndex = 1;
+            this.lblDiemMonHoc.Text = "MÔN HỌC and ĐIỂM";
+            this.lblDiemMonHoc.Click += new System.EventHandler(this.lblDSV_Click);
+            this.lblDiemMonHoc.MouseLeave += new System.EventHandler(this.lblDiemMonHoc_MouseLeave);
+            this.lblDiemMonHoc.MouseHover += new System.EventHandler(this.lblDiemMonHoc_MouseHover);
             // 
             // pnBoDiemGio
             // 
@@ -341,17 +352,22 @@
             this.lblIconQLSV.Size = new System.Drawing.Size(100, 102);
             this.lblIconQLSV.TabIndex = 3;
             this.lblIconQLSV.Click += new System.EventHandler(this.lblIconQLSV_Click);
+            this.lblIconQLSV.MouseLeave += new System.EventHandler(this.lblIconQLSV_MouseLeave);
+            this.lblIconQLSV.MouseHover += new System.EventHandler(this.lblIconQLSV_MouseHover);
             // 
             // lblQLSV
             // 
             this.lblQLSV.AutoSize = true;
             this.lblQLSV.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQLSV.ForeColor = System.Drawing.Color.Blue;
             this.lblQLSV.Location = new System.Drawing.Point(108, 32);
             this.lblQLSV.Name = "lblQLSV";
             this.lblQLSV.Size = new System.Drawing.Size(290, 53);
             this.lblQLSV.TabIndex = 2;
             this.lblQLSV.Text = "QUẢN LÝ SINH VIÊN";
             this.lblQLSV.Click += new System.EventHandler(this.lblQLSV_Click_1);
+            this.lblQLSV.MouseLeave += new System.EventHandler(this.lblQLSV_MouseLeave);
+            this.lblQLSV.MouseHover += new System.EventHandler(this.lblQLSV_MouseHover);
             // 
             // pnThoiKhoaBieu
             // 
@@ -370,12 +386,15 @@
             // 
             this.lblGV_TKB.AutoSize = true;
             this.lblGV_TKB.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGV_TKB.ForeColor = System.Drawing.Color.Blue;
             this.lblGV_TKB.Location = new System.Drawing.Point(109, 27);
             this.lblGV_TKB.Name = "lblGV_TKB";
             this.lblGV_TKB.Size = new System.Drawing.Size(295, 53);
             this.lblGV_TKB.TabIndex = 2;
             this.lblGV_TKB.Text = "GIẢNG VIÊN and TKB";
             this.lblGV_TKB.Click += new System.EventHandler(this.lblGV_TKB_Click);
+            this.lblGV_TKB.MouseLeave += new System.EventHandler(this.lblGV_TKB_MouseLeave);
+            this.lblGV_TKB.MouseHover += new System.EventHandler(this.lblGV_TKB_MouseHover);
             // 
             // lblIconGV_TKB
             // 
@@ -385,6 +404,8 @@
             this.lblIconGV_TKB.Size = new System.Drawing.Size(100, 102);
             this.lblIconGV_TKB.TabIndex = 0;
             this.lblIconGV_TKB.Click += new System.EventHandler(this.lblIconGV_TKB_Click);
+            this.lblIconGV_TKB.MouseLeave += new System.EventHandler(this.lblIconGV_TKB_MouseLeave);
+            this.lblIconGV_TKB.MouseHover += new System.EventHandler(this.lblIconGV_TKB_MouseHover);
             // 
             // pnPhanCongCongViec
             // 
@@ -403,12 +424,15 @@
             // 
             this.lblPhanCongCongViec.AutoSize = true;
             this.lblPhanCongCongViec.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPhanCongCongViec.ForeColor = System.Drawing.Color.Blue;
             this.lblPhanCongCongViec.Location = new System.Drawing.Point(109, 32);
             this.lblPhanCongCongViec.Name = "lblPhanCongCongViec";
             this.lblPhanCongCongViec.Size = new System.Drawing.Size(296, 43);
             this.lblPhanCongCongViec.TabIndex = 2;
             this.lblPhanCongCongViec.Text = "PHÂN CÔNG CÔNG VIỆC";
             this.lblPhanCongCongViec.Click += new System.EventHandler(this.lblPhanCongCongViec_Click);
+            this.lblPhanCongCongViec.MouseLeave += new System.EventHandler(this.lblPhanCongCongViec_MouseLeave);
+            this.lblPhanCongCongViec.MouseHover += new System.EventHandler(this.lblPhanCongCongViec_MouseHover);
             // 
             // lblIconPhanCongCongViec
             // 
@@ -418,6 +442,8 @@
             this.lblIconPhanCongCongViec.Size = new System.Drawing.Size(100, 102);
             this.lblIconPhanCongCongViec.TabIndex = 0;
             this.lblIconPhanCongCongViec.Click += new System.EventHandler(this.lblIconPhanCongCongViec_Click);
+            this.lblIconPhanCongCongViec.MouseLeave += new System.EventHandler(this.lblIconPhanCongCongViec_MouseLeave);
+            this.lblIconPhanCongCongViec.MouseHover += new System.EventHandler(this.lblIconPhanCongCongViec_MouseHover);
             // 
             // pnStatusTopLeft
             // 
@@ -561,7 +587,7 @@
         private System.Windows.Forms.Panel pnTitle;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnQuanLySinhVien;
-        private System.Windows.Forms.Label lblDSV;
+        private System.Windows.Forms.Label lblDiemMonHoc;
         private System.Windows.Forms.Label lblGV_TKB;
         private System.Windows.Forms.Label lblPhanCongCongViec;
         private System.Windows.Forms.Timer timerTime;

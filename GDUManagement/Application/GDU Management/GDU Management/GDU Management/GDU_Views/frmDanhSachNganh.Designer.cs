@@ -31,18 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.grbDanhSachLop = new System.Windows.Forms.GroupBox();
             this.lblMaNganh = new System.Windows.Forms.Label();
-            this.lblMaKhoa = new System.Windows.Forms.Label();
+            this.lblTenKhoa = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTenNganh = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExportDSNganh = new System.Windows.Forms.Button();
             this.dgvDSNganh = new System.Windows.Forms.DataGridView();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maKhoaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.khoaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nganhHocBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pnControl = new System.Windows.Forms.Panel();
             this.btnDeleteNganh = new System.Windows.Forms.Button();
@@ -54,19 +49,22 @@
             this.txtTimKiemNganh = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.nganhHocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maKhoaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.khoaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbDanhSachLop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSNganh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nganhHocBindingSource1)).BeginInit();
             this.pnControl.SuspendLayout();
             this.pnDanhSachNganh.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nganhHocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // grbDanhSachLop
             // 
             this.grbDanhSachLop.Controls.Add(this.lblMaNganh);
-            this.grbDanhSachLop.Controls.Add(this.lblMaKhoa);
+            this.grbDanhSachLop.Controls.Add(this.lblTenKhoa);
             this.grbDanhSachLop.Controls.Add(this.label5);
             this.grbDanhSachLop.Controls.Add(this.txtTenNganh);
             this.grbDanhSachLop.Controls.Add(this.label2);
@@ -87,23 +85,23 @@
             this.lblMaNganh.TabIndex = 6;
             this.lblMaNganh.Text = "???";
             // 
-            // lblMaKhoa
+            // lblTenKhoa
             // 
-            this.lblMaKhoa.AutoSize = true;
-            this.lblMaKhoa.Location = new System.Drawing.Point(128, 22);
-            this.lblMaKhoa.Name = "lblMaKhoa";
-            this.lblMaKhoa.Size = new System.Drawing.Size(32, 17);
-            this.lblMaKhoa.TabIndex = 5;
-            this.lblMaKhoa.Text = "???";
+            this.lblTenKhoa.AutoSize = true;
+            this.lblTenKhoa.Location = new System.Drawing.Point(128, 22);
+            this.lblTenKhoa.Name = "lblTenKhoa";
+            this.lblTenKhoa.Size = new System.Drawing.Size(32, 17);
+            this.lblTenKhoa.TabIndex = 5;
+            this.lblTenKhoa.Text = "???";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(10, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
+            this.label5.Size = new System.Drawing.Size(51, 17);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Mã Khoa:";
+            this.label5.Text = "KHOA:";
             // 
             // txtTenNganh
             // 
@@ -133,13 +131,14 @@
             // btnExportDSNganh
             // 
             this.btnExportDSNganh.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnExportDSNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportDSNganh.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportDSNganh.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnExportDSNganh.Image = global::GDU_Management.Properties.Resources.icons8_print_40;
-            this.btnExportDSNganh.Location = new System.Drawing.Point(662, 139);
+            this.btnExportDSNganh.Location = new System.Drawing.Point(662, 129);
             this.btnExportDSNganh.Name = "btnExportDSNganh";
-            this.btnExportDSNganh.Size = new System.Drawing.Size(211, 46);
+            this.btnExportDSNganh.Size = new System.Drawing.Size(211, 56);
             this.btnExportDSNganh.TabIndex = 16;
+            this.btnExportDSNganh.Text = "P";
             this.btnExportDSNganh.UseVisualStyleBackColor = false;
             // 
             // dgvDSNganh
@@ -147,6 +146,7 @@
             this.dgvDSNganh.AllowUserToAddRows = false;
             this.dgvDSNganh.AllowUserToDeleteRows = false;
             this.dgvDSNganh.AutoGenerateColumns = false;
+            this.dgvDSNganh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvDSNganh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDSNganh.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
@@ -159,57 +159,11 @@
             this.dgvDSNganh.Location = new System.Drawing.Point(13, 191);
             this.dgvDSNganh.Name = "dgvDSNganh";
             this.dgvDSNganh.ReadOnly = true;
-            this.dgvDSNganh.RowHeadersWidth = 51;
+            this.dgvDSNganh.RowHeadersWidth = 5;
             this.dgvDSNganh.RowTemplate.Height = 24;
             this.dgvDSNganh.Size = new System.Drawing.Size(860, 226);
             this.dgvDSNganh.TabIndex = 25;
             this.dgvDSNganh.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDSNganh_CellMouseClick);
-            // 
-            // STT
-            // 
-            this.STT.HeaderText = "STT";
-            this.STT.MinimumWidth = 6;
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
-            this.STT.Width = 60;
-            // 
-            // maNganhDataGridViewTextBoxColumn
-            // 
-            this.maNganhDataGridViewTextBoxColumn.DataPropertyName = "MaNganh";
-            this.maNganhDataGridViewTextBoxColumn.HeaderText = "Mã Ngành";
-            this.maNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maNganhDataGridViewTextBoxColumn.Name = "maNganhDataGridViewTextBoxColumn";
-            this.maNganhDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maNganhDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // tenNganhDataGridViewTextBoxColumn
-            // 
-            this.tenNganhDataGridViewTextBoxColumn.DataPropertyName = "TenNganh";
-            this.tenNganhDataGridViewTextBoxColumn.HeaderText = "Tên Ngành";
-            this.tenNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.tenNganhDataGridViewTextBoxColumn.Name = "tenNganhDataGridViewTextBoxColumn";
-            this.tenNganhDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenNganhDataGridViewTextBoxColumn.Width = 450;
-            // 
-            // maKhoaDataGridViewTextBoxColumn
-            // 
-            this.maKhoaDataGridViewTextBoxColumn.DataPropertyName = "MaKhoa";
-            this.maKhoaDataGridViewTextBoxColumn.HeaderText = "MaKhoa";
-            this.maKhoaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maKhoaDataGridViewTextBoxColumn.Name = "maKhoaDataGridViewTextBoxColumn";
-            this.maKhoaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maKhoaDataGridViewTextBoxColumn.Visible = false;
-            this.maKhoaDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // khoaDataGridViewTextBoxColumn
-            // 
-            this.khoaDataGridViewTextBoxColumn.DataPropertyName = "Khoa";
-            this.khoaDataGridViewTextBoxColumn.HeaderText = "Khoa";
-            this.khoaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.khoaDataGridViewTextBoxColumn.Name = "khoaDataGridViewTextBoxColumn";
-            this.khoaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.khoaDataGridViewTextBoxColumn.Visible = false;
-            this.khoaDataGridViewTextBoxColumn.Width = 125;
             // 
             // nganhHocBindingSource1
             // 
@@ -230,7 +184,8 @@
             // btnDeleteNganh
             // 
             this.btnDeleteNganh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnDeleteNganh.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnDeleteNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteNganh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnDeleteNganh.Image = global::GDU_Management.Properties.Resources.icons_delete_3;
             this.btnDeleteNganh.Location = new System.Drawing.Point(440, 3);
             this.btnDeleteNganh.Name = "btnDeleteNganh";
@@ -242,6 +197,8 @@
             // btnNewNganh
             // 
             this.btnNewNganh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNewNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewNganh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnNewNganh.Image = global::GDU_Management.Properties.Resources.icon_nganh_1;
             this.btnNewNganh.Location = new System.Drawing.Point(3, 3);
             this.btnNewNganh.Name = "btnNewNganh";
@@ -253,6 +210,8 @@
             // btnUpdateNganh
             // 
             this.btnUpdateNganh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnUpdateNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateNganh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnUpdateNganh.Image = global::GDU_Management.Properties.Resources.icons_update_30;
             this.btnUpdateNganh.Location = new System.Drawing.Point(294, 3);
             this.btnUpdateNganh.Name = "btnUpdateNganh";
@@ -264,6 +223,8 @@
             // btnSaveNganh
             // 
             this.btnSaveNganh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSaveNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveNganh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnSaveNganh.Image = global::GDU_Management.Properties.Resources.icons_save_2;
             this.btnSaveNganh.Location = new System.Drawing.Point(148, 3);
             this.btnSaveNganh.Name = "btnSaveNganh";
@@ -274,7 +235,7 @@
             // 
             // pnDanhSachNganh
             // 
-            this.pnDanhSachNganh.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.pnDanhSachNganh.BackColor = System.Drawing.Color.White;
             this.pnDanhSachNganh.Controls.Add(this.btnClose);
             this.pnDanhSachNganh.Controls.Add(this.txtTimKiemNganh);
             this.pnDanhSachNganh.Controls.Add(this.pnControl);
@@ -283,22 +244,24 @@
             this.pnDanhSachNganh.Controls.Add(this.grbDanhSachLop);
             this.pnDanhSachNganh.Controls.Add(this.label4);
             this.pnDanhSachNganh.Controls.Add(this.label11);
-            this.pnDanhSachNganh.Location = new System.Drawing.Point(13, 13);
+            this.pnDanhSachNganh.Location = new System.Drawing.Point(3, 13);
             this.pnDanhSachNganh.Name = "pnDanhSachNganh";
-            this.pnDanhSachNganh.Size = new System.Drawing.Size(881, 486);
+            this.pnDanhSachNganh.Size = new System.Drawing.Size(901, 486);
             this.pnDanhSachNganh.TabIndex = 24;
             this.pnDanhSachNganh.Paint += new System.Windows.Forms.PaintEventHandler(this.pnDanhSachNganh_Paint);
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnClose.BackColor = System.Drawing.SystemColors.Control;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnClose.Location = new System.Drawing.Point(662, 423);
+            this.btnClose.ForeColor = System.Drawing.Color.Blue;
+            this.btnClose.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
+            this.btnClose.Location = new System.Drawing.Point(741, 423);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(211, 47);
+            this.btnClose.Size = new System.Drawing.Size(132, 53);
             this.btnClose.TabIndex = 27;
-            this.btnClose.Text = "CLOSE";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
             // 
@@ -331,20 +294,63 @@
             this.label11.TabIndex = 22;
             this.label11.UseWaitCursor = true;
             // 
-            // nganhHocBindingSource
+            // STT
             // 
-            this.nganhHocBindingSource.DataSource = typeof(GDU_Management.Model.NganhHoc);
+            this.STT.HeaderText = "STT";
+            this.STT.MinimumWidth = 6;
+            this.STT.Name = "STT";
+            this.STT.ReadOnly = true;
+            this.STT.Width = 60;
+            // 
+            // maNganhDataGridViewTextBoxColumn
+            // 
+            this.maNganhDataGridViewTextBoxColumn.DataPropertyName = "MaNganh";
+            this.maNganhDataGridViewTextBoxColumn.HeaderText = "Mã Ngành";
+            this.maNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maNganhDataGridViewTextBoxColumn.Name = "maNganhDataGridViewTextBoxColumn";
+            this.maNganhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maNganhDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // tenNganhDataGridViewTextBoxColumn
+            // 
+            this.tenNganhDataGridViewTextBoxColumn.DataPropertyName = "TenNganh";
+            this.tenNganhDataGridViewTextBoxColumn.HeaderText = "Tên Ngành";
+            this.tenNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tenNganhDataGridViewTextBoxColumn.Name = "tenNganhDataGridViewTextBoxColumn";
+            this.tenNganhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenNganhDataGridViewTextBoxColumn.Width = 400;
+            // 
+            // maKhoaDataGridViewTextBoxColumn
+            // 
+            this.maKhoaDataGridViewTextBoxColumn.DataPropertyName = "MaKhoa";
+            this.maKhoaDataGridViewTextBoxColumn.HeaderText = "MaKhoa";
+            this.maKhoaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maKhoaDataGridViewTextBoxColumn.Name = "maKhoaDataGridViewTextBoxColumn";
+            this.maKhoaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maKhoaDataGridViewTextBoxColumn.Visible = false;
+            this.maKhoaDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // khoaDataGridViewTextBoxColumn
+            // 
+            this.khoaDataGridViewTextBoxColumn.DataPropertyName = "Khoa";
+            this.khoaDataGridViewTextBoxColumn.HeaderText = "Khoa";
+            this.khoaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.khoaDataGridViewTextBoxColumn.Name = "khoaDataGridViewTextBoxColumn";
+            this.khoaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.khoaDataGridViewTextBoxColumn.Visible = false;
+            this.khoaDataGridViewTextBoxColumn.Width = 125;
             // 
             // frmDanhSachNganh
             // 
             this.AcceptButton = this.btnSaveNganh;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Highlight;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(907, 511);
             this.Controls.Add(this.pnDanhSachNganh);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmDanhSachNganh";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDanhSachNganh";
             this.Load += new System.EventHandler(this.frmDanhSachNganh_Load);
             this.grbDanhSachLop.ResumeLayout(false);
@@ -354,7 +360,6 @@
             this.pnControl.ResumeLayout(false);
             this.pnDanhSachNganh.ResumeLayout(false);
             this.pnDanhSachNganh.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nganhHocBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -377,9 +382,8 @@
         private System.Windows.Forms.TextBox txtTimKiemNganh;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblMaKhoa;
+        private System.Windows.Forms.Label lblTenKhoa;
         private System.Windows.Forms.BindingSource nganhHocBindingSource1;
-        private System.Windows.Forms.BindingSource nganhHocBindingSource;
         private System.Windows.Forms.Label lblMaNganh;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridViewTextBoxColumn maNganhDataGridViewTextBoxColumn;

@@ -25,4 +25,5 @@ D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Manageme
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.csproj.CopyComplete
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmAddNewAdmin.resources
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmInformaitonSinhVien.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.Form1.resources
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.csprojAssemblyReference.cache

@@ -44,9 +44,9 @@ namespace GDU_Management.Service
         }
 
         //tìm kiếm sinh viên theo tên
-        public List<SinhVien> SearchSinhVienByTenSinhVien(string tenSV)
+        public List<SinhVien> SearchSinhVienByTenSinhVien(string maLop, string tenSV)
         {
-            return sinhVienIDao.SearchSinhVienByTenSinhVien(tenSV);
+            return sinhVienIDao.SearchSinhVienByTenSinhVien(maLop, tenSV);
         }
 
         //xóa tất cả sinh viên
@@ -89,6 +89,12 @@ namespace GDU_Management.Service
         public List<SinhVien> GetSinhVienByMaNganh(string maNganh)
         {
             return sinhVienIDao.GetSinhVienByMaNganh(maNganh);
+        }
+
+        //tìm kiếm thông tin tất cả sinh viên
+        public List<SinhVien> SearchAllSinhVien(string maSV, string tenSV)
+        {
+            return sinhVienIDao.SearchAllSinhVien(maSV, tenSV);
         }
     }
 }

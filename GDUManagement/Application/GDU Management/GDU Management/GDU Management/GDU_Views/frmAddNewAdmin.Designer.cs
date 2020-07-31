@@ -182,7 +182,7 @@
             // 
             // dtpStartingDate
             // 
-            this.dtpStartingDate.CustomFormat = "dddd, dd-MM-yyyy";
+            this.dtpStartingDate.CustomFormat = "dddd, dd/MM/yyyy";
             this.dtpStartingDate.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpStartingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpStartingDate.Location = new System.Drawing.Point(137, 476);
@@ -214,7 +214,7 @@
             // 
             // dtpNamSinh
             // 
-            this.dtpNamSinh.CustomFormat = "dddd, dd-MM-yyyy";
+            this.dtpNamSinh.CustomFormat = "dddd, dd/MM/yyyy";
             this.dtpNamSinh.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNamSinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNamSinh.Location = new System.Drawing.Point(137, 332);

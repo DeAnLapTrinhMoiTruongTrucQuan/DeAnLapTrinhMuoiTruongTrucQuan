@@ -25,6 +25,10 @@ namespace GDU_Management
         //khai báo các service 
         NganhHocService nganhHocService = new NganhHocService();
         LopService lopService = new LopService();
+        KhoaService khoaService = new KhoaService();
+
+        //public Value
+        string maKhoa;
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
         //---------------------------------------------------------------------------------------//
@@ -40,8 +44,6 @@ namespace GDU_Management
         //load danh sách ngành vào dgv
         public void LoadDanhSachNganh()
         {
-            string maKhoa;
-            maKhoa = lblMaKhoa.Text;
             dgvDSNganh.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
             CountRowsNganh();
         }
@@ -71,7 +73,12 @@ namespace GDU_Management
         //hàm nhận text maKhoa từ frmQLSV
         public void FunData(Label txtFrmDanhSachKhoa)
         {
-            lblMaKhoa.Text = txtFrmDanhSachKhoa.Text;
+            maKhoa = txtFrmDanhSachKhoa.Text;
+            //lblMaKhoa.Text = txtFrmDanhSachKhoa.Text;
+            Khoa kh = new Khoa();
+            kh = khoaService.GetKhoaByMaKhoa(maKhoa);
+            lblTenKhoa.Text = kh.TenKhoa;
+
         }
 
         //hàm tạo id tự động
@@ -79,7 +86,7 @@ namespace GDU_Management
         {
             int count;
 
-            string maKhoa = lblMaKhoa.Text;
+            string maKhoa = lblTenKhoa.Text;
             string lastID = maKhoa.Substring(8); //lay 2 so cuoi cua ma khoa
 
             count = dgvDSNganh.Rows.Count;
@@ -129,6 +136,7 @@ namespace GDU_Management
                 if(lp.MaNganh == lblMaNganh.Text)
                 {
                     btnDeleteNganh.Enabled = false;
+                    break;
                 }
                 else
                 {
@@ -160,10 +168,10 @@ namespace GDU_Management
 
         private void dgvDSNganh_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            ShowDataTuDataGridViewToTextBox();
             btnSaveNganh.Enabled = false;
             btnUpdateNganh.Enabled = true;
             btnDeleteNganh.Enabled = true;
+            ShowDataTuDataGridViewToTextBox();
         }
 
         private void btnSaveNganh_Click(object sender, EventArgs e)
@@ -173,7 +181,7 @@ namespace GDU_Management
                 NganhHoc nganhHoc = new NganhHoc();
                 nganhHoc.MaNganh = lblMaNganh.Text;
                 nganhHoc.TenNganh = txtTenNganh.Text;
-                nganhHoc.MaKhoa = lblMaKhoa.Text;
+                nganhHoc.MaKhoa = maKhoa;
                 nganhHocService.CreateNganhHoc(nganhHoc);
                 MessageBox.Show("Tạo Mới Thành Công...(^...^) ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnSaveNganh.Enabled = false;
@@ -192,7 +200,7 @@ namespace GDU_Management
                 string maNganh = lblMaNganh.Text.Trim();
                 if (string.IsNullOrEmpty(lblMaNganh.Text))
                 {
-                    MessageBox.Show("Xóa Thất Bại", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -242,8 +250,7 @@ namespace GDU_Management
             }
             else
             {
-                //dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByMaNganh(txtTimKiemNganh.Text.Trim()).ToList();
-                dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByTenNganh(txtTimKiemNganh.Text.Trim()).ToList();
+                dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByTenNganh(maKhoa,txtTimKiemNganh.Text.Trim()).ToList();
             }
         }
     }

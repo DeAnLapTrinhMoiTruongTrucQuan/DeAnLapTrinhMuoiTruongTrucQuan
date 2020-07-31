@@ -21,13 +21,20 @@ namespace GDU_Management.DaoImpl
             return tkb;
         }
 
-        public void DeleteThoiKhoaBieu(string maLop, string maHK)
+        public void DeleteThoiKhoaBieu(string maLop, string maMonHoc)
         {
             db = new GDUDataConnectionsDataContext();
             ThoiKhoaBieu tkb = new ThoiKhoaBieu();
-            tkb = db.ThoiKhoaBieus.Single(p => p.MaLop == maLop && p.MaHocKy == maHK);
+            tkb = db.ThoiKhoaBieus.Single(p => p.MaLop == maLop && p.MaMonHoc == maMonHoc);
             db.ThoiKhoaBieus.DeleteOnSubmit(tkb);
             db.SubmitChanges();
+        }
+
+        public List<ThoiKhoaBieu> GetAllMaMonHocInTKB()
+        {
+            db = new GDUDataConnectionsDataContext();
+
+            return null;
         }
 
         public ThoiKhoaBieu GetThoiKhoaBieuByMaLopMaMonHoc(string maLop, string maMH)

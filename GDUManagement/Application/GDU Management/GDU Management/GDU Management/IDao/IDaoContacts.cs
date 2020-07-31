@@ -9,7 +9,8 @@ namespace GDU_Management.IDao
 {
     interface IDaoContacts
     {
-        Contact GetContact();
-        void InsertContacts(Contact contacts);
+        List<InforContact> GetAllContact();
+        void InsertContacts(InforContact contacts);
+        InforContact InfoContact(string idContacts);
     }
 }

@@ -24,15 +24,22 @@ namespace GDU_Management
         LopService lopService = new LopService();
         SinhVienService sinhVienService = new SinhVienService();
         DiemMonHocService diemMonHocService = new DiemMonHocService();
+        NganhHocService nganhHocService = new NganhHocService();
+
+        //public value
+        string _maNganh;
 
         //------------------------------------HÀM PUBLIC------------------------------------------//
         //---------------------------------------------------------------------------------------------//
 
         // hàm nhận mã ngành và khóa học từ frmQLSV
-        public void FunDatafrmDanhSachLopToFrmQLSV(string txtMaNganh, string txtMaKhoaHoc)
+        public void FunDatafrmDanhSachLopToFrmQLSV(string maNganh , string maKhoasHoc)
         {
-            lblMaNganh.Text = txtMaNganh;
-            lblMaKhoasHoc.Text = txtMaKhoaHoc;
+            _maNganh = maNganh;
+            lblMaKhoasHoc.Text = maKhoasHoc;
+            NganhHoc nganhHoc = new NganhHoc();
+            nganhHoc = nganhHocService.GetNganhHocByMaNganh(_maNganh);
+            lblTenNganh.Text = nganhHoc.TenNganh;
         }
 
         //hàm check data
@@ -65,9 +72,9 @@ namespace GDU_Management
         public void LoadDanhSachLopToDatagridview()
         {
             string maKhoaHoc = lblMaKhoasHoc.Text;
-            string maNganh = lblMaNganh.Text;
-            dgvDanhSachLop.DataSource = lopService.GetDanhSachLopByMaNganhVaMaKhoaHoc(maNganh, maKhoaHoc).ToList();
+            dgvDanhSachLop.DataSource = lopService.GetDanhSachLopByMaNganhVaMaKhoaHoc(_maNganh, maKhoaHoc).ToList();
             CountRowsLop();
+            CheckDeleteAlClass();
         }
 
         //hàm auto id lớp
@@ -79,7 +86,7 @@ namespace GDU_Management
             string IdKhoas = lblMaKhoasHoc.Text;
             string LastIdKhoas = IdKhoas.Substring(1);
 
-            string IdNganh = lblMaNganh.Text;
+            string IdNganh = _maNganh;
             string LastIDNganh = IdNganh.Substring(6);
 
             if (count == 0)
@@ -123,6 +130,18 @@ namespace GDU_Management
             btnUpdateLop.Enabled = false;
         }
 
+        // check delete all lop
+        public void CheckDeleteAlClass()
+        {
+            if (dgvDanhSachLop.Rows.Count > 0)
+            {
+                btnDeleteAllLop.Enabled = true;
+            }
+            else
+            {
+                btnDeleteAllLop.Enabled = false;
+            }
+        }
         //-----------------------------------------KẾT THÚC HÀM PUPLIC--------------------------------//
         //----------------------------------------------------------------------------------------------------//
         
@@ -140,7 +159,7 @@ namespace GDU_Management
                 Lop lop = new Lop();
                 lop.MaLop = lblMaLop.Text.Trim();
                 lop.TenLop = txtTenLop.Text.Trim();
-                lop.MaNganh = lblMaNganh.Text.Trim();
+                lop.MaNganh = _maNganh;
                 lop.MaKhoaHoc = lblMaKhoasHoc.Text.Trim();
                 lopService.CreateLop(lop);
                 LoadDanhSachLopToDatagridview();
@@ -170,7 +189,7 @@ namespace GDU_Management
                 Lop lp = new Lop();
                 lp.MaLop = lblMaLop.Text.Trim();
                 lp.TenLop = txtTenLop.Text.Trim();
-                lp.MaNganh = lblMaNganh.Text.Trim();
+                lp.MaNganh = lblTenNganh.Text.Trim();
                 lp.MaKhoaHoc = lblMaKhoasHoc.Text.Trim();
                 lopService.UpdateLop(lp);
                 LoadDanhSachLopToDatagridview();
@@ -216,7 +235,6 @@ namespace GDU_Management
                         string maSV = sv.MaSV;
                         diemMonHocService.DeleteAllDiemMonHocByMaSinhVien(maSV);
                     }
-
                     //xóa tất cả sinh sinh viên trong lớp
                     sinhVienService.DeleteAllSinhVienByMaLop(maLop);
 
@@ -250,7 +268,38 @@ namespace GDU_Management
             }
             else
             {
-                dgvDanhSachLop.DataSource = lopService.SearchLopHocByTenLop(txtTimKiemLop.Text.Trim());
+                dgvDanhSachLop.DataSource = lopService.SearchLopHocByTenLop(_maNganh, txtTimKiemLop.Text.Trim());
+            }
+        }
+
+        private void btnDeleteAllLop_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("***XÓA TẤT CẢ LỚP ?" + "\n ***Việc này sẽ xóa tất cả thông tin:" + "\n -Danh sách lớp trong ngành "+lblTenNganh.Text+"." + "\n -Danh sách sinh viên." + "\n -Danh sách Điểm.", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                if (lblMaKhoasHoc.Text !="???" & lblTenNganh.Text !="???")
+                {
+                    var listLop = lopService.GetDanhSachLopByMaNganhVaMaKhoaHoc(_maNganh, lblMaKhoasHoc.Text);
+                    
+                    foreach (var lp in listLop)
+                    {
+                        var listSV = sinhVienService.GetSinhVienByMaLop(lp.MaLop).ToList();
+                        foreach (var sv in listSV)
+                        {
+                            //xóa danh sách điểm
+                            diemMonHocService.DeleteAllDiemMonHocByMaSinhVien(sv.MaSV);
+                        }
+                        //xóa danh sách sinh viên trong lớp
+                        sinhVienService.DeleteAllSinhVienByMaLop(lp.MaLop);
+                    }
+                    //xóa danh sách lớp
+                    lopService.DeleteAllLopInNganh(lblMaKhoasHoc.Text, _maNganh);
+                    LoadDanhSachLopToDatagridview();
+                    MessageBox.Show("Deleted All Classes Successfully  </> !!!...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Deleted All Classes Failled  (-__-) !!!...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

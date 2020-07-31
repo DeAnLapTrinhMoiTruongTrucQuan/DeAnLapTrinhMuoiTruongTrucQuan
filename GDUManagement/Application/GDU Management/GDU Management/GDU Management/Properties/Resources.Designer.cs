@@ -113,6 +113,26 @@ namespace GDU_Management.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap avt008_student_default_160x191 {
+            get {
+                object obj = ResourceManager.GetObject("avt008_student_default_160x191", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap avt011_default_teacher_160x190 {
+            get {
+                object obj = ResourceManager.GetObject("avt011_default_teacher_160x190", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Contact_Education_140 {
             get {
                 object obj = ResourceManager.GetObject("Contact_Education_140", resourceCulture);

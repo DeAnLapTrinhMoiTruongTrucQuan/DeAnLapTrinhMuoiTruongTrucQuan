@@ -11,26 +11,37 @@ namespace GDU_Management.DaoImpl
     class ContactsImpl:IDaoContacts
     {
         GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
-        Contact listContact;
+        List<InforContact> listContact;
 
-        public Contact GetContact()
+        //lấy tất cả contacts
+        public List<InforContact> GetAllContact()
         {
             db = new GDUDataConnectionsDataContext();
-            Contact contacts = new Contact();
-            contacts = db.Contacts.Single();
-            return contacts;
+            var ltContact = from x in db.InforContacts select x;
+            listContact = ltContact.ToList();
+            return listContact;
         }
 
-        public void InsertContacts(Contact contacts)
+        //lấy thông tin contacts theo id
+        public InforContact InfoContact(string idContacts)
         {
             db = new GDUDataConnectionsDataContext();
-            Contact cts = new Contact();
-            cts = db.Contacts.Single(p => p.id == contacts.id);
+            InforContact infoContact = new InforContact();
+            infoContact = db.InforContacts.Single(p=>p.ID ==idContacts );
+            return infoContact;
+        }
+
+        //insert contacts
+        public void InsertContacts(InforContact contacts)
+        {
+            db = new GDUDataConnectionsDataContext();
+            InforContact cts = new InforContact();
+            cts = db.InforContacts.Single(p => p.ID == contacts.ID);
             cts.Email = contacts.Email;
             cts.Pass = contacts.Pass;
-            cts.Title = contacts.Title;
+            cts.Subject = contacts.Subject;
             cts.Message = contacts.Message;
-            cts.Info = contacts.Info;
+            cts.InfoOther = contacts.InfoOther;
             db.SubmitChanges();
         }
     }

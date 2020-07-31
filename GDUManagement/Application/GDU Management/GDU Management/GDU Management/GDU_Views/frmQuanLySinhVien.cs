@@ -1,6 +1,4 @@
-﻿using GDU_Management.Model;
-using GDU_Management.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +11,10 @@ using System.Windows.Forms;
 using System.Net.Mail;
 using System.Net;
 using GDU_Management.Controller;
+using GDU_Management.GDU_Views;
+using GDU_Management.Model;
+using GDU_Management.Service;
+using System.IO;
 
 namespace GDU_Management
 {
@@ -28,6 +30,7 @@ namespace GDU_Management
         //các delegate dùng để truyền id qua các form con
         delegate void SendMaKhoaToFrmDanhSachKhoa(Label dlgtxtMaKhoa);
         delegate void SendMaKhoaHocMaNganhToFrmDanhSachLop(string dlgtMaKhoaHoc, string MaNganh);
+        delegate void SendIdSinhVienToFrmInformationSinhVien(string dlgtIdSv); 
 
 
         //khai báo service 
@@ -41,17 +44,20 @@ namespace GDU_Management
         ContactService contactService = new ContactService();
 
         //khai bao controller
-        SendMessage sendMessage = new SendMessage();
+        SendMessageController sendMessage = new SendMessageController();
         
 
 
         //value public
-        string maLopSV;             //giá trị mã lớp lấy từ treeview trên tabSinhVien
+        string _maLopSV;             //giá trị mã lớp lấy từ treeview trên tabSinhVien
+
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
-        //______________________________________________________//
+        //__________________________________________________________//
 
         //hàm lấy ngày giờ và điếm thời gian
+
+
         public void NgayGio()
         {
             //get ngày
@@ -71,6 +77,25 @@ namespace GDU_Management
             gdu.ShowDialog();
         }
 
+        //chuyển hình từ kiểu Image sang kiểu ByteArray  ==> Save image vào database
+        private byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+                return ms.ToArray();
+            }
+        }
+
+        //chuyển hình từ kiểu ByteArray sang kiểu Image  ==> Show image từ database lên form
+        public Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                Image imageOut = Image.FromStream(ms);
+                return imageOut;
+            }
+        }
 
         //laod danh sach khoa lên datagridview
         public void LoadDanhSachKhoaToDatagridview()
@@ -103,10 +128,18 @@ namespace GDU_Management
             trvDSLop.ExpandAll();
         }
 
+        //load danh sách sinh vào dgv theo mã lớp
         public void LoadDanhSachSinhVienToDgv()
         {
-            dgvDanhSachSinhVien.DataSource = sinhVienService.GetSinhVienByMaLop(maLopSV);
+            dgvDanhSachSinhVien.DataSource = sinhVienService.GetSinhVienByMaLop(_maLopSV);
             CountRowsSinhVien();
+        }
+
+        //load tất cả sinh viên vào dgv
+        public void LoadAllSinhVien()
+        {
+            dgvDanhSachAllSinhVien.DataSource = sinhVienService.GetAllSinhVien().ToList();
+            CountRowsAllSV();
         }
 
         //hàm show dữ liệu dgv lên textbox
@@ -167,12 +200,30 @@ namespace GDU_Management
 
             dtpNamSinh.DataBindings.Clear();
             dtpNamSinh.DataBindings.Add("text", dgvDanhSachSinhVien.DataSource, "NamSinh");
+
+            SinhVien sv = new SinhVien();
+            sv = sinhVienService.GetSinhVienByMaSinhVien(lblMaSV.Text);
+
+            //------------------------------------------------------------------------------------------------------------------
+            //if (sv.Avt != null)
+            //{
+            //    picAvtUser.Image = ByteArrayToImage(sv.Avt.ToArray());
+            //}
+            //else
+            //{
+            //    picAvtUser.Image = Image.FromFile(@"..\..\Resources\avt008_student_default_160x191.jpg");
+            //}
+            //--------------------------------------------------------------------------------------------------------------------
+
+            //Convert Base64 Encoded string to Byte Array.
+            //byte[] imageBytes = Convert.FromBase64String(sv.Avt.ToString());
+            //picAvtUser.Image = ByteArrayToImage(imageBytes);
         }
 
         //show dữ liệu lên combox
         public void LoadDataToCombox()
         {
-            //tab Khóa & Lớp
+            //tab Khóa & LớpS
             cboChonKhoaKL.DataSource = khoaService.GetAllKhoa();
             cboChonKhoaKL.DisplayMember = "TenKhoa";
             cboChonKhoaKL.ValueMember = "MaKhoa";
@@ -301,6 +352,7 @@ namespace GDU_Management
             btnSaveSV.Enabled = false;
             btnUpdateSV.Enabled = false;
             btnDeleteSV.Enabled = false;
+            txtEmail.Enabled = false;
         }
 
         //kiểm tra chuỗi nhập vào có phải số hay không
@@ -376,17 +428,28 @@ namespace GDU_Management
                 txtTenKhoaHoc.Text = "Khóa " + (chuoi_id_key + 1).ToString();
             }
 
-            string nk = lblDayKL.Text.ToString();               //lấy ngày tháng năm hiện tại
-            string getNowYear = nk.Substring(17);           //cắt lấy 4 số cuối năm
-            txtNienKhoa.Text = getNowYear;                  //gán cho txtNienKhoa 4 số cuối của năm
+
+            string nk = lblDayKL.Text.ToString();                                    //lấy ngày tháng năm hiện tại
+            string getNowYear = nk.Substring(nk.Length - 4, 4);           //cắt lấy 4 số cuối năm
+            txtNienKhoa.Text = getNowYear;                                      //gán cho txtNienKhoa 4 số cuối của năm
         }
 
         //hàm auto id sinh viên
         public void AutoIDSinhVien()
         {
+            int SLSV =0;
+            if(dgvDanhSachSinhVien.Rows.Count > 0)
+            {
+                int a = (dgvDanhSachSinhVien.Rows.Count - 1);
+                string massv = dgvDanhSachSinhVien.Rows[a].Cells[1].Value.ToString();
+                SinhVien ssv = sinhVienService.GetSinhVienByMaSinhVien(massv);
+                SLSV = ssv.STT;
+            }
             string LastIdKhoas = cboChonKhoasHocSV.SelectedValue.ToString().Substring(1);                //lấy 2 số cuối mã khóa
-            string LastIdLop = maLopSV.Substring(8);                                                                             //lấy 2 số cuối mã lớp
-            int SLSV = sinhVienService.CountSinhVien();                                                                         //đếm số lượng sinh viên có trong data
+            string LastIdLop = _maLopSV.Substring(8);
+           
+            //đếm số lượng sinh viên có trong data
+           
 
             if (SLSV < 10)
             {
@@ -438,17 +501,26 @@ namespace GDU_Management
             }
         }
 
+        //đếm số thứ tự all sinh viên
+        public void CountRowsAllSV()
+        {
+            for(int i=0;i< dgvDanhSachAllSinhVien.Rows.Count; i++)
+            {
+                dgvDanhSachAllSinhVien.Rows[i].Cells[0].Value = (i + 1);
+            }
+        }
+
         //check data khoa trước khi xóa
         public void checkDataDeleteKhoa()
         {
-            string[] nganh;
-            string[] khoa;
+            
             var listNganh = nganhHocService.GetAllNganhHoc();
-            foreach (var ng in listNganh)
+            foreach (var nganhHoc in listNganh)
             {
-                if (ng.MaKhoa == lblMaKhoaKN.Text)
+                if (nganhHoc.MaKhoa == lblMaKhoaKN.Text)
                 {
                     btnDeleteKhoa.Enabled = false;
+                    break;
                 }
                 else
                 {
@@ -466,6 +538,7 @@ namespace GDU_Management
                 if(lp.MaKhoaHoc == lblMaKhoaHocKL.Text)
                 {
                     btnDeleteKhoaHoc.Enabled = false;
+                    break;
                 }
                 else
                 {
@@ -473,8 +546,43 @@ namespace GDU_Management
                 }
             }
         }
+
+        //Maill service - Gửi mail đến sinh viên thông báo tài khoản đã đc kích khoạt
+        public void SendMaillAddSinhVienSuccessfully()
+        {
+            InforContact contacts = new InforContact();
+            contacts = contactService.InfoContact("1");
+            string from = contacts.Email;
+            string to = txtEmail.Text;
+            string subject = contacts.Subject;
+            string InfoSV = "---------------------------------------------------------" + "\n"+txtTenSV.Text+" - "+lblMaSV.Text+"\n"+ "---------------------------------------------------------";
+            string message = contacts.Message + "\n" + InfoSV+"\n"+contacts.InfoOther;
+            sendMessage.SendMaillAddSinhVien(from, to, subject, message);
+        }
+
+        //Maill service - Gửi mail đến sinh viên thông báo thông tin cá nhân đã đc cập nhật
+        public void SendMaillUpdateSinhVienSuccessfully()
+        {
+            // - lấy thông tin cập nhật 
+            string other = "Thông Tin Sinh viên đã được cập nhật:";
+            string maSV = "-Mã SV: " + lblMaSV.Text;
+            string emailSV = "-Email: " + txtEmail.Text;
+            string nameSV = "-Tên SV: " + txtTenSV.Text;
+            string lopSV = "-Lớp: " + lblTenLop.Text;
+            string sdtSV = "-SĐT: " + txtSdt.Text;
+            string dcSV = "-Địa Chỉ: " + rtxtDiaChi.Text;
+            // - gửi thông tin cập nhật
+            InforContact contacts = new InforContact();
+            contacts = contactService.InfoContact("2");
+            string from = contacts.Email;
+            string to = txtEmail.Text;
+            string subject = contacts.Subject;
+            string message = other + "\n" + maSV + "\n" + nameSV + "\n" + emailSV + "\n" + lopSV + "\n" + sdtSV + "\n" + dcSV + "\n" + contacts.InfoOther;
+            sendMessage.SendMaillUpdateSinhVien(from, to, subject, message);
+        }
+
         //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
-        //______________________________________________________//
+        //_________________________________________________________//
         private void timerTime_QLSV_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToLongTimeString();
@@ -545,6 +653,7 @@ namespace GDU_Management
         {
             LoadDanhSachKhoaToDatagridview();
             LoadDanhSachKhoasHocToDatagridview();
+            LoadAllSinhVien();
             ShowDataTuDataGridViewToTextBox();
             LoadDataToCombox();
         }
@@ -620,11 +729,6 @@ namespace GDU_Management
 
         private void dgvDanhSachKhoa_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnDSNganh.Enabled = true;
-            btnSaveKhoa.Enabled = false;
-            btnUpdateKhoa.Enabled = true;
-            btnDeleteKhoa.Enabled = true;
-            ShowDataTuDataGridViewToTextBox();
         }
 
         private void btnSaveKhoa_Click(object sender, EventArgs e)
@@ -638,12 +742,14 @@ namespace GDU_Management
                 khoaService.CreateKhoa(khoa);
                 LoadDanhSachKhoaToDatagridview();
                 LoadDataToCombox();
-                MessageBox.Show("Thêm Thành Công...", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Save Successfully </> !!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnSaveKhoa.Enabled = false;
+                btnDeleteKhoa.Enabled = true;
+                btnUpdateKhoa.Enabled = true;
             }
             else
             {
-                MessageBox.Show("Lỗi, Thêm Thất Bại", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Update failed  (-__-) !!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -656,7 +762,6 @@ namespace GDU_Management
             btnDeleteKhoa.Enabled = false;
             txtTenKhoa.Text = "";
             txtTenKhoa.Focus();
-            checkDataDeleteKhoa();
         }
 
         private void btnUpdateKhoa_Click(object sender, EventArgs e)
@@ -689,12 +794,6 @@ namespace GDU_Management
                 }
                 else
                 {
-                    //-------------------check data-----------------//
-
-
-
-
-                    //--------------------Xóa Khoa--------------//
                     khoaService.DeleteKhoa(maKhoa);
                     lblMaKhoaKN.Text = "null";
                     txtTenKhoa.Text = "";
@@ -724,8 +823,9 @@ namespace GDU_Management
                 btnSaveKhoa.Enabled = false;
                 btnUpdateKhoa.Enabled = true;
                 btnDeleteKhoa.Enabled = true;
-                ShowDataTuDataGridViewToTextBox();
+                dgvDanhSachKhoa.Enabled = true;
                 checkDataDeleteKhoa();
+                ShowDataTuDataGridViewToTextBox();
             }
         }
 
@@ -821,6 +921,7 @@ namespace GDU_Management
                 btnUpdateKhoaHoc.Enabled = true;
                 btnDeleteKhoaHoc.Enabled = true;
                 nubNienKhoaKL.Enabled = false;
+                CheckDataDeleteKhoasHoc();
             }
         }
 
@@ -906,8 +1007,8 @@ namespace GDU_Management
         private void trvDSLop_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             dgvDanhSachSinhVien.Enabled = true;
-            lblMaSV.Text = "null";
-            maLopSV = e.Node.Name;
+            lblMaSV.Text = "???";
+            _maLopSV = e.Node.Name;
             lblTenLop.Text = e.Node.Text;
             LoadDanhSachSinhVienToDgv();
             txtTenSV.Clear();
@@ -957,14 +1058,8 @@ namespace GDU_Management
             if (checkDataSINHVIEN())
             {
                 //gui email thong bao da add tai khoang;
-                Contact contacts = new Contact();
-                contacts = contactService.GetContact();
-                string from = contacts.Email;
-                string to = txtEmail.Text;
-                string title = contacts.Title;
-                string message = contacts.Message +"\n"+ contacts.Info;
-                sendMessage.SendMaillToSinhVien(from, to, title, message);
-                
+                SendMaillAddSinhVienSuccessfully();
+
                 //thêm sinh viên
                 SinhVien sv = new SinhVien();
                 sv.MaSV = lblMaSV.Text;
@@ -979,19 +1074,26 @@ namespace GDU_Management
                 }
                 sv.Email = txtEmail.Text;
                 sv.Password = lblMaSV.Text;
-                sv.NamSinh = dtpNamSinh.Value.ToString();
+                sv.NamSinh = dtpNamSinh.Text.ToString();
                 sv.SDT = txtSdt.Text;
                 sv.DiaChi = rtxtDiaChi.Text;
                 sv.GhiChu = rtxtGhiChu.Text;
-                sv.MaLop = maLopSV;
+                sv.MaLop = _maLopSV;
+                sv.StatusAcc = "Activate";
+                // lấy image
+                byte[] Image_admin = ImageToByteArray(picAvtUser.Image);   //lấy image từ picturebox
+                System.Data.Linq.Binary img = new System.Data.Linq.Binary(Image_admin);  //chuyển image từ kiểu image về kiểu ByteArray
+                sv.Avt = img;
+                //
                 sinhVienService.CreateSinhVien(sv);
                 LoadDanhSachSinhVienToDgv();
                 MessageBox.Show("Thêm Thành Công...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnSaveSV.Enabled = false;
                 btnUpdateSV.Enabled = true;
                 btnDeleteSV.Enabled = true;
+                txtEmail.Enabled = false;
 
-                //tao danh sach diem cho sinh vien
+                //tạo danh sách điểm cho sinh viên
                 List<MonHoc> listMonHoc = monHocService.GetMonHocByNganh(cboChonNganhSV.SelectedValue.ToString()).ToList();
                 foreach (var mh in listMonHoc)
                 {
@@ -1043,53 +1145,38 @@ namespace GDU_Management
                     sv.GioiTinh = radNu.Text;
                 }
                 sv.Email = txtEmail.Text;
-                //sv.Password = lblMaSV.Text;
-                sv.NamSinh = dtpNamSinh.Text;
+                sv.NamSinh = dtpNamSinh.Text.ToString();
                 sv.SDT = txtSdt.Text;
                 sv.DiaChi = rtxtDiaChi.Text;
                 sv.GhiChu = rtxtGhiChu.Text;
-                sv.MaLop = maLopSV;
+                sv.MaLop = _maLopSV;
                 sinhVienService.UpdateSinhVien(sv);
                 LoadDanhSachSinhVienToDgv();
 
                 //gửi mail thông báo cập nhật thành công
-                //
-                string other = "Thông Tin Sinh viên đã được cập nhật:";
-                string maSV = "-Mã SV: "+lblMaSV.Text;
-                string emailSV = "-Email: " + txtEmail.Text;
-                string nameSV = "-Tên SV: " + txtTenSV.Text;
-                string lopSV = "-Lớp: " + lblTenLop.Text;
-                string sdtSV = "-SĐT: " + txtSdt.Text;
-                string dcSV = "-Địa Chỉ: " + rtxtDiaChi.Text;
-                //
-                Contact contacts = new Contact();
-                contacts = contactService.GetContact();
-                string from = contacts.Email;
-                string to = txtEmail.Text;
-                string title = "Future Team - Thông Báo Cập NHật thông tin sinh viên";
-                string message = other + "\n" + maSV + "\n" + nameSV + "\n" + emailSV + "\n" + lopSV + "\n" + sdtSV + "\n" + dcSV + "\n" + contacts.Info;
-                sendMessage.SendMaillToSinhVien(from, to, title, message);
-
-                MessageBox.Show("Cập Nhật Thông Tin [" + lblMaSV.Text + "] thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SendMaillUpdateSinhVienSuccessfully();
+                MessageBox.Show("Update [" + lblMaSV.Text + "] Successfully ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void btnDeleteSV_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Xóa [-" + lblMaSV.Text + "-]", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageBox.Show("Delete '" + lblMaSV.Text + "' ?</> !!!", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 string maSV = lblMaSV.Text.Trim();
-                if (maSV.Equals("null"))
+                if (maSV.Equals("???"))
                 {
-                    MessageBox.Show("Xóa Thất Bại, Mã sinh viên [-" + lblMaSV.Text + "-] không tồn tại", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    MessageBox.Show("Delete Failed, Mã sinh viên '" + lblMaSV.Text + "' không tồn tại (-__-) !!!", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
                 else
                 {
+                    picAvtUser.Image = Image.FromFile(@"..\..\Resources\avt008_student_default_160x191.jpg");
+
                     diemMonHocService.DeleteAllDiemMonHocByMaSinhVien(lblMaSV.Text);
                     sinhVienService.DeleteSinhVien(maSV);
                     LoadDanhSachSinhVienToDgv();
-                    MessageBox.Show("Đã Xóa [-" + lblMaSV.Text + "-]", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    lblMaSV.Text = "null";
+                    MessageBox.Show("Delete '" + lblMaSV.Text + "' Successfully </> !!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lblMaSV.Text = "???";
                     txtTenSV.Clear();
                     txtEmail.Clear();
                     txtSdt.Clear();
@@ -1107,11 +1194,11 @@ namespace GDU_Management
             string timKiem = txtTimKiemSV.Text.Trim();
             if (timKiem.Equals(""))
             {
-                dgvDanhSachSinhVien.DataSource = sinhVienService.GetSinhVienByMaLop(maLopSV);
+                dgvDanhSachSinhVien.DataSource = sinhVienService.GetSinhVienByMaLop(_maLopSV);
             }
             else
             {
-                dgvDanhSachSinhVien.DataSource = sinhVienService.SearchSinhVienByTenSinhVien(timKiem);
+                dgvDanhSachSinhVien.DataSource = sinhVienService.SearchSinhVienByTenSinhVien(_maLopSV, timKiem);
             }
         }
 
@@ -1131,6 +1218,57 @@ namespace GDU_Management
                 string maKhoaHocKL = lblMaKhoaHocKL.Text.Trim();
                 senMaKhoaHocMaNganh(maNganhKL, maKhoaHocKL);
                 frmDSLop.ShowDialog();
+        }
+
+        private void txtTimKiemSV_Click(object sender, EventArgs e)
+        {
+            txtTimKiemSV.Text = null;
+        }
+
+        private void txtTimKiemAllSinhVien_Click(object sender, EventArgs e)
+        {
+            txtTimKiemAllSinhVien.Text = null;
+        }
+
+        private void txtTimKiemAllSinhVien_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTimKiemAllSinhVien.Text == "")
+            {
+                LoadAllSinhVien();
+            }
+            else
+            {
+                dgvDanhSachAllSinhVien.DataSource = sinhVienService.SearchAllSinhVien(txtTimKiemAllSinhVien.Text, txtTimKiemAllSinhVien.Text);
+            }
+        }
+
+        private void btnHome_allSV_Click(object sender, EventArgs e)
+        {
+            goToGDUmanagement();
+        }
+
+        private void btnExit_allSV_Click(object sender, EventArgs e)
+        {
+            DialogResult dr;
+            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void dgvDanhSachAllSinhVien_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string id_SV = dgvDanhSachAllSinhVien.CurrentRow.Cells[1].Value.ToString();
+            frmInformaitonSinhVien frm_InfoSV = new frmInformaitonSinhVien();
+            SendIdSinhVienToFrmInformationSinhVien sendIdSv = new SendIdSinhVienToFrmInformationSinhVien(frm_InfoSV.FunData);
+            sendIdSv(id_SV);
+            frm_InfoSV.ShowDialog();
+        }
+
+        private void btnNewKhoa_MouseHover(object sender, EventArgs e)
+        {
+            MessageBox.Show("");
         }
     }
 }

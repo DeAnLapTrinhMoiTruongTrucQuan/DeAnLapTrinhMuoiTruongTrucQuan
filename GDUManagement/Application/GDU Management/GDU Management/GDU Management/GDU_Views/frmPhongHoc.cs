@@ -41,6 +41,13 @@ namespace GDU_Management.GDU_Views
             }
         }
 
+        //đóng các button mặc định
+        public void EnableFalseButton()
+        {
+            btnSaveRoom.Enabled = false;
+            btnUpdateRoom.Enabled = false;
+            btnDeleteRoom.Enabled = false;
+        }
 
         //---------------------------kẾT THÚC HÀM PUBLIC--------------------------------//
         //--------------------------------------------------------------------------------------//
@@ -49,6 +56,7 @@ namespace GDU_Management.GDU_Views
         private void frmPhongHoc_Load(object sender, EventArgs e)
         {
             LoadDanhSachPhongHocToDgv();
+            EnableFalseButton();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -58,6 +66,8 @@ namespace GDU_Management.GDU_Views
 
         private void dgvDanhSachPhongHoc_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            btnUpdateRoom.Enabled = true;
+            btnDeleteRoom.Enabled = true;
             txtPhongHoc.DataBindings.Clear();
             txtPhongHoc.DataBindings.Add("text", dgvDanhSachPhongHoc.DataSource, "MaPhongHoc");
             txtNote.DataBindings.Clear();
@@ -117,6 +127,7 @@ namespace GDU_Management.GDU_Views
             {
                 phongHocService.DeleteClassRoom(txtPhongHoc.Text.Trim());
                 LoadDanhSachPhongHocToDgv();
+                EnableFalseButton();
             }
         }
 

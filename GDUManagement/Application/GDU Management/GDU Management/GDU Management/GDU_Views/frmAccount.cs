@@ -72,7 +72,7 @@ namespace GDU_Management.GDU_View
         //hàm load data Admin vào dgv
         public void LoadAdminToDgv()
         {
-            dgvDanhSachAccount.DataSource = adminService.GetAllAdmin().ToList();
+            dgvDanhSachAccount.DataSource = adminService.GetAllAdmin();
             CountRowsAdmin();
         }
 
@@ -92,7 +92,9 @@ namespace GDU_Management.GDU_View
         //hiện data admin lên các field
         public void ShowInfoAdmin()
         {
+            MessageBox.Show("id ad min" + dgvDanhSachAccount.CurrentRow.Cells[1].Value.ToString().Trim());
             ID_Admin = dgvDanhSachAccount.CurrentRow.Cells[1].Value.ToString().Trim();
+            MessageBox.Show("id ad min" + ID_Admin);
             Admin admin = new Admin();
             admin = adminService.GetAdminByMaAdmin(ID_Admin);
             txtEmailAdmin.Text = admin.Email;
@@ -117,11 +119,11 @@ namespace GDU_Management.GDU_View
             }
 
             string status = admin.StatusAcc;
-            if(status == "activate")
+            if(status == "Activate")
             {
                 lblStatusAdmin.BackColor = Color.Lime;
             }
-            else if (status == "lock")
+            else if (status == "Lock")
             {
                 lblStatusAdmin.BackColor = Color.Red;
             }
@@ -129,7 +131,7 @@ namespace GDU_Management.GDU_View
             {
                 lblStatusAdmin.BackColor = Color.Violet;
             }
-            CountRowsAdmin();
+            //CountRowsAdmin();
         }
 
         //show data giảng viên lên các field
@@ -148,11 +150,11 @@ namespace GDU_Management.GDU_View
             lblStartDayGV.Text = gv.NgayBatDau;
 
             string status = gv.StatusAcc;
-            if (status == "activate")
+            if (status == "Activate")
             {
                 lblStatusGV.BackColor = Color.Lime;
             }
-            else if (status == "lock")
+            else if (status == "Lock")
             {
                 lblStatusGV.BackColor = Color.Red;
             }
@@ -178,11 +180,11 @@ namespace GDU_Management.GDU_View
             lblLop.Text = sv.MaLop;
 
             string status = sv.StatusAcc;
-            if (status == "activate")
+            if (status == "Activate")
             {
                 lblStatusSV.BackColor = Color.Lime;
             }
-            else if (status == "lock")
+            else if (status == "Lock")
             {
                 lblStatusSV.BackColor = Color.Red;
             }
@@ -280,20 +282,47 @@ namespace GDU_Management.GDU_View
 
         private void dgvDanhSachAccount_MouseClick(object sender, MouseEventArgs e)
         {
-            ShowInfoAdmin();
-            CountRowsAdmin();
+            //if (dgvDanhSachAccount.Rows.Count == 0)
+            //{
+            //    dgvDanhSachAccount.Enabled = false;
+            //    MessageBox.Show("false");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("" + dgvDanhSachAccount.Rows.Count);
+            //    dgvDanhSachAccount.Enabled = true;
+            //    MessageBox.Show("true");
+            //    ShowInfoAdmin();
+            //}
         }
 
         private void dgvDSAccountGiangVien_Click(object sender, EventArgs e)
         {
-            ShowInfoGiangVien();
-            CountRowsGV();
+            if (dgvDSAccountGiangVien.Rows.Count == 0)
+            {
+                dgvDSAccountGiangVien.Enabled = false;
+            }
+            else
+            {
+                dgvDSAccountGiangVien.Enabled = true;
+                ShowInfoGiangVien();
+                CountRowsGV();
+            } 
         }
 
         private void dgvDSAccountSinhVien_Click(object sender, EventArgs e)
         {
-            ShowInfoSinhVien();
-            CountRowsSV();
+            if (dgvDSAccountSinhVien.Rows.Count == 0)
+            {
+                dgvDSAccountSinhVien.Enabled = false;
+            }
+            else
+            {
+                dgvDSAccountSinhVien.Enabled = true;
+                ShowInfoSinhVien();
+                CountRowsSV();
+            }
+            
         }
 
         private void lblExitAdmin_Click(object sender, EventArgs e)
@@ -339,10 +368,12 @@ namespace GDU_Management.GDU_View
         {
             if (lblStatusAdmin.BackColor == Color.Lime)
             {
+                MessageBox.Show("doi mau lock");
                 lblStatusAdmin.BackColor = Color.Red;
             }
             else if (lblStatusAdmin.BackColor == Color.Red)
             {
+                MessageBox.Show("doi mau acctive");
                 lblStatusAdmin.BackColor = Color.Lime;
             }
         }
@@ -370,11 +401,11 @@ namespace GDU_Management.GDU_View
                 string statusAcc;
                 if (lblStatusAdmin.BackColor == Color.Lime)
                 {
-                    statusAcc = "activate";
+                    statusAcc = "Activate";
                 }
                 else if (lblStatusAdmin.BackColor == Color.Red)
                 {
-                    statusAcc = "lock";
+                    statusAcc = "Lock";
                 }
                 else
                 {
@@ -412,7 +443,7 @@ namespace GDU_Management.GDU_View
                 admin.MaAdmin = lblIdAdmin.Text.Trim();
                 admin.TenAdmin = txtTenAdmin.Text.Trim();
                 admin.GioiTinh = gioiTinh;
-                admin.NamSinh = dtpNamSinhAdmin.Value.ToString().Trim();
+                admin.NamSinh = dtpNamSinhAdmin.Text.ToString().Trim();
                 admin.SDT = txtSDTAdmin.Text.Trim();
                 adminService.UpdateInfomation(admin);
                 LoadAdminToDgv();
@@ -432,11 +463,11 @@ namespace GDU_Management.GDU_View
                 string statusGVAcc;
                 if (lblStatusGV.BackColor == Color.Lime)
                 {
-                    statusGVAcc = "activate";
+                    statusGVAcc = "Activate";
                 }
                 else if (lblStatusGV.BackColor == Color.Red)
                 {
-                    statusGVAcc = "lock";
+                    statusGVAcc = "Lock";
                 }
                 else
                 {
@@ -464,11 +495,11 @@ namespace GDU_Management.GDU_View
                 string statusSVAcc;
                 if (lblStatusSV.BackColor == Color.Lime)
                 {
-                    statusSVAcc = "activate";
+                    statusSVAcc = "Activate";
                 }
                 else if (lblStatusSV.BackColor == Color.Red)
                 {
-                    statusSVAcc = "lock";
+                    statusSVAcc = "Lock";
                 }
                 else
                 {
@@ -531,14 +562,13 @@ namespace GDU_Management.GDU_View
 
         private void txtTimKiemAdmin_TextChanged(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtTimKiemAdmin.Text.Trim()))
+            if(txtTimKiemAdmin.Text.Equals(""))
             {
                 LoadAdminToDgv();
-                CountRowsAdmin();
             }
             else
             {
-                dgvDanhSachAccount.DataSource = adminService.SearchAdminEmail(txtTimKiemAdmin.Text.Trim()).ToList();
+                dgvDanhSachAccount.DataSource = adminService.SearchAdminEmail(txtTimKiemAdmin.Text.Trim()) ;
             }
         }
 
@@ -549,7 +579,7 @@ namespace GDU_Management.GDU_View
 
         private void txtTimKiemAccountGV_TextChanged(object sender, EventArgs e)
         {
-            if (txtTimKiemAccountGV.Text.Trim() == null)
+            if (string.IsNullOrEmpty(txtTimKiemAccountGV.Text))
             {
                 LoadGiangVienToDgv();
             }
@@ -566,7 +596,7 @@ namespace GDU_Management.GDU_View
 
         private void txtTimKiemAccountSV_TextChanged(object sender, EventArgs e)
         {
-            if (txtTimKiemAccountSV.Text.Trim() == null)
+            if (string.IsNullOrEmpty(txtTimKiemAccountSV.Text))
             {
                 LoadGiangVienToDgv();
             }
@@ -589,6 +619,22 @@ namespace GDU_Management.GDU_View
             SendIdSV sendIdSV = new SendIdSV(frm_InfoSV.FunData);
             sendIdSV(this.lblMaSV.Text);
             frm_InfoSV.ShowDialog();
+        }
+
+        private void dgvDanhSachAccount_Click(object sender, EventArgs e)
+        {
+            //if(dgvDanhSachAccount.Rows.Count == 0)
+            //{
+            //    dgvDanhSachAccount.Enabled = false;
+            //    MessageBox.Show("false");
+            //}
+            //else
+            //{
+            MessageBox.Show("" + dgvDanhSachAccount.Rows.Count);
+            dgvDanhSachAccount.Enabled = true;
+            MessageBox.Show("true");
+            ShowInfoAdmin();
+            //}
         }
     }
 }

@@ -110,5 +110,34 @@ namespace GDU_Management.DaoImpl
             listAD = searchAd.ToList();
             return listAD;
         }
+
+
+        //lay ad dang nhap vaof system
+        public List<Admin> LoginToSystem(string acc, string pass)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var adLogin = from x in db.Admins where x.Email == acc && x.Password == pass select x;
+            listAD = adLogin.ToList();
+            return listAD;
+        }
+
+        //lấy thông tim admin theo email
+        public Admin GetAdminByEmail(string email)
+        {
+            db = new GDUDataConnectionsDataContext();
+            Admin admin = new Admin();
+            admin = db.Admins.Single(p => p.Email == email);
+            return admin;
+        }
+
+        //update trạng thái acc
+        public void UpdateStatusAccountByEmail(Admin admin)
+        {
+            db = new GDUDataConnectionsDataContext();
+            Admin ad = new Admin();
+            ad = db.Admins.Single(p => p.MaAdmin == admin.MaAdmin);
+            ad.StatusAcc = admin.StatusAcc;
+            db.SubmitChanges();
+        }
     }
 }

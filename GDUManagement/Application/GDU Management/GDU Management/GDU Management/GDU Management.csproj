@@ -37,8 +37,14 @@
       <HintPath>..\packages\FluentValidation.9.0.0\lib\net461\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,7 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\RandomCodeControlller.cs" />
     <Compile Include="DaoImpl\AdminImpl.cs" />
+    <Compile Include="DaoImpl\CheckAccountImpl.cs" />
     <Compile Include="DaoImpl\ContactsImpl.cs" />
     <Compile Include="DaoImpl\DiemMonHocImpl.cs" />
     <Compile Include="DaoImpl\GiangVienImpl.cs" />
@@ -64,6 +72,12 @@
     <Compile Include="DaoImpl\PhongHocImpl.cs" />
     <Compile Include="DaoImpl\SinhVienImpl.cs" />
     <Compile Include="DaoImpl\ThoiKhoaBieuImpl.cs" />
+    <Compile Include="GDU_Views\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="GDU_Views\frmAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +174,7 @@
     <Compile Include="GDU_Views\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="IDao\IDaoCheckAccount.cs" />
     <Compile Include="IDao\IDaoContacts.cs" />
     <Compile Include="IDao\IDaoAdmin.cs" />
     <Compile Include="IDao\IDaoDiemMonHoc.cs" />
@@ -180,8 +195,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controller\SendMessage.cs" />
+    <Compile Include="Controller\SendMessageController.cs" />
     <Compile Include="Service\AdminService.cs" />
+    <Compile Include="Service\CheckAccountService.cs" />
     <Compile Include="Service\ContactService.cs" />
     <Compile Include="Service\DiemMonHocService.cs" />
     <Compile Include="Service\GiangVienService.cs" />
@@ -194,6 +210,9 @@
     <Compile Include="Service\PhongHocService.cs" />
     <Compile Include="Service\SinhVienService.cs" />
     <Compile Include="Service\ThoiKhoaBieuService.cs" />
+    <EmbeddedResource Include="GDU_Views\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmAccount.resx">
       <DependentUpon>frmAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -568,9 +587,6 @@
     <None Include="Resources\icons8-add-user-male-40.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\avt001_180x271.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\avt002_160x188.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -662,6 +678,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-forgot-password-241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt008_student_default_160x191.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt009_160x177.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt010_teacher_default_160x182.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avt011_default_teacher_160x190.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-new-copy-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-new-copy-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-button-icon-png-15-300x138.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-button-icon-png-15-50x23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-button-icon-png-15-120x55.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-button-icon-png-15-100x46.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Capture.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Capture-150x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Capture-120x62.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

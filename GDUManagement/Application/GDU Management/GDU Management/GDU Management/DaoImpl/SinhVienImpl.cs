@@ -100,10 +100,10 @@ namespace GDU_Management.DaoImpl
         }
 
         //tìm kiếm sinh viên theo tên
-        public List<SinhVien> SearchSinhVienByTenSinhVien(string tenSV)
+        public List<SinhVien> SearchSinhVienByTenSinhVien(string maLop, string tenSV)
         {
             db = new GDUDataConnectionsDataContext();
-            var sv = from x in db.SinhViens where x.TenSV.Contains(tenSV) select x;
+            var sv = from x in db.SinhViens.Where(p => p.MaLop == maLop & p.TenSV.Contains(tenSV)) select x;
             listSinhViens = sv.ToList();
             return listSinhViens;
         }
@@ -146,6 +146,15 @@ namespace GDU_Management.DaoImpl
                          where ng.MaNganh == maNganh
                          select sv;
             listSinhViens = listSV.ToList();
+            return listSinhViens;
+        }
+
+        //tìm kiếm thông tin tất cả sinh viên
+        public List<SinhVien> SearchAllSinhVien(string maSV, string tenSV)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var searchAllSV = from x in db.SinhViens.Where(p=>p.MaSV.Contains(maSV) || p.TenSV.Contains(tenSV)) select x;
+            listSinhViens = searchAllSV.ToList();
             return listSinhViens;
         }
     }

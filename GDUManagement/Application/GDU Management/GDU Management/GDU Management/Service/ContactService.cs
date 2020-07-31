@@ -12,14 +12,19 @@ namespace GDU_Management.Service
     class ContactService
     {
         IDaoContacts contactsIdao = new ContactsImpl();
-        public Contact GetContact()
+        public List<InforContact> GetAllContact()
         {
-            return contactsIdao.GetContact();
+            return contactsIdao.GetAllContact();
         }
 
-        public void InsertContacts(Contact contacts)
+        public void InsertContacts(InforContact contacts)
         {
             contactsIdao.InsertContacts(contacts);
+        }
+
+        public InforContact InfoContact(string idContacts)
+        {
+            return contactsIdao.InfoContact(idContacts);
         }
     }
 }

@@ -29,28 +29,14 @@ namespace GDU_Management.GDU_Views
         ContactService contactService = new ContactService();
 
         //khai báo các value public
-        int IDcontacts;
 
         //các hàm public
         public void LoadContacts()
         {
-            Contact contacts = new Contact();
-            contacts = contactService.GetContact();
-            txtEmailContacts.Text = contacts.Email;
-            txtPassContacts.Text = contacts.Pass;
-            rtxtTitle.Text = contacts.Title;
-            rtxtMessage.Text = contacts.Message;
-            rtxtDiaChi.Text = contacts.Info;
-        }
-
-        //lay id contacts de insert
-        public int getID()
-        {
-            Contact cts = new Contact();
-            cts = contactService.GetContact();
-            IDcontacts = cts.id;
-            return IDcontacts;
-        }
+            cboChonContacts.DataSource = contactService.GetAllContact().ToList();
+            cboChonContacts.DisplayMember = "TenContacts";
+            cboChonContacts.ValueMember = "ID";
+         }
 
         //check data
         public bool checkDataContacts()
@@ -130,15 +116,16 @@ namespace GDU_Management.GDU_Views
         {
             if (checkDataContacts())
             {
-                Contact contacts = new Contact();
-                contacts.id = getID();
+                InforContact contacts = new InforContact();
+                MessageBox.Show(cboChonContacts.SelectedValue.ToString());
+                contacts.ID = cboChonContacts.SelectedValue.ToString().Trim();
                 contacts.Email = txtEmailContacts.Text;
                 contacts.Pass = txtPassContacts.Text;
-                contacts.Title = rtxtTitle.Text;
+                contacts.Subject = rtxtTitle.Text;
                 contacts.Message = rtxtMessage.Text;
-                contacts.Info = rtxtDiaChi.Text;
+                contacts.InfoOther = rtxtInforOther.Text;
                 contactService.InsertContacts(contacts);
-                LoadContacts();
+                MessageBox.Show("Update successful </> !!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -165,9 +152,62 @@ namespace GDU_Management.GDU_Views
 
         private void rtxtDiaChi_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(rtxtDiaChi.Text))
+            if (string.IsNullOrEmpty(rtxtInforOther.Text))
             {
-                rtxtDiaChi.Text = "Information";
+                rtxtInforOther.Text = "Information";
+            }
+        }
+
+        private void cboChonContacts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = cboChonContacts.SelectedValue.ToString();
+            switch (id)
+            {
+                case "1":
+                    {
+                        InforContact InfoContacts = new InforContact();
+                        InfoContacts = contactService.InfoContact(cboChonContacts.SelectedValue.ToString());
+                        txtEmailContacts.Text = InfoContacts.Email;
+                        txtPassContacts.Text = InfoContacts.Pass;
+                        rtxtTitle.Text = InfoContacts.Subject;
+                        rtxtMessage.Text = InfoContacts.Message;
+                        rtxtInforOther.Text = InfoContacts.InfoOther;
+                        break;
+                    }
+                case "2":
+                    {
+                        InforContact InfoContacts = new InforContact();
+                        InfoContacts = contactService.InfoContact(cboChonContacts.SelectedValue.ToString());
+                        txtEmailContacts.Text = InfoContacts.Email;
+                        txtPassContacts.Text = InfoContacts.Pass;
+                        rtxtTitle.Text = InfoContacts.Subject;
+                        rtxtMessage.Text = InfoContacts.Message;
+                        rtxtInforOther.Text = InfoContacts.InfoOther;
+                        break;
+                    }
+                case "3":
+                    {
+                        InforContact InfoContacts = new InforContact();
+                        InfoContacts = contactService.InfoContact(cboChonContacts.SelectedValue.ToString());
+                        txtEmailContacts.Text = InfoContacts.Email;
+                        txtPassContacts.Text = InfoContacts.Pass;
+                        rtxtTitle.Text = InfoContacts.Subject;
+                        rtxtMessage.Text = InfoContacts.Message;
+                        rtxtInforOther.Text = InfoContacts.InfoOther;
+                        break;
+                    }
+                case "4":
+                    {
+                        InforContact InfoContacts = new InforContact();
+                        InfoContacts = contactService.InfoContact(cboChonContacts.SelectedValue.ToString());
+                        txtEmailContacts.Text = InfoContacts.Email;
+                        txtPassContacts.Text = InfoContacts.Pass;
+                        rtxtTitle.Text = InfoContacts.Subject;
+                        rtxtMessage.Text = InfoContacts.Message;
+                        rtxtInforOther.Text = InfoContacts.InfoOther;
+                        break;
+                    }
+                default: LoadContacts(); break;
             }
         }
     }
