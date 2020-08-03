@@ -177,6 +177,7 @@ namespace GDU_Management
             AutoIDLop();
             txtTenLop.Clear();
             txtTenLop.Focus();
+            txtTenLop.Enabled = true;
             btnSaveLop.Enabled = true;
             btnUpdateLop.Enabled = false;
             btnDeleteLop.Enabled = false;
@@ -214,6 +215,7 @@ namespace GDU_Management
             btnUpdateLop.Enabled = true;
             btnSaveLop.Enabled = false;
             btnDeleteLop.Enabled = true;
+            txtTenLop.Enabled = true;
             ShowdataTuDatagridviewToTextbox();
         }
 

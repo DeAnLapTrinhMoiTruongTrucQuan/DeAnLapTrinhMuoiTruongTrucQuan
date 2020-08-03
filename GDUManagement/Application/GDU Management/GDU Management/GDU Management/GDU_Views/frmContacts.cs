@@ -207,6 +207,28 @@ namespace GDU_Management.GDU_Views
                         rtxtInforOther.Text = InfoContacts.InfoOther;
                         break;
                     }
+                case "5":
+                    {
+                        InforContact InfoContacts = new InforContact();
+                        InfoContacts = contactService.InfoContact(cboChonContacts.SelectedValue.ToString());
+                        txtEmailContacts.Text = InfoContacts.Email;
+                        txtPassContacts.Text = InfoContacts.Pass;
+                        rtxtTitle.Text = InfoContacts.Subject;
+                        rtxtMessage.Text = InfoContacts.Message;
+                        rtxtInforOther.Text = InfoContacts.InfoOther;
+                        break;
+                    }
+                case "6":
+                    {
+                        InforContact InfoContacts = new InforContact();
+                        InfoContacts = contactService.InfoContact(cboChonContacts.SelectedValue.ToString());
+                        txtEmailContacts.Text = InfoContacts.Email;
+                        txtPassContacts.Text = InfoContacts.Pass;
+                        rtxtTitle.Text = InfoContacts.Subject;
+                        rtxtMessage.Text = InfoContacts.Message;
+                        rtxtInforOther.Text = InfoContacts.InfoOther;
+                        break;
+                    }
                 default: LoadContacts(); break;
             }
         }

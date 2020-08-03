@@ -32,15 +32,21 @@
             this.pnDanhSachLop = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnExportDSLop = new System.Windows.Forms.Button();
             this.txtTimKiemLop = new System.Windows.Forms.TextBox();
             this.pnControl = new System.Windows.Forms.Panel();
+            this.btnDeleteAllLop = new System.Windows.Forms.Button();
             this.btnExitDSLop = new System.Windows.Forms.Button();
             this.btnDeleteLop = new System.Windows.Forms.Button();
             this.btnNewLop = new System.Windows.Forms.Button();
             this.btnUpdateLop = new System.Windows.Forms.Button();
             this.btnSaveLop = new System.Windows.Forms.Button();
             this.dgvDanhSachLop = new System.Windows.Forms.DataGridView();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maLopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenLopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maKhoaHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nganhHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lopBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grbDanhSachLop = new System.Windows.Forms.GroupBox();
             this.lblMaLop = new System.Windows.Forms.Label();
@@ -51,13 +57,7 @@
             this.txtTenLop = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDeleteAllLop = new System.Windows.Forms.Button();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maLopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenLopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maKhoaHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nganhHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExportDSLop = new System.Windows.Forms.Button();
             this.pnDanhSachLop.SuspendLayout();
             this.pnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachLop)).BeginInit();
@@ -99,18 +99,6 @@
             this.label11.Size = new System.Drawing.Size(160, 114);
             this.label11.TabIndex = 22;
             // 
-            // btnExportDSLop
-            // 
-            this.btnExportDSLop.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnExportDSLop.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportDSLop.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnExportDSLop.Image = global::GDU_Management.Properties.Resources.icons_print_45;
-            this.btnExportDSLop.Location = new System.Drawing.Point(555, 138);
-            this.btnExportDSLop.Name = "btnExportDSLop";
-            this.btnExportDSLop.Size = new System.Drawing.Size(261, 65);
-            this.btnExportDSLop.TabIndex = 15;
-            this.btnExportDSLop.UseVisualStyleBackColor = false;
-            // 
             // txtTimKiemLop
             // 
             this.txtTimKiemLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -134,6 +122,19 @@
             this.pnControl.Name = "pnControl";
             this.pnControl.Size = new System.Drawing.Size(802, 55);
             this.pnControl.TabIndex = 7;
+            // 
+            // btnDeleteAllLop
+            // 
+            this.btnDeleteAllLop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDeleteAllLop.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteAllLop.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDeleteAllLop.Location = new System.Drawing.Point(541, 3);
+            this.btnDeleteAllLop.Name = "btnDeleteAllLop";
+            this.btnDeleteAllLop.Size = new System.Drawing.Size(150, 45);
+            this.btnDeleteAllLop.TabIndex = 24;
+            this.btnDeleteAllLop.Text = "Delete All";
+            this.btnDeleteAllLop.UseVisualStyleBackColor = false;
+            this.btnDeleteAllLop.Click += new System.EventHandler(this.btnDeleteAllLop_Click);
             // 
             // btnExitDSLop
             // 
@@ -198,6 +199,7 @@
             this.dgvDanhSachLop.AllowUserToAddRows = false;
             this.dgvDanhSachLop.AllowUserToDeleteRows = false;
             this.dgvDanhSachLop.AutoGenerateColumns = false;
+            this.dgvDanhSachLop.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvDanhSachLop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDanhSachLop.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
@@ -207,6 +209,7 @@
             this.maKhoaHocDataGridViewTextBoxColumn,
             this.nganhHocDataGridViewTextBoxColumn});
             this.dgvDanhSachLop.DataSource = this.lopBindingSource;
+            this.dgvDanhSachLop.GridColor = System.Drawing.Color.Magenta;
             this.dgvDanhSachLop.Location = new System.Drawing.Point(14, 209);
             this.dgvDanhSachLop.Name = "dgvDanhSachLop";
             this.dgvDanhSachLop.ReadOnly = true;
@@ -215,6 +218,63 @@
             this.dgvDanhSachLop.Size = new System.Drawing.Size(802, 170);
             this.dgvDanhSachLop.TabIndex = 1;
             this.dgvDanhSachLop.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDanhSachLop_CellMouseClick);
+            // 
+            // STT
+            // 
+            this.STT.DataPropertyName = "STT";
+            this.STT.HeaderText = "STT";
+            this.STT.MinimumWidth = 6;
+            this.STT.Name = "STT";
+            this.STT.ReadOnly = true;
+            this.STT.Width = 90;
+            // 
+            // maLopDataGridViewTextBoxColumn
+            // 
+            this.maLopDataGridViewTextBoxColumn.DataPropertyName = "MaLop";
+            this.maLopDataGridViewTextBoxColumn.HeaderText = "Mã Lớp";
+            this.maLopDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maLopDataGridViewTextBoxColumn.Name = "maLopDataGridViewTextBoxColumn";
+            this.maLopDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maLopDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // tenLopDataGridViewTextBoxColumn
+            // 
+            this.tenLopDataGridViewTextBoxColumn.DataPropertyName = "TenLop";
+            this.tenLopDataGridViewTextBoxColumn.HeaderText = "Tên Lớp";
+            this.tenLopDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tenLopDataGridViewTextBoxColumn.Name = "tenLopDataGridViewTextBoxColumn";
+            this.tenLopDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenLopDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // maNganhDataGridViewTextBoxColumn
+            // 
+            this.maNganhDataGridViewTextBoxColumn.DataPropertyName = "MaNganh";
+            this.maNganhDataGridViewTextBoxColumn.HeaderText = "MaNganh";
+            this.maNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maNganhDataGridViewTextBoxColumn.Name = "maNganhDataGridViewTextBoxColumn";
+            this.maNganhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maNganhDataGridViewTextBoxColumn.Visible = false;
+            this.maNganhDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // maKhoaHocDataGridViewTextBoxColumn
+            // 
+            this.maKhoaHocDataGridViewTextBoxColumn.DataPropertyName = "MaKhoaHoc";
+            this.maKhoaHocDataGridViewTextBoxColumn.HeaderText = "MaKhoaHoc";
+            this.maKhoaHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maKhoaHocDataGridViewTextBoxColumn.Name = "maKhoaHocDataGridViewTextBoxColumn";
+            this.maKhoaHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maKhoaHocDataGridViewTextBoxColumn.Visible = false;
+            this.maKhoaHocDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nganhHocDataGridViewTextBoxColumn
+            // 
+            this.nganhHocDataGridViewTextBoxColumn.DataPropertyName = "NganhHoc";
+            this.nganhHocDataGridViewTextBoxColumn.HeaderText = "NganhHoc";
+            this.nganhHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nganhHocDataGridViewTextBoxColumn.Name = "nganhHocDataGridViewTextBoxColumn";
+            this.nganhHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nganhHocDataGridViewTextBoxColumn.Visible = false;
+            this.nganhHocDataGridViewTextBoxColumn.Width = 125;
             // 
             // lopBindingSource
             // 
@@ -289,6 +349,7 @@
             // 
             // txtTenLop
             // 
+            this.txtTenLop.Enabled = false;
             this.txtTenLop.Location = new System.Drawing.Point(134, 125);
             this.txtTenLop.Name = "txtTenLop";
             this.txtTenLop.Size = new System.Drawing.Size(308, 22);
@@ -315,75 +376,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã Lớp:";
             // 
-            // btnDeleteAllLop
+            // btnExportDSLop
             // 
-            this.btnDeleteAllLop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnDeleteAllLop.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteAllLop.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnDeleteAllLop.Location = new System.Drawing.Point(541, 3);
-            this.btnDeleteAllLop.Name = "btnDeleteAllLop";
-            this.btnDeleteAllLop.Size = new System.Drawing.Size(150, 45);
-            this.btnDeleteAllLop.TabIndex = 24;
-            this.btnDeleteAllLop.Text = "Delete All";
-            this.btnDeleteAllLop.UseVisualStyleBackColor = false;
-            this.btnDeleteAllLop.Click += new System.EventHandler(this.btnDeleteAllLop_Click);
-            // 
-            // STT
-            // 
-            this.STT.DataPropertyName = "STT";
-            this.STT.HeaderText = "STT";
-            this.STT.MinimumWidth = 6;
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
-            this.STT.Width = 90;
-            // 
-            // maLopDataGridViewTextBoxColumn
-            // 
-            this.maLopDataGridViewTextBoxColumn.DataPropertyName = "MaLop";
-            this.maLopDataGridViewTextBoxColumn.HeaderText = "Mã Lớp";
-            this.maLopDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maLopDataGridViewTextBoxColumn.Name = "maLopDataGridViewTextBoxColumn";
-            this.maLopDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maLopDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // tenLopDataGridViewTextBoxColumn
-            // 
-            this.tenLopDataGridViewTextBoxColumn.DataPropertyName = "TenLop";
-            this.tenLopDataGridViewTextBoxColumn.HeaderText = "Tên Lớp";
-            this.tenLopDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.tenLopDataGridViewTextBoxColumn.Name = "tenLopDataGridViewTextBoxColumn";
-            this.tenLopDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenLopDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // maNganhDataGridViewTextBoxColumn
-            // 
-            this.maNganhDataGridViewTextBoxColumn.DataPropertyName = "MaNganh";
-            this.maNganhDataGridViewTextBoxColumn.HeaderText = "MaNganh";
-            this.maNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maNganhDataGridViewTextBoxColumn.Name = "maNganhDataGridViewTextBoxColumn";
-            this.maNganhDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maNganhDataGridViewTextBoxColumn.Visible = false;
-            this.maNganhDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // maKhoaHocDataGridViewTextBoxColumn
-            // 
-            this.maKhoaHocDataGridViewTextBoxColumn.DataPropertyName = "MaKhoaHoc";
-            this.maKhoaHocDataGridViewTextBoxColumn.HeaderText = "MaKhoaHoc";
-            this.maKhoaHocDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maKhoaHocDataGridViewTextBoxColumn.Name = "maKhoaHocDataGridViewTextBoxColumn";
-            this.maKhoaHocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maKhoaHocDataGridViewTextBoxColumn.Visible = false;
-            this.maKhoaHocDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nganhHocDataGridViewTextBoxColumn
-            // 
-            this.nganhHocDataGridViewTextBoxColumn.DataPropertyName = "NganhHoc";
-            this.nganhHocDataGridViewTextBoxColumn.HeaderText = "NganhHoc";
-            this.nganhHocDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nganhHocDataGridViewTextBoxColumn.Name = "nganhHocDataGridViewTextBoxColumn";
-            this.nganhHocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nganhHocDataGridViewTextBoxColumn.Visible = false;
-            this.nganhHocDataGridViewTextBoxColumn.Width = 125;
+            this.btnExportDSLop.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnExportDSLop.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportDSLop.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnExportDSLop.Image = global::GDU_Management.Properties.Resources.icons_print_45;
+            this.btnExportDSLop.Location = new System.Drawing.Point(555, 138);
+            this.btnExportDSLop.Name = "btnExportDSLop";
+            this.btnExportDSLop.Size = new System.Drawing.Size(261, 65);
+            this.btnExportDSLop.TabIndex = 15;
+            this.btnExportDSLop.UseVisualStyleBackColor = false;
             // 
             // frmDanhSachLop
             // 

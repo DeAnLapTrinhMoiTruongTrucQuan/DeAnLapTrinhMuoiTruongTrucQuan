@@ -44,5 +44,11 @@ namespace GDU_Management.Service
         {
             return monHocIDao.GetMonHocByMaMonHoc(maMonHoc);
         }
+
+        //xóa môn học theo ngành
+        public void DeleteMonHocByNganh(string maNganh)
+        {
+            monHocIDao.DeleteMonHocByNganh(maNganh);
+        }
     }
 }

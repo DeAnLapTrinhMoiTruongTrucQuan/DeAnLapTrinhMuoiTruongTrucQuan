@@ -37,11 +37,11 @@
             this.lblTenKhoa = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.lblMaKhoaKN_2 = new System.Windows.Forms.Label();
-            this.btnHome_QLK = new System.Windows.Forms.Button();
             this.pnControl_QLK = new System.Windows.Forms.Panel();
             this.btnExportDSKhoa = new System.Windows.Forms.Button();
             this.btnExit_QLK = new System.Windows.Forms.Button();
-            this.btnDSNganh = new System.Windows.Forms.Button();
+            this.btnXemDSNganh = new System.Windows.Forms.Button();
+            this.btnHome_QLK = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.pnStatusTopLeft = new System.Windows.Forms.Panel();
@@ -100,15 +100,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.grbKhoaHoc = new System.Windows.Forms.GroupBox();
             this.nubNienKhoaKL = new System.Windows.Forms.NumericUpDown();
-            this.lblMaKhoaHocKL = new System.Windows.Forms.Label();
+            this.lblMaKhoasHocKL = new System.Windows.Forms.Label();
             this.pnThemSuaXoa_QLKH = new System.Windows.Forms.Panel();
             this.btnDeleteKhoaHoc = new System.Windows.Forms.Button();
-            this.btnNewKhoaHoc = new System.Windows.Forms.Button();
+            this.btnNewKhoasHoc = new System.Windows.Forms.Button();
             this.btnUpdateKhoaHoc = new System.Windows.Forms.Button();
             this.btnSaveKhoaHoc = new System.Windows.Forms.Button();
             this.txtNienKhoa = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtTenKhoaHoc = new System.Windows.Forms.TextBox();
+            this.txtTenKhoasHoc = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -200,7 +200,6 @@
             this.avtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusAccDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timerTime_QLSV = new System.Windows.Forms.Timer(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pnQLSV.SuspendLayout();
             this.tabQL.SuspendLayout();
             this.tabgQLK.SuspendLayout();
@@ -242,7 +241,6 @@
             this.pnDanhSachAllSinhVien.SuspendLayout();
             this.grbTimKienDSSV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachAllSinhVien)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnQLSV
@@ -298,7 +296,6 @@
             this.pnThongTinKhoa.Controls.Add(this.lblTenKhoa);
             this.pnThongTinKhoa.Controls.Add(this.label30);
             this.pnThongTinKhoa.Controls.Add(this.lblMaKhoaKN_2);
-            this.pnThongTinKhoa.Controls.Add(this.btnHome_QLK);
             this.pnThongTinKhoa.Controls.Add(this.pnControl_QLK);
             this.pnThongTinKhoa.Controls.Add(this.label10);
             this.pnThongTinKhoa.Controls.Add(this.label7);
@@ -336,38 +333,27 @@
             this.lblMaKhoaKN_2.TabIndex = 35;
             this.lblMaKhoaKN_2.Text = "???";
             // 
-            // btnHome_QLK
-            // 
-            this.btnHome_QLK.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnHome_QLK.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome_QLK.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHome_QLK.Image = global::GDU_Management.Properties.Resources.icons_home_page_45;
-            this.btnHome_QLK.Location = new System.Drawing.Point(539, 138);
-            this.btnHome_QLK.Name = "btnHome_QLK";
-            this.btnHome_QLK.Size = new System.Drawing.Size(247, 60);
-            this.btnHome_QLK.TabIndex = 34;
-            this.btnHome_QLK.UseVisualStyleBackColor = false;
-            this.btnHome_QLK.Click += new System.EventHandler(this.btnHome_QLK_Click);
-            // 
             // pnControl_QLK
             // 
             this.pnControl_QLK.Controls.Add(this.btnExportDSKhoa);
             this.pnControl_QLK.Controls.Add(this.btnExit_QLK);
-            this.pnControl_QLK.Controls.Add(this.btnDSNganh);
+            this.pnControl_QLK.Controls.Add(this.btnXemDSNganh);
+            this.pnControl_QLK.Controls.Add(this.btnHome_QLK);
             this.pnControl_QLK.Location = new System.Drawing.Point(17, 210);
             this.pnControl_QLK.Name = "pnControl_QLK";
-            this.pnControl_QLK.Size = new System.Drawing.Size(772, 62);
+            this.pnControl_QLK.Size = new System.Drawing.Size(835, 62);
             this.pnControl_QLK.TabIndex = 32;
             // 
             // btnExportDSKhoa
             // 
-            this.btnExportDSKhoa.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnExportDSKhoa.BackColor = System.Drawing.Color.White;
+            this.btnExportDSKhoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportDSKhoa.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportDSKhoa.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExportDSKhoa.Image = global::GDU_Management.Properties.Resources.icons_print_45;
+            this.btnExportDSKhoa.Image = global::GDU_Management.Properties.Resources.icons8_print_42;
             this.btnExportDSKhoa.Location = new System.Drawing.Point(263, 1);
             this.btnExportDSKhoa.Name = "btnExportDSKhoa";
-            this.btnExportDSKhoa.Size = new System.Drawing.Size(253, 60);
+            this.btnExportDSKhoa.Size = new System.Drawing.Size(161, 60);
             this.btnExportDSKhoa.TabIndex = 34;
             this.btnExportDSKhoa.UseVisualStyleBackColor = false;
             // 
@@ -377,7 +363,7 @@
             this.btnExit_QLK.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnExit_QLK.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
             this.btnExit_QLK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit_QLK.Location = new System.Drawing.Point(522, 2);
+            this.btnExit_QLK.Location = new System.Drawing.Point(585, 2);
             this.btnExit_QLK.Name = "btnExit_QLK";
             this.btnExit_QLK.Size = new System.Drawing.Size(247, 60);
             this.btnExit_QLK.TabIndex = 33;
@@ -386,18 +372,35 @@
             this.btnExit_QLK.UseVisualStyleBackColor = true;
             this.btnExit_QLK.Click += new System.EventHandler(this.btnExit_QLK_Click);
             // 
-            // btnDSNganh
+            // btnXemDSNganh
             // 
-            this.btnDSNganh.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnDSNganh.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDSNganh.ForeColor = System.Drawing.Color.White;
-            this.btnDSNganh.Location = new System.Drawing.Point(3, 0);
-            this.btnDSNganh.Name = "btnDSNganh";
-            this.btnDSNganh.Size = new System.Drawing.Size(250, 60);
-            this.btnDSNganh.TabIndex = 13;
-            this.btnDSNganh.Text = "Xem DS Ngành";
-            this.btnDSNganh.UseVisualStyleBackColor = false;
-            this.btnDSNganh.Click += new System.EventHandler(this.btnDSNganh_Click);
+            this.btnXemDSNganh.BackColor = System.Drawing.Color.Blue;
+            this.btnXemDSNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXemDSNganh.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXemDSNganh.ForeColor = System.Drawing.Color.White;
+            this.btnXemDSNganh.Location = new System.Drawing.Point(3, 0);
+            this.btnXemDSNganh.Name = "btnXemDSNganh";
+            this.btnXemDSNganh.Size = new System.Drawing.Size(250, 60);
+            this.btnXemDSNganh.TabIndex = 13;
+            this.btnXemDSNganh.Text = "Xem DS Ngành";
+            this.btnXemDSNganh.UseVisualStyleBackColor = false;
+            this.btnXemDSNganh.Click += new System.EventHandler(this.btnDSNganh_Click);
+            this.btnXemDSNganh.MouseLeave += new System.EventHandler(this.btnXemDSNganh_MouseLeave);
+            this.btnXemDSNganh.MouseHover += new System.EventHandler(this.btnDSNganh_MouseHover);
+            // 
+            // btnHome_QLK
+            // 
+            this.btnHome_QLK.BackColor = System.Drawing.Color.White;
+            this.btnHome_QLK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHome_QLK.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome_QLK.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnHome_QLK.Image = global::GDU_Management.Properties.Resources.icons8_home_page_51x40;
+            this.btnHome_QLK.Location = new System.Drawing.Point(435, 2);
+            this.btnHome_QLK.Name = "btnHome_QLK";
+            this.btnHome_QLK.Size = new System.Drawing.Size(144, 57);
+            this.btnHome_QLK.TabIndex = 34;
+            this.btnHome_QLK.UseVisualStyleBackColor = false;
+            this.btnHome_QLK.Click += new System.EventHandler(this.btnHome_QLK_Click);
             // 
             // label10
             // 
@@ -662,7 +665,6 @@
             // 
             // pnThemSuaXoa_QLK
             // 
-            this.pnThemSuaXoa_QLK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnThemSuaXoa_QLK.Controls.Add(this.btnDeleteKhoa);
             this.pnThemSuaXoa_QLK.Controls.Add(this.btnNewKhoa);
             this.pnThemSuaXoa_QLK.Controls.Add(this.btnUpdateKhoa);
@@ -675,6 +677,7 @@
             // btnDeleteKhoa
             // 
             this.btnDeleteKhoa.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnDeleteKhoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteKhoa.Location = new System.Drawing.Point(350, 3);
             this.btnDeleteKhoa.Name = "btnDeleteKhoa";
             this.btnDeleteKhoa.Size = new System.Drawing.Size(109, 35);
@@ -682,10 +685,14 @@
             this.btnDeleteKhoa.Text = "Delete";
             this.btnDeleteKhoa.UseVisualStyleBackColor = false;
             this.btnDeleteKhoa.Click += new System.EventHandler(this.btnDeleteKhoa_Click);
+            this.btnDeleteKhoa.MouseLeave += new System.EventHandler(this.btnDeleteKhoa_MouseLeave);
+            this.btnDeleteKhoa.MouseHover += new System.EventHandler(this.btnDeleteKhoa_MouseHover);
             // 
             // btnNewKhoa
             // 
             this.btnNewKhoa.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNewKhoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewKhoa.ForeColor = System.Drawing.Color.Black;
             this.btnNewKhoa.Location = new System.Drawing.Point(3, 2);
             this.btnNewKhoa.Name = "btnNewKhoa";
             this.btnNewKhoa.Size = new System.Drawing.Size(109, 35);
@@ -693,11 +700,13 @@
             this.btnNewKhoa.Text = "New";
             this.btnNewKhoa.UseVisualStyleBackColor = false;
             this.btnNewKhoa.Click += new System.EventHandler(this.btnNewKhoa_Click);
+            this.btnNewKhoa.MouseLeave += new System.EventHandler(this.btnNewKhoa_MouseLeave);
             this.btnNewKhoa.MouseHover += new System.EventHandler(this.btnNewKhoa_MouseHover);
             // 
             // btnUpdateKhoa
             // 
             this.btnUpdateKhoa.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnUpdateKhoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateKhoa.Location = new System.Drawing.Point(235, 3);
             this.btnUpdateKhoa.Name = "btnUpdateKhoa";
             this.btnUpdateKhoa.Size = new System.Drawing.Size(109, 35);
@@ -705,10 +714,13 @@
             this.btnUpdateKhoa.Text = "Update";
             this.btnUpdateKhoa.UseVisualStyleBackColor = false;
             this.btnUpdateKhoa.Click += new System.EventHandler(this.btnUpdateKhoa_Click);
+            this.btnUpdateKhoa.MouseLeave += new System.EventHandler(this.btnUpdateKhoa_MouseLeave);
+            this.btnUpdateKhoa.MouseHover += new System.EventHandler(this.btnUpdateKhoa_MouseHover);
             // 
             // btnSaveKhoa
             // 
             this.btnSaveKhoa.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSaveKhoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveKhoa.Location = new System.Drawing.Point(118, 2);
             this.btnSaveKhoa.Name = "btnSaveKhoa";
             this.btnSaveKhoa.Size = new System.Drawing.Size(109, 35);
@@ -716,9 +728,12 @@
             this.btnSaveKhoa.Text = "Save";
             this.btnSaveKhoa.UseVisualStyleBackColor = false;
             this.btnSaveKhoa.Click += new System.EventHandler(this.btnSaveKhoa_Click);
+            this.btnSaveKhoa.MouseLeave += new System.EventHandler(this.btnSaveKhoa_MouseLeave);
+            this.btnSaveKhoa.MouseHover += new System.EventHandler(this.btnSaveKhoa_MouseHover);
             // 
             // txtTenKhoa
             // 
+            this.txtTenKhoa.Enabled = false;
             this.txtTenKhoa.Location = new System.Drawing.Point(119, 72);
             this.txtTenKhoa.Name = "txtTenKhoa";
             this.txtTenKhoa.Size = new System.Drawing.Size(350, 28);
@@ -901,7 +916,7 @@
             this.btnHome_QLKH.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome_QLKH.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnHome_QLKH.Image = global::GDU_Management.Properties.Resources.icons_home_page_45;
-            this.btnHome_QLKH.Location = new System.Drawing.Point(534, 158);
+            this.btnHome_QLKH.Location = new System.Drawing.Point(585, 156);
             this.btnHome_QLKH.Name = "btnHome_QLKH";
             this.btnHome_QLKH.Size = new System.Drawing.Size(262, 60);
             this.btnHome_QLKH.TabIndex = 37;
@@ -915,7 +930,7 @@
             this.panel2.Controls.Add(this.btnExit_QLKH);
             this.panel2.Location = new System.Drawing.Point(17, 222);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(782, 70);
+            this.panel2.Size = new System.Drawing.Size(833, 70);
             this.panel2.TabIndex = 33;
             // 
             // btnExportDSKhoaHoc
@@ -926,7 +941,7 @@
             this.btnExportDSKhoaHoc.Image = global::GDU_Management.Properties.Resources.icons_print_45;
             this.btnExportDSKhoaHoc.Location = new System.Drawing.Point(258, 5);
             this.btnExportDSKhoaHoc.Name = "btnExportDSKhoaHoc";
-            this.btnExportDSKhoaHoc.Size = new System.Drawing.Size(253, 60);
+            this.btnExportDSKhoaHoc.Size = new System.Drawing.Size(165, 60);
             this.btnExportDSKhoaHoc.TabIndex = 36;
             this.btnExportDSKhoaHoc.UseVisualStyleBackColor = false;
             // 
@@ -949,7 +964,7 @@
             this.btnExit_QLKH.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnExit_QLKH.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
             this.btnExit_QLKH.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit_QLKH.Location = new System.Drawing.Point(517, 6);
+            this.btnExit_QLKH.Location = new System.Drawing.Point(568, 7);
             this.btnExit_QLKH.Name = "btnExit_QLKH";
             this.btnExit_QLKH.Size = new System.Drawing.Size(262, 60);
             this.btnExit_QLKH.TabIndex = 35;
@@ -999,11 +1014,11 @@
             // 
             this.grbKhoaHoc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.grbKhoaHoc.Controls.Add(this.nubNienKhoaKL);
-            this.grbKhoaHoc.Controls.Add(this.lblMaKhoaHocKL);
+            this.grbKhoaHoc.Controls.Add(this.lblMaKhoasHocKL);
             this.grbKhoaHoc.Controls.Add(this.pnThemSuaXoa_QLKH);
             this.grbKhoaHoc.Controls.Add(this.txtNienKhoa);
             this.grbKhoaHoc.Controls.Add(this.label9);
-            this.grbKhoaHoc.Controls.Add(this.txtTenKhoaHoc);
+            this.grbKhoaHoc.Controls.Add(this.txtTenKhoasHoc);
             this.grbKhoaHoc.Controls.Add(this.label5);
             this.grbKhoaHoc.Controls.Add(this.label6);
             this.grbKhoaHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1016,6 +1031,7 @@
             // 
             // nubNienKhoaKL
             // 
+            this.nubNienKhoaKL.Enabled = false;
             this.nubNienKhoaKL.Location = new System.Drawing.Point(426, 114);
             this.nubNienKhoaKL.Name = "nubNienKhoaKL";
             this.nubNienKhoaKL.Size = new System.Drawing.Size(51, 28);
@@ -1026,20 +1042,19 @@
             0,
             0});
             // 
-            // lblMaKhoaHocKL
+            // lblMaKhoasHocKL
             // 
-            this.lblMaKhoaHocKL.AutoSize = true;
-            this.lblMaKhoaHocKL.Location = new System.Drawing.Point(115, 36);
-            this.lblMaKhoaHocKL.Name = "lblMaKhoaHocKL";
-            this.lblMaKhoaHocKL.Size = new System.Drawing.Size(40, 24);
-            this.lblMaKhoaHocKL.TabIndex = 14;
-            this.lblMaKhoaHocKL.Text = "???";
+            this.lblMaKhoasHocKL.AutoSize = true;
+            this.lblMaKhoasHocKL.Location = new System.Drawing.Point(115, 36);
+            this.lblMaKhoasHocKL.Name = "lblMaKhoasHocKL";
+            this.lblMaKhoasHocKL.Size = new System.Drawing.Size(40, 24);
+            this.lblMaKhoasHocKL.TabIndex = 14;
+            this.lblMaKhoasHocKL.Text = "???";
             // 
             // pnThemSuaXoa_QLKH
             // 
-            this.pnThemSuaXoa_QLKH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnThemSuaXoa_QLKH.Controls.Add(this.btnDeleteKhoaHoc);
-            this.pnThemSuaXoa_QLKH.Controls.Add(this.btnNewKhoaHoc);
+            this.pnThemSuaXoa_QLKH.Controls.Add(this.btnNewKhoasHoc);
             this.pnThemSuaXoa_QLKH.Controls.Add(this.btnUpdateKhoaHoc);
             this.pnThemSuaXoa_QLKH.Controls.Add(this.btnSaveKhoaHoc);
             this.pnThemSuaXoa_QLKH.Location = new System.Drawing.Point(10, 149);
@@ -1050,6 +1065,7 @@
             // btnDeleteKhoaHoc
             // 
             this.btnDeleteKhoaHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnDeleteKhoaHoc.ForeColor = System.Drawing.Color.White;
             this.btnDeleteKhoaHoc.Image = global::GDU_Management.Properties.Resources.icons_delete_3;
             this.btnDeleteKhoaHoc.Location = new System.Drawing.Point(351, 3);
             this.btnDeleteKhoaHoc.Name = "btnDeleteKhoaHoc";
@@ -1058,21 +1074,22 @@
             this.btnDeleteKhoaHoc.UseVisualStyleBackColor = false;
             this.btnDeleteKhoaHoc.Click += new System.EventHandler(this.btnDeleteKhoaHoc_Click);
             // 
-            // btnNewKhoaHoc
+            // btnNewKhoasHoc
             // 
-            this.btnNewKhoaHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnNewKhoaHoc.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewKhoaHoc.Image = global::GDU_Management.Properties.Resources.icon_Khoas_1;
-            this.btnNewKhoaHoc.Location = new System.Drawing.Point(3, 2);
-            this.btnNewKhoaHoc.Name = "btnNewKhoaHoc";
-            this.btnNewKhoaHoc.Size = new System.Drawing.Size(112, 45);
-            this.btnNewKhoaHoc.TabIndex = 1;
-            this.btnNewKhoaHoc.UseVisualStyleBackColor = false;
-            this.btnNewKhoaHoc.Click += new System.EventHandler(this.btnNewKhoaHoc_Click);
+            this.btnNewKhoasHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNewKhoasHoc.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNewKhoasHoc.Image = global::GDU_Management.Properties.Resources.icon_Khoas_1;
+            this.btnNewKhoasHoc.Location = new System.Drawing.Point(3, 2);
+            this.btnNewKhoasHoc.Name = "btnNewKhoasHoc";
+            this.btnNewKhoasHoc.Size = new System.Drawing.Size(112, 45);
+            this.btnNewKhoasHoc.TabIndex = 1;
+            this.btnNewKhoasHoc.UseVisualStyleBackColor = false;
+            this.btnNewKhoasHoc.Click += new System.EventHandler(this.btnNewKhoaHoc_Click);
             // 
             // btnUpdateKhoaHoc
             // 
             this.btnUpdateKhoaHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnUpdateKhoaHoc.ForeColor = System.Drawing.Color.White;
             this.btnUpdateKhoaHoc.Image = global::GDU_Management.Properties.Resources.icons_update_30;
             this.btnUpdateKhoaHoc.Location = new System.Drawing.Point(235, 2);
             this.btnUpdateKhoaHoc.Name = "btnUpdateKhoaHoc";
@@ -1084,6 +1101,7 @@
             // btnSaveKhoaHoc
             // 
             this.btnSaveKhoaHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSaveKhoaHoc.ForeColor = System.Drawing.Color.White;
             this.btnSaveKhoaHoc.Image = global::GDU_Management.Properties.Resources.icons_save_2;
             this.btnSaveKhoaHoc.Location = new System.Drawing.Point(119, 2);
             this.btnSaveKhoaHoc.Name = "btnSaveKhoaHoc";
@@ -1094,6 +1112,7 @@
             // 
             // txtNienKhoa
             // 
+            this.txtNienKhoa.Enabled = false;
             this.txtNienKhoa.Location = new System.Drawing.Point(119, 115);
             this.txtNienKhoa.Name = "txtNienKhoa";
             this.txtNienKhoa.Size = new System.Drawing.Size(301, 28);
@@ -1108,12 +1127,13 @@
             this.label9.TabIndex = 7;
             this.label9.Text = "Niên Khóa:";
             // 
-            // txtTenKhoaHoc
+            // txtTenKhoasHoc
             // 
-            this.txtTenKhoaHoc.Location = new System.Drawing.Point(119, 73);
-            this.txtTenKhoaHoc.Name = "txtTenKhoaHoc";
-            this.txtTenKhoaHoc.Size = new System.Drawing.Size(359, 28);
-            this.txtTenKhoaHoc.TabIndex = 3;
+            this.txtTenKhoasHoc.Enabled = false;
+            this.txtTenKhoasHoc.Location = new System.Drawing.Point(119, 73);
+            this.txtTenKhoasHoc.Name = "txtTenKhoasHoc";
+            this.txtTenKhoasHoc.Size = new System.Drawing.Size(359, 28);
+            this.txtTenKhoasHoc.TabIndex = 3;
             // 
             // label5
             // 
@@ -1289,31 +1309,35 @@
             // 
             // btnExitSV
             // 
-            this.btnExitSV.BackColor = System.Drawing.Color.Gray;
-            this.btnExitSV.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExitSV.Font = new System.Drawing.Font("Microsoft Tai Le", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExitSV.ForeColor = System.Drawing.Color.AliceBlue;
-            this.btnExitSV.Location = new System.Drawing.Point(1192, 316);
+            this.btnExitSV.BackColor = System.Drawing.Color.White;
+            this.btnExitSV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExitSV.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExitSV.ForeColor = System.Drawing.Color.DimGray;
+            this.btnExitSV.Location = new System.Drawing.Point(1192, 312);
             this.btnExitSV.Name = "btnExitSV";
-            this.btnExitSV.Size = new System.Drawing.Size(161, 35);
+            this.btnExitSV.Size = new System.Drawing.Size(161, 40);
             this.btnExitSV.TabIndex = 22;
             this.btnExitSV.Text = "EXIT";
             this.btnExitSV.UseVisualStyleBackColor = false;
             this.btnExitSV.Click += new System.EventHandler(this.btnExitSV_Click);
+            this.btnExitSV.MouseLeave += new System.EventHandler(this.btnExitSV_MouseLeave);
+            this.btnExitSV.MouseHover += new System.EventHandler(this.btnExitSV_MouseHover);
             // 
             // btnHome_SV
             // 
-            this.btnHome_SV.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnHome_SV.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHome_SV.BackColor = System.Drawing.Color.White;
+            this.btnHome_SV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome_SV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome_SV.ForeColor = System.Drawing.Color.White;
-            this.btnHome_SV.Location = new System.Drawing.Point(1018, 316);
+            this.btnHome_SV.ForeColor = System.Drawing.Color.Blue;
+            this.btnHome_SV.Location = new System.Drawing.Point(1018, 312);
             this.btnHome_SV.Name = "btnHome_SV";
-            this.btnHome_SV.Size = new System.Drawing.Size(159, 35);
+            this.btnHome_SV.Size = new System.Drawing.Size(159, 40);
             this.btnHome_SV.TabIndex = 21;
             this.btnHome_SV.Text = "HOME";
             this.btnHome_SV.UseVisualStyleBackColor = false;
             this.btnHome_SV.Click += new System.EventHandler(this.btnHome_SV_Click);
+            this.btnHome_SV.MouseLeave += new System.EventHandler(this.btnHome_SV_MouseLeave);
+            this.btnHome_SV.MouseHover += new System.EventHandler(this.btnHome_SV_MouseHover);
             // 
             // txtTimKiemSV
             // 
@@ -1514,7 +1538,7 @@
             this.radNu.Location = new System.Drawing.Point(222, 150);
             this.radNu.Name = "radNu";
             this.radNu.Size = new System.Drawing.Size(58, 29);
-            this.radNu.TabIndex = 81;
+            this.radNu.TabIndex = 11;
             this.radNu.TabStop = true;
             this.radNu.Text = "Nữ";
             this.radNu.UseVisualStyleBackColor = true;
@@ -1526,7 +1550,7 @@
             this.radNam.Location = new System.Drawing.Point(128, 150);
             this.radNam.Name = "radNam";
             this.radNam.Size = new System.Drawing.Size(75, 29);
-            this.radNam.TabIndex = 80;
+            this.radNam.TabIndex = 10;
             this.radNam.TabStop = true;
             this.radNam.Text = "Nam";
             this.radNam.UseVisualStyleBackColor = true;
@@ -1557,7 +1581,7 @@
             this.txtEmail.Location = new System.Drawing.Point(125, 193);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(281, 33);
-            this.txtEmail.TabIndex = 77;
+            this.txtEmail.TabIndex = 12;
             // 
             // label3
             // 
@@ -1600,7 +1624,7 @@
             this.btnSaveSV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSaveSV.Name = "btnSaveSV";
             this.btnSaveSV.Size = new System.Drawing.Size(150, 50);
-            this.btnSaveSV.TabIndex = 51;
+            this.btnSaveSV.TabIndex = 17;
             this.btnSaveSV.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSaveSV.UseVisualStyleBackColor = false;
             this.btnSaveSV.Click += new System.EventHandler(this.btnSaveSV_Click);
@@ -1643,7 +1667,7 @@
             this.rtxtGhiChu.Location = new System.Drawing.Point(542, 171);
             this.rtxtGhiChu.Name = "rtxtGhiChu";
             this.rtxtGhiChu.Size = new System.Drawing.Size(289, 55);
-            this.rtxtGhiChu.TabIndex = 19;
+            this.rtxtGhiChu.TabIndex = 16;
             this.rtxtGhiChu.Text = "";
             // 
             // rtxtDiaChi
@@ -1651,7 +1675,7 @@
             this.rtxtDiaChi.Location = new System.Drawing.Point(542, 114);
             this.rtxtDiaChi.Name = "rtxtDiaChi";
             this.rtxtDiaChi.Size = new System.Drawing.Size(289, 51);
-            this.rtxtDiaChi.TabIndex = 13;
+            this.rtxtDiaChi.TabIndex = 15;
             this.rtxtDiaChi.Text = "";
             // 
             // txtSdt
@@ -1659,7 +1683,7 @@
             this.txtSdt.Location = new System.Drawing.Point(542, 75);
             this.txtSdt.Name = "txtSdt";
             this.txtSdt.Size = new System.Drawing.Size(289, 33);
-            this.txtSdt.TabIndex = 12;
+            this.txtSdt.TabIndex = 14;
             // 
             // dtpNamSinh
             // 
@@ -1669,7 +1693,7 @@
             this.dtpNamSinh.Location = new System.Drawing.Point(542, 39);
             this.dtpNamSinh.Name = "dtpNamSinh";
             this.dtpNamSinh.Size = new System.Drawing.Size(289, 27);
-            this.dtpNamSinh.TabIndex = 11;
+            this.dtpNamSinh.TabIndex = 13;
             // 
             // txtTenSV
             // 
@@ -1877,7 +1901,7 @@
             this.btnPrint_allSV.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint_allSV.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnPrint_allSV.Image = global::GDU_Management.Properties.Resources.icons_print_45;
-            this.btnPrint_allSV.Location = new System.Drawing.Point(1052, 9);
+            this.btnPrint_allSV.Location = new System.Drawing.Point(1052, 7);
             this.btnPrint_allSV.Name = "btnPrint_allSV";
             this.btnPrint_allSV.Size = new System.Drawing.Size(335, 60);
             this.btnPrint_allSV.TabIndex = 82;
@@ -1885,31 +1909,35 @@
             // 
             // btnExit_allSV
             // 
-            this.btnExit_allSV.BackColor = System.Drawing.Color.Gray;
-            this.btnExit_allSV.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExit_allSV.Font = new System.Drawing.Font("Microsoft Tai Le", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit_allSV.ForeColor = System.Drawing.Color.AliceBlue;
-            this.btnExit_allSV.Location = new System.Drawing.Point(1223, 75);
+            this.btnExit_allSV.BackColor = System.Drawing.Color.White;
+            this.btnExit_allSV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit_allSV.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit_allSV.ForeColor = System.Drawing.Color.DimGray;
+            this.btnExit_allSV.Location = new System.Drawing.Point(1223, 70);
             this.btnExit_allSV.Name = "btnExit_allSV";
-            this.btnExit_allSV.Size = new System.Drawing.Size(161, 35);
+            this.btnExit_allSV.Size = new System.Drawing.Size(161, 40);
             this.btnExit_allSV.TabIndex = 81;
             this.btnExit_allSV.Text = "EXIT";
             this.btnExit_allSV.UseVisualStyleBackColor = false;
             this.btnExit_allSV.Click += new System.EventHandler(this.btnExit_allSV_Click);
+            this.btnExit_allSV.MouseLeave += new System.EventHandler(this.btnExit_allSV_MouseLeave);
+            this.btnExit_allSV.MouseHover += new System.EventHandler(this.btnExit_allSV_MouseHover);
             // 
             // btnHome_allSV
             // 
-            this.btnHome_allSV.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnHome_allSV.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHome_allSV.BackColor = System.Drawing.Color.White;
+            this.btnHome_allSV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome_allSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome_allSV.ForeColor = System.Drawing.Color.White;
-            this.btnHome_allSV.Location = new System.Drawing.Point(1052, 75);
+            this.btnHome_allSV.ForeColor = System.Drawing.Color.MediumBlue;
+            this.btnHome_allSV.Location = new System.Drawing.Point(1052, 70);
             this.btnHome_allSV.Name = "btnHome_allSV";
-            this.btnHome_allSV.Size = new System.Drawing.Size(159, 35);
+            this.btnHome_allSV.Size = new System.Drawing.Size(159, 40);
             this.btnHome_allSV.TabIndex = 80;
             this.btnHome_allSV.Text = "HOME";
             this.btnHome_allSV.UseVisualStyleBackColor = false;
             this.btnHome_allSV.Click += new System.EventHandler(this.btnHome_allSV_Click);
+            this.btnHome_allSV.MouseLeave += new System.EventHandler(this.btnHome_allSV_MouseLeave);
+            this.btnHome_allSV.MouseHover += new System.EventHandler(this.btnHome_allSV_MouseHover);
             // 
             // grbTimKienDSSV
             // 
@@ -2170,7 +2198,6 @@
             this.grbTimKienDSSV.ResumeLayout(false);
             this.grbTimKienDSSV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachAllSinhVien)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2199,11 +2226,11 @@
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.GroupBox grbDay;
         private System.Windows.Forms.Label lblDay;
-        private System.Windows.Forms.Button btnDSNganh;
+        private System.Windows.Forms.Button btnXemDSNganh;
         private System.Windows.Forms.TabPage tabgQLKhoaHoc;
         private System.Windows.Forms.Panel pnKhoaHoc;
         private System.Windows.Forms.GroupBox grbKhoaHoc;
-        private System.Windows.Forms.TextBox txtTenKhoaHoc;
+        private System.Windows.Forms.TextBox txtTenKhoasHoc;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox grbChonNganh;
@@ -2267,7 +2294,7 @@
         private System.Windows.Forms.Panel pnThemSuaXoa_QLK;
         private System.Windows.Forms.Panel pnThemSuaXoa_QLKH;
         private System.Windows.Forms.Button btnDeleteKhoaHoc;
-        private System.Windows.Forms.Button btnNewKhoaHoc;
+        private System.Windows.Forms.Button btnNewKhoasHoc;
         private System.Windows.Forms.Button btnUpdateKhoaHoc;
         private System.Windows.Forms.Button btnSaveKhoaHoc;
         private System.Windows.Forms.Panel pnThemSuaXoa_SV;
@@ -2302,7 +2329,7 @@
         private System.Windows.Forms.RadioButton radNam;
         private System.Windows.Forms.RadioButton radNu;
         private System.Windows.Forms.Label lblMaKhoaKN;
-        private System.Windows.Forms.Label lblMaKhoaHocKL;
+        private System.Windows.Forms.Label lblMaKhoasHocKL;
         private System.Windows.Forms.NumericUpDown nubNienKhoaKL;
         private System.Windows.Forms.DataGridView dgvDanhSachSinhVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn sTTDataGridViewTextBoxColumn;
@@ -2318,7 +2345,6 @@
         private System.Windows.Forms.DataGridView dgvDanhSachAllSinhVien;
         private System.Windows.Forms.GroupBox grbTimKienDSSV;
         private System.Windows.Forms.TextBox txtTimKiemAllSinhVien;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Button btnPrint_allSV;
         private System.Windows.Forms.Button btnExit_allSV;
         private System.Windows.Forms.Button btnHome_allSV;

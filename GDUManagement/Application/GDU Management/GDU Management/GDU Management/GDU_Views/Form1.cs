@@ -31,13 +31,7 @@ namespace GDU_Management.GDU_Views
             }
         }
 
-        public int RandomVerificationCode()
-        {
-            int randomCode = 0;
-            Random rd = new Random();
-            randomCode = rd.Next(100, 999);
-            return randomCode;
-        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -60,10 +54,11 @@ namespace GDU_Management.GDU_Views
 
         private void button2_Click(object sender, EventArgs e)
         {
+            frmLoadingWating frm_loadingW = new frmLoadingWating();
+            frm_loadingW.ShowDialog();
             byte[] imageBytes = Convert.FromBase64String(richTextBox1.Text);
            pictureBox2.Image = ByteArrayToImage(imageBytes);
 
-            MessageBox.Show("code random "+ RandomVerificationCode());
         }
 
         private void Form1_Load(object sender, EventArgs e)

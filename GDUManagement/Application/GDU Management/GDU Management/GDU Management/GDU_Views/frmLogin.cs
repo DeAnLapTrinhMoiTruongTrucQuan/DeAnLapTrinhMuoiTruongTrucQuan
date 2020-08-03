@@ -21,7 +21,7 @@ namespace GDU_Management
         //delegate
         delegate void SendEmailAdminToFrmOther(string emailAdmin);
 
-        // serviec
+        // service
         AdminService adminService = new AdminService();
 
         public void checkLogin()
@@ -39,7 +39,9 @@ namespace GDU_Management
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            //btnLogin.Enabled = false;
+            btnLogin.Enabled = false;
+            txtUsername.Text = "1";
+            txtPassword.Text = "1";
         }
 
         private void lblReset_MouseClick(object sender, MouseEventArgs e)
@@ -71,12 +73,6 @@ namespace GDU_Management
             {
                 MessageBox.Show("Sai Tên tài khoản hoặc mật khẩu. (-__-) !!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-
-            //this.Hide();
-            //GDUManagement gdu = new GDUManagement();
-            //gdu.ShowDialog();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -120,12 +116,12 @@ namespace GDU_Management
       
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            //checkLogin();
+            checkLogin();
         }
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
-            //checkLogin();
+            checkLogin();
         }
 
 

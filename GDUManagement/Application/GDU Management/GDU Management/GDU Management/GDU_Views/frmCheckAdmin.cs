@@ -27,17 +27,16 @@ namespace GDU_Management
         CheckAccountService checkAccountService = new CheckAccountService();
         ContactService contactService = new ContactService();
         AdminService adminService = new AdminService();
-        
 
         //controller
         RandomCodeControlller rd = new RandomCodeControlller();
         SendMessageController sendMessage = new SendMessageController();
 
         //public value
-        string _ID;
         string _email;
         string _VerificationCode;
-        int countVerification = 0;
+        int _countVerification = 0;
+        string _idAdmin;
 
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
@@ -52,9 +51,11 @@ namespace GDU_Management
         //hàm tạo mã xác nhận r lưu vào database
         public void CreateVerificationCode()
         {
+            Admin ad = new Admin();
+            ad = adminService.GetAdminByEmail(_email);
             _VerificationCode = rd.VerificationCode();
             CheckAccount chkAcc = new CheckAccount();
-            chkAcc.MaAdmin = lblIdAdmin.Text.Trim();
+            chkAcc.MaAdmin = ad.MaAdmin;
             chkAcc.Code = _VerificationCode;
             checkAccountService.CheckAcc(chkAcc);
         }
@@ -70,27 +71,27 @@ namespace GDU_Management
             string toEmail = _email;
             string subEmail = contacts.Subject;
             string messEmail = contacts.Message + "\n";
-            string code = "-------------------" + "\n" + _VerificationCode + "\n" + "-------------------";
-            sendMessage.SendVerificationCode(fromEmail, toEmail,subEmail,messEmail+code);
+            string code = "-------------------" + "\n" + _VerificationCode + "\n" + "-------------------" + "\n" + contacts.InfoOther;
+            sendMessage.SendVerificationCode(fromEmail, toEmail, subEmail, messEmail + code);
         }
 
-
+        //load tên vs id admin bằng email
         public void LoadAdmin()
         {
             Admin ad = new Admin();
             ad = adminService.GetAdminByEmail(_email);
-            lblIdAdmin.Text = ad.MaAdmin;
-            lblNameAdmin.Text = ad.TenAdmin; 
+            lblThongTinAdmin.Text = ad.MaAdmin + " - " + ad.TenAdmin;
+            _idAdmin = ad.MaAdmin;
         }
 
+        //khóa tài khoản admin = > chuyển status admin từ 'Activate' -> 'Lock'
         public void LockAccount()
         {
             Admin ad = new Admin();
-            ad = adminService.GetAdminByEmail(_email);
-            ad.MaAdmin = ad.MaAdmin;
+            ad.MaAdmin =_idAdmin;
             ad.StatusAcc = "Lock";
             adminService.UpdateStatusAccountByEmail(ad);
-            MessageBox.Show("Tài khoản admin đã bị khóa vì xác thực SAI quá " + (countVerification - 1) + " lần." + "\n" + "Thoát Chương Trình", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Tài khoản admin đã bị khóa vì xác thực SAI quá " + (_countVerification - 1) + " lần." + "\n" + "Thoát Chương Trình", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             checkAccountService.DeleteVerificationCode();
             Application.Exit();
         }
@@ -100,7 +101,6 @@ namespace GDU_Management
         private void frmCheckAdmin_Load(object sender, EventArgs e)
         {
             LoadAdmin();
-            SendVerificationCodeToAdmin();
             btnGoOnForm.Enabled = false;
         }
 
@@ -138,14 +138,15 @@ namespace GDU_Management
                 }
                 else
                 {
-                    countVerification++;
+                    _countVerification++;
                     txtVerificationCode.Clear();
                     btnGoOnForm.Enabled = false;
-                    MessageBox.Show("Mã xác thực không đúng. Vui lòng kiểm tra lại. "+"\n"+"Bạn đã xác thực "+countVerification
-                        +" lần. Nếu vượt quá 3 lần tài khoản sẻ bị khóa","Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Mã xác thực không đúng. Vui lòng kiểm tra lại. "+"\n"+"Bạn đã xác thực "+_countVerification
+                                 +" lần. Nếu vượt quá 3 lần tài khoản sẻ bị khóa","Thông Báo", 
+                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.lblNote.ForeColor = Color.Red;
-                    lblNote.Text = "Mã Xác Thực không tồn tại. Còn "+(3-countVerification)+" lần xác thực trước khi tài khoản bị khóa.";
-                    if(countVerification > 3)
+                    lblNote.Text = "Mã Xác Thực không tồn tại. Còn "+(3 - _countVerification)+" lần xác thực trước khi tài khoản bị khóa.";
+                    if(_countVerification > 3)
                     {
                         LockAccount();
                     }
@@ -178,9 +179,8 @@ namespace GDU_Management
 
         private void lblCloseCheckAcc_Click(object sender, EventArgs e)
         {
+            checkAccountService.DeleteVerificationCode();
             this.Hide();
-            GDUManagement gdu = new GDUManagement();
-            gdu.ShowDialog();
         }
 
         private void btnGoOnForm_MouseLeave(object sender, EventArgs e)

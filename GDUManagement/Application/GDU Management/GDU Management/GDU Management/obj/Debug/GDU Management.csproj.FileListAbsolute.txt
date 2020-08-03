@@ -1,29 +1,31 @@
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\bin\Debug\GDU Management.exe.config
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\bin\Debug\GDU Management.exe
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\bin\Debug\GDU Management.pdb
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.csprojAssemblyReference.cache
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.Form1.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_View.frmAccount.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmAddNewAdmin.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmCheckAdmin.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmCheckAdmin2.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmContacts.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDanhSachLop.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDanhSachNganh.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDiemAndMonHoc.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmGiaoVienAndTKB.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmInformaitonSinhVien.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmLoadingChecckAdmin.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmLoadingWating.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmOptions.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmPhanCongCongViec.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmPhongHoc.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmQuanLySinhVien.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDUManagement.resources
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmLogin.resources
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.Properties.Resources.resources
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.csproj.GenerateResource.cache
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.csproj.CoreCompileInputs.cache
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.exe
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.pdb
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDUManagement.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmQuanLySinhVien.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDanhSachNganh.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDanhSachLop.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmDiemAndMonHoc.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmGiaoVienAndTKB.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmPhanCongCongViec.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmCheckAdmin.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.frmCheckAdmin2.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_View.frmAccount.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmPhongHoc.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmOptions.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmContacts.resources
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\bin\Debug\GDU Management.exe.config
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\bin\Debug\GDU Management.exe
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\bin\Debug\GDU Management.pdb
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\bin\Debug\FluentValidation.dll
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\bin\Debug\FluentValidation.xml
 D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.csproj.CopyComplete
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmAddNewAdmin.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.frmInformaitonSinhVien.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU_Management.GDU_Views.Form1.resources
-D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.csprojAssemblyReference.cache
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.exe
+D:\GDU\Hoc_Ki_7\LapTrinhMoiTruongTrucQuan\DeAnCuoiKi\App\GDUManager\GDU Management\GDU Management\obj\Debug\GDU Management.pdb

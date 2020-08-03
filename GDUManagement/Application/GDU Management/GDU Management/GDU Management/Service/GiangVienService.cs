@@ -60,5 +60,12 @@ namespace GDU_Management.Service
         {
             return giangVienIDao.SearchGiangVienByEmail(email);
         }
+
+
+        //xóa  danh sách giảng viên theo khoa
+        public void DeleteListGiangVienByMaKhoa(string maKhoa)
+        {
+            giangVienIDao.DeleteListGiangVienByMaKhoa(maKhoa);
+        }
     }
 }

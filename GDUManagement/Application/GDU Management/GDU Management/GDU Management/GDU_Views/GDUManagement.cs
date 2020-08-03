@@ -20,14 +20,14 @@ namespace GDU_Management
         }
 
         //delegate truyen data
-        delegate void SendEmailAdminToChkAdmin(string emailAdmin);
+        delegate void SendEmaiAdminToFrmOther(string email);
 
         //public value
         string _emailAdmin;
+        int khoangCach = 5;
 
-
-        private int khoangCach = 5;
-        //DANH SÁCH HÀM PUBLIC
+        //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
+        //__________________________________________________________//
 
         //1-hàm cập nhật ngày giờ online, bộ điếm thời gian, animation
         public void getThoiGian_Animations()
@@ -51,7 +51,7 @@ namespace GDU_Management
             _emailAdmin = emailAdmin;
         }
 
-        //4-hàm vào form QLSV
+        //hàm vào form QLSV
         public void goToQLSV()
         {
             this.Hide();
@@ -59,7 +59,7 @@ namespace GDU_Management
                 qlsv.ShowDialog();
         }
 
-        //5-hàm vào form Môn Học - Điểm
+        //hàm vào form Môn Học - Điểm
         public void goToMonHoc_Diem()
         {
             this.Hide();
@@ -176,7 +176,6 @@ namespace GDU_Management
             dr = MessageBox.Show("Bạn có muốn Đăng Xuất khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                // Application.Exit();
                 this.Hide();
                 frmLogin frmlogin = new frmLogin();
                 frmlogin.ShowDialog();
@@ -283,7 +282,6 @@ namespace GDU_Management
             this.lblPhanCongCongViec.ForeColor = Color.Blue;
         }
 
-
         private void pnQuanLySinhVien_MouseClick(object sender, MouseEventArgs e)
         {
             goToQLSV();
@@ -309,7 +307,6 @@ namespace GDU_Management
         {
             goToMonHoc_Diem();
         }
-
 
         private void pnThoiKhoaBieu_MouseClick(object sender, MouseEventArgs e)
         {
@@ -345,13 +342,19 @@ namespace GDU_Management
             dr = MessageBox.Show("Đây là phần dành cho quản lý bạn cần phải xác minh trước khi truy cập", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
+                // gui email admin den form loading => gui maill 
+                frmLoadingChecckAdmin frm_loading = new frmLoadingChecckAdmin();
+                SendEmaiAdminToFrmOther sendEmailToLoading = new SendEmaiAdminToFrmOther(frm_loading.FunDataFromGDU);
+                sendEmailToLoading(_emailAdmin);
+
+                //gui mail den form CheckEmail
                 frmCheckAdmin frm_chk = new frmCheckAdmin();
-                SendEmailAdminToChkAdmin sendEmail = new SendEmailAdminToChkAdmin(frm_chk.FunDataChkAcc);
-                sendEmail(_emailAdmin);
+                SendEmaiAdminToFrmOther sendEmailToOption = new SendEmaiAdminToFrmOther(frm_chk.FunDataChkAcc);
+                sendEmailToOption(_emailAdmin);
+
+                frm_loading.ShowDialog();
                 frm_chk.ShowDialog();
             }
         }
-
-
     }
 }

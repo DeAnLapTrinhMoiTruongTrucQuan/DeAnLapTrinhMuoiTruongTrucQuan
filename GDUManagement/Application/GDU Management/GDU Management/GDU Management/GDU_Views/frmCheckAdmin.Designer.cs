@@ -37,12 +37,9 @@
             this.txtVerificationCode = new System.Windows.Forms.TextBox();
             this.lblGuiLaiMaXacNhan = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblNameAdmin = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblIdAdmin = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblImg = new System.Windows.Forms.Label();
             this.lblCloseCheckAcc = new System.Windows.Forms.Label();
+            this.lblThongTinAdmin = new System.Windows.Forms.Label();
             this.pnVerificationCode.SuspendLayout();
             this.panel1.SuspendLayout();
             this.grbCode.SuspendLayout();
@@ -63,13 +60,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblThongTinAdmin);
             this.panel1.Controls.Add(this.grbCode);
             this.panel1.Controls.Add(this.lblGuiLaiMaXacNhan);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.lblNameAdmin);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.lblIdAdmin);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(158, 3);
             this.panel1.Name = "panel1";
@@ -139,53 +133,14 @@
             // 
             // label2
             // 
+            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(28, 74);
+            this.label2.Location = new System.Drawing.Point(28, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(341, 38);
+            this.label2.Size = new System.Drawing.Size(337, 51);
             this.label2.TabIndex = 4;
-            this.label2.Text = "*   Một mã xác nhận vữa được gữi đến mail của bạn. \r\n** Nhập mã xác nhận để tiếp " +
-    "tục\r\n ";
-            // 
-            // lblNameAdmin
-            // 
-            this.lblNameAdmin.AutoSize = true;
-            this.lblNameAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameAdmin.Location = new System.Drawing.Point(106, 40);
-            this.lblNameAdmin.Name = "lblNameAdmin";
-            this.lblNameAdmin.Size = new System.Drawing.Size(36, 20);
-            this.lblNameAdmin.TabIndex = 3;
-            this.lblNameAdmin.Text = "???";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(36, 40);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 20);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Name:";
-            // 
-            // lblIdAdmin
-            // 
-            this.lblIdAdmin.AutoSize = true;
-            this.lblIdAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdAdmin.Location = new System.Drawing.Point(106, 8);
-            this.lblIdAdmin.Name = "lblIdAdmin";
-            this.lblIdAdmin.Size = new System.Drawing.Size(36, 20);
-            this.lblIdAdmin.TabIndex = 1;
-            this.lblIdAdmin.Text = "???";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(36, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ID:";
+            this.label2.Text = "*   Một mã xác nhận vữa được gữi đến mail của bạn. \r\n**  Nhập mã xác nhận để tiếp" +
+    " tục\r\n ";
             // 
             // lblImg
             // 
@@ -206,6 +161,15 @@
             this.lblCloseCheckAcc.Size = new System.Drawing.Size(40, 40);
             this.lblCloseCheckAcc.TabIndex = 2;
             this.lblCloseCheckAcc.Click += new System.EventHandler(this.lblCloseCheckAcc_Click);
+            // 
+            // lblThongTinAdmin
+            // 
+            this.lblThongTinAdmin.Location = new System.Drawing.Point(4, 0);
+            this.lblThongTinAdmin.Name = "lblThongTinAdmin";
+            this.lblThongTinAdmin.Size = new System.Drawing.Size(361, 46);
+            this.lblThongTinAdmin.TabIndex = 7;
+            this.lblThongTinAdmin.Text = "??? - ???";
+            this.lblThongTinAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmCheckAdmin
             // 
@@ -235,15 +199,12 @@
         private System.Windows.Forms.Label lblCloseCheckAcc;
         private System.Windows.Forms.Label lblImg;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblNameAdmin;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblIdAdmin;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblGuiLaiMaXacNhan;
         private System.Windows.Forms.GroupBox grbCode;
         private System.Windows.Forms.TextBox txtVerificationCode;
         private System.Windows.Forms.Button btnGoOnForm;
         private System.Windows.Forms.Label lblNote;
+        private System.Windows.Forms.Label lblThongTinAdmin;
     }
 }

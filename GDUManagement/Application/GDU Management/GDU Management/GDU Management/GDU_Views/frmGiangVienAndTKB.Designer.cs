@@ -1151,6 +1151,7 @@
             // btnNewTKB
             // 
             this.btnNewTKB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNewTKB.Enabled = false;
             this.btnNewTKB.Image = global::GDU_Management.Properties.Resources.icons_add_new_user;
             this.btnNewTKB.Location = new System.Drawing.Point(3, 2);
             this.btnNewTKB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

@@ -658,9 +658,7 @@ namespace GDU_Management
             txtEmailGV.Clear();
             rtxtDiaChi_GV.Clear();
             rtxtGhiChu_GV.Clear();
-            btnSaveGV.Enabled = true;
-            btnUpdateGV.Enabled = false;
-            btnDeleteGV.Enabled = false;
+            txtEmailGV.Enabled = true;
         }
 
         private void btnSaveGV_Click(object sender, EventArgs e)
@@ -929,6 +927,7 @@ namespace GDU_Management
             cboChonHocKy_TKB.Enabled = true;
             LoadDanhSachThoiKhoaBieuToDgv();
             LoadMonHocToCbo();
+            btnNewTKB.Enabled = true;
         }
 
         private void cboChoHocKy_TKB_SelectedIndexChanged(object sender, EventArgs e)
@@ -938,31 +937,38 @@ namespace GDU_Management
 
         private void btnNewTKB_Click(object sender, EventArgs e)
         {
-            
-            cboChonMonHoc_TKB.Enabled = true;
-            cboChonMonHoc_TKB.SelectedItem.ToString();
-            cboChonGV_TKB.ResetText();
-            cboChonPhongHoc_TKB.ResetText();
-            cboChonNgayHoc_TKB.ResetText();
-            lblTinChi.Text = "???";
-            rtxtGhiChu_TKB.Text = "";
-            btnSaveTKB.Enabled = true;
-            btnDeleteTKB.Enabled = false;
-            btnUpdateTKB.Enabled = false;
+            cboChonMonHoc_TKB.DataSource = checkMonHoc();
+            if (cboChonMonHoc_TKB.Text != "")
+            {
+                cboChonMonHoc_TKB.Enabled = true;
+                cboChonMonHoc_TKB.SelectedItem.ToString();
+                cboChonGV_TKB.ResetText();
+                cboChonPhongHoc_TKB.ResetText();
+                cboChonNgayHoc_TKB.ResetText();
+                lblTinChi.Text = "???";
+                rtxtGhiChu_TKB.Text = "";
+                btnSaveTKB.Enabled = true;
+                btnDeleteTKB.Enabled = false;
+                btnUpdateTKB.Enabled = false;
 
-            chkCa1.Enabled = true;
-            chkCa2.Enabled = true;
-            chkCa3.Enabled = true;
-            chkCa4.Enabled = true;
+                chkCa1.Enabled = true;
+                chkCa2.Enabled = true;
+                chkCa3.Enabled = true;
+                chkCa4.Enabled = true;
 
-            chkCa1.Checked = false;
-            chkCa2.Checked = false;
-            chkCa3.Checked = false;
-            chkCa4.Checked = false;
+                chkCa1.Checked = false;
+                chkCa2.Checked = false;
+                chkCa3.Checked = false;
+                chkCa4.Checked = false;
 
-           cboChonMonHoc_TKB.DataSource =  checkMonHoc();
-           cboChonMonHoc_TKB.DisplayMember = "TenMonHoc";
-           cboChonMonHoc_TKB.ValueMember = "MaMonHoc";
+                cboChonMonHoc_TKB.DataSource = checkMonHoc();
+                cboChonMonHoc_TKB.DisplayMember = "TenMonHoc";
+                cboChonMonHoc_TKB.ValueMember = "MaMonHoc";
+            }
+            else
+            {
+                MessageBox.Show("khong co mon hoc, vui long them mon hoc truoc khi khoi tạo tkb");
+            }
 
         }
 
@@ -988,7 +994,6 @@ namespace GDU_Management
                 btnDeleteTKB.Enabled = true;
                 btnUpdateTKB.Enabled = true;
                 cboChonMonHoc_TKB.Enabled = false;
-                
             }
         }
 

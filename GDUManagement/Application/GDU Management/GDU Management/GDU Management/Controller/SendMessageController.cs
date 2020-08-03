@@ -71,5 +71,16 @@ namespace GDU_Management.Controller
             client.Credentials = new NetworkCredential(contact.Email, contact.Pass);
             client.Send(maillMessage);
         }
+
+        public void SendMailAddAdmin(string from, string to, string subject, string message)
+        {
+            InforContact contact = new InforContact();
+            contact = contactService.InfoContact("6");
+            MailMessage maillMessage = new MailMessage(from, to, subject, message);
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.EnableSsl = true;
+            client.Credentials = new NetworkCredential(contact.Email, contact.Pass);
+            client.Send(maillMessage);
+        }
     }
 }

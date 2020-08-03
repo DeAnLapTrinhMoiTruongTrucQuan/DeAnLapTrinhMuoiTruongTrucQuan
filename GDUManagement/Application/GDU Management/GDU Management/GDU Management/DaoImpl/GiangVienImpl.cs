@@ -11,7 +11,7 @@ namespace GDU_Management.DaoImpl
     class GiangVienImpl : IDaoGiangVien
     {
         //tao ket noi database
-        GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
+        GDUDataConnectionsDataContext db ;
         List<GiangVien> listGV;
 
         //tạo mới 1 giảng viên
@@ -30,6 +30,15 @@ namespace GDU_Management.DaoImpl
             GiangVien gv = new GiangVien();
             gv = db.GiangViens.Single(p => p.MaGV == maGV);
             db.GiangViens.DeleteOnSubmit(gv);
+            db.SubmitChanges();
+        }
+
+        //xóa  danh sách giảng viên theo khoa
+        public void DeleteListGiangVienByMaKhoa(string maKhoa)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listGVDelete = from x in db.GiangViens.Where(p => p.MaKhoa == maKhoa) select x;
+            db.GiangViens.DeleteAllOnSubmit(listGVDelete.ToList());
             db.SubmitChanges();
         }
 

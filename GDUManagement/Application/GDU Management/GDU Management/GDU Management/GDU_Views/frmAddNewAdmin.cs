@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using GDU_Management.GDU_View;
 using GDU_Management.Service;
 using GDU_Management.Model;
+using GDU_Management.Controller;
 using System.IO;
 
 namespace GDU_Management.GDU_Views
@@ -21,8 +22,12 @@ namespace GDU_Management.GDU_Views
             InitializeComponent();
         }
 
+        //controller
+        SendMessageController sendMessageController = new SendMessageController();
+
         //khai báo các service
         AdminService adminService = new AdminService();
+        ContactService contactService = new ContactService();
 
         //public value
         string Id_Admin;
@@ -110,6 +115,18 @@ namespace GDU_Management.GDU_Views
             }
         }
 
+        public void SendMaillToAdmin()
+        {
+            InforContact inforContact = new InforContact();
+            inforContact = contactService.InfoContact("6");
+            string fromEmail = inforContact.Email;
+            string toEmail = txtEmail.Text.Trim();
+            string subEmail = inforContact.Subject;
+            string InforAd = "----------------------------------------------------" + "\n" + txtTenAdmin.Text + " - " + lblIDAdmin.Text + "\n" + "----------------------------------------------------";
+            string messEmail = inforContact.Message + "\n "+ InforAd+"\n"+inforContact.InfoOther ;
+            sendMessageController.SendMailAddAdmin(fromEmail, toEmail, subEmail, messEmail);
+        }
+
         //---------------------------KẾT THÚC HÀM PUBLIC---------------------------------//
         //__________________________________________________________//
 
@@ -174,6 +191,7 @@ namespace GDU_Management.GDU_Views
             }
             else
             {
+                SendMaillToAdmin();
                 //SAVE
                 ad.MaAdmin = lblIDAdmin.Text.Trim();
                 ad.TenAdmin = txtTenAdmin.Text.Trim();

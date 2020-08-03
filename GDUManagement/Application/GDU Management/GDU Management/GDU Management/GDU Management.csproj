@@ -138,6 +138,18 @@
     <Compile Include="GDU_Views\frmInformaitonSinhVien.Designer.cs">
       <DependentUpon>frmInformaitonSinhVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="GDU_Views\frmLoadingChecckAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmLoadingChecckAdmin.Designer.cs">
+      <DependentUpon>frmLoadingChecckAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmLoadingWating.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmLoadingWating.Designer.cs">
+      <DependentUpon>frmLoadingWating.cs</DependentUpon>
+    </Compile>
     <Compile Include="GDU_Views\frmOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +254,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmInformaitonSinhVien.resx">
       <DependentUpon>frmInformaitonSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmLoadingChecckAdmin.resx">
+      <DependentUpon>frmLoadingChecckAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmLoadingWating.resx">
+      <DependentUpon>frmLoadingWating.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmOptions.resx">
       <DependentUpon>frmOptions.cs</DependentUpon>
@@ -353,16 +371,7 @@
     <None Include="Resources\icon_gdumanagement_ps_42.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_gdemanagement_ps_42.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_gdumanagement_ps_40.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_gdemanagement_ps_421.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_gdemanagement_2_50.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_gdumanagement_ps_05.jpg" />
@@ -717,6 +726,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Capture-120x62.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\id-loading-4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-loading-100x100.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gif-home-loading-100x100.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gif-285-64x64.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gif-252-128x40.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gif-30-102x15.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gif-84-64x64.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-page-64x51.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-page-68x55.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-page-59x45.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-print-401.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-print-42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-page-51x40.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,7 +30,8 @@ namespace GDU_Management
         //các delegate dùng để truyền id qua các form con
         delegate void SendMaKhoaToFrmDanhSachKhoa(Label dlgtxtMaKhoa);
         delegate void SendMaKhoaHocMaNganhToFrmDanhSachLop(string dlgtMaKhoaHoc, string MaNganh);
-        delegate void SendIdSinhVienToFrmInformationSinhVien(string dlgtIdSv); 
+        delegate void SendIdSinhVienToFrmInformationSinhVien(string dlgtIdSv);
+        delegate void SendEmailToFormOther(string email, string maSV, string TenSV);
 
 
         //khai báo service 
@@ -42,12 +43,11 @@ namespace GDU_Management
         MonHocService monHocService = new MonHocService();
         DiemMonHocService diemMonHocService = new DiemMonHocService();
         ContactService contactService = new ContactService();
+        GiangVienService giangVienService = new GiangVienService();
 
         //khai bao controller
         SendMessageController sendMessage = new SendMessageController();
         
-
-
         //value public
         string _maLopSV;             //giá trị mã lớp lấy từ treeview trên tabSinhVien
 
@@ -56,8 +56,6 @@ namespace GDU_Management
         //__________________________________________________________//
 
         //hàm lấy ngày giờ và điếm thời gian
-
-
         public void NgayGio()
         {
             //get ngày
@@ -157,10 +155,10 @@ namespace GDU_Management
             lblTenKhoa.DataBindings.Add("text", dgvDanhSachKhoa.DataSource, "TenKhoa");
 
             //Tab Khóa & Lớp
-            lblMaKhoaHocKL.DataBindings.Clear();
-            lblMaKhoaHocKL.DataBindings.Add("text", dgvDanhSachKhoasHoc.DataSource, "MaKhoaHoc");
-            txtTenKhoaHoc.DataBindings.Clear();
-            txtTenKhoaHoc.DataBindings.Add("text", dgvDanhSachKhoasHoc.DataSource, "TenKhoaHoc");
+            lblMaKhoasHocKL.DataBindings.Clear();
+            lblMaKhoasHocKL.DataBindings.Add("text", dgvDanhSachKhoasHoc.DataSource, "MaKhoaHoc");
+            txtTenKhoasHoc.DataBindings.Clear();
+            txtTenKhoasHoc.DataBindings.Add("text", dgvDanhSachKhoasHoc.DataSource, "TenKhoaHoc");
             txtNienKhoa.DataBindings.Clear();
             txtNienKhoa.DataBindings.Add("text", dgvDanhSachKhoasHoc.DataSource, "NienKhoa"); 
         }
@@ -238,6 +236,8 @@ namespace GDU_Management
             cboChonNganhKL.DisplayMember = "TenNganh";
             cboChonNganhKL.ValueMember = "MaNganh";
             btnXemDanhSachLop.Enabled = true;
+
+            CheckEnableXemDanhSachLop();
         }
 
         //hàm check data khoa
@@ -255,15 +255,15 @@ namespace GDU_Management
         //hàm check data khóa học
         public bool checkDataKHOAHOC()
         {
-            if (string.IsNullOrEmpty(lblMaKhoaHocKL.Text))
+            if (string.IsNullOrEmpty(lblMaKhoasHocKL.Text))
             {
                 MessageBox.Show("Mã Khóa Học Không được bỏ trống, vui lòng kiểm tra lại...","Cảnh Báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (string.IsNullOrEmpty(txtTenKhoaHoc.Text))
+            if (string.IsNullOrEmpty(txtTenKhoasHoc.Text))
             {
                 MessageBox.Show("Tên Khóa Học Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTenKhoaHoc.Focus();
+                txtTenKhoasHoc.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(txtNienKhoa.Text))
@@ -404,8 +404,8 @@ namespace GDU_Management
             countRows = dgvDanhSachKhoasHoc.Rows.Count;
             if (countRows == 0)
             {
-                lblMaKhoaHocKL.Text = "K01";
-                txtTenKhoaHoc.Text = "Khóa 1";
+                lblMaKhoasHocKL.Text = "K01";
+                txtTenKhoasHoc.Text = "Khóa 1";
             }
             else if (0 < countRows && countRows < 9)
             {
@@ -414,8 +414,8 @@ namespace GDU_Management
                 chuoi_id = Convert.ToString(dgvDanhSachKhoasHoc.Rows[countRows - 1].Cells[1].Value);
                 chuoi_id_key = Convert.ToInt32(chuoi_id.Remove(0, 2));
 
-                lblMaKhoaHocKL.Text = "K0" + (chuoi_id_key + 1).ToString();
-                txtTenKhoaHoc.Text = "Khóa " + (chuoi_id_key + 1).ToString();
+                lblMaKhoasHocKL.Text = "K0" + (chuoi_id_key + 1).ToString();
+                txtTenKhoasHoc.Text = "Khóa " + (chuoi_id_key + 1).ToString();
             }
             else if (countRows >= 9)
             {
@@ -424,8 +424,8 @@ namespace GDU_Management
                 chuoi_id = Convert.ToString(dgvDanhSachKhoasHoc.Rows[countRows - 1].Cells[1].Value);
                 chuoi_id_key = Convert.ToInt32(chuoi_id.Remove(0, 1));
 
-                lblMaKhoaHocKL.Text = "K" + (chuoi_id_key + 1).ToString();
-                txtTenKhoaHoc.Text = "Khóa " + (chuoi_id_key + 1).ToString();
+                lblMaKhoasHocKL.Text = "K" + (chuoi_id_key + 1).ToString();
+                txtTenKhoasHoc.Text = "Khóa " + (chuoi_id_key + 1).ToString();
             }
 
 
@@ -535,7 +535,7 @@ namespace GDU_Management
             var listLop = lopService.GetAllLop();
             foreach(var lp in listLop)
             {
-                if(lp.MaKhoaHoc == lblMaKhoaHocKL.Text)
+                if(lp.MaKhoaHoc == lblMaKhoasHocKL.Text)
                 {
                     btnDeleteKhoaHoc.Enabled = false;
                     break;
@@ -581,6 +581,42 @@ namespace GDU_Management
             sendMessage.SendMaillUpdateSinhVien(from, to, subject, message);
         }
 
+
+        //tạo khoa mặc định
+        public void CreateDataDefault()
+        {
+            Khoa khoa = new Khoa();
+            khoa.MaKhoa = "GD80859900";
+            khoa.TenKhoa = "Faculty Of Default ";
+            khoaService.CreateKhoa(khoa);
+            LoadDanhSachKhoaToDatagridview();
+            LoadDataToCombox();
+        }
+
+        //xóa khoa mặc định
+        public void DeleteDataDefault()
+        {
+            var listDeleteKhoa = khoaService.GetAllKhoa();
+            foreach(var kh in listDeleteKhoa)
+            {
+                if(kh.MaKhoa == "GD80859900")
+                {
+                    khoaService.DeleteKhoa("GD80859900");
+                }
+            }
+        }
+
+        public void CheckEnableXemDanhSachLop()
+        {
+            if (cboChonNganhKL.Text.Equals(""))
+            {
+                btnXemDanhSachLop.Enabled = false;
+            }
+            else
+            {
+                btnXemDanhSachLop.Enabled = true;
+            }
+        }
         //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
         //_________________________________________________________//
         private void timerTime_QLSV_Tick(object sender, EventArgs e)
@@ -656,6 +692,8 @@ namespace GDU_Management
             LoadAllSinhVien();
             ShowDataTuDataGridViewToTextBox();
             LoadDataToCombox();
+            CheckEnableXemDanhSachLop();
+            txtTenKhoa.Focus();
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -686,7 +724,7 @@ namespace GDU_Management
                 frmDanhSachLop frmDSLop = new frmDanhSachLop();
                 SendMaKhoaHocMaNganhToFrmDanhSachLop senMaKhoaHocMaNganh = new SendMaKhoaHocMaNganhToFrmDanhSachLop(frmDSLop.FunDatafrmDanhSachLopToFrmQLSV);
                 string maNganhKL = cboChonNganhKL.SelectedValue.ToString();
-                string maKhoaHocKL = lblMaKhoaHocKL.Text.Trim();
+                string maKhoaHocKL = lblMaKhoasHocKL.Text.Trim();
                 senMaKhoaHocMaNganh(maNganhKL, maKhoaHocKL);
                 frmDSLop.ShowDialog();
             }
@@ -735,6 +773,10 @@ namespace GDU_Management
         {
             if (checkDataKHOA())
             {
+                if(dgvDanhSachKhoa.Rows.Count == 1)
+                {
+                    DeleteDataDefault();
+                }
                 Khoa khoa = new Khoa();
                 khoa.MaKhoa = lblMaKhoaKN.Text.Trim();
                 khoa.TenKhoa = txtTenKhoa.Text.Trim();
@@ -747,10 +789,6 @@ namespace GDU_Management
                 btnDeleteKhoa.Enabled = true;
                 btnUpdateKhoa.Enabled = true;
             }
-            else
-            {
-                MessageBox.Show("Update failed  (-__-) !!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void btnNewKhoa_Click(object sender, EventArgs e)
@@ -760,6 +798,7 @@ namespace GDU_Management
             btnSaveKhoa.Enabled = true;
             btnUpdateKhoa.Enabled = false;
             btnDeleteKhoa.Enabled = false;
+            txtTenKhoa.Enabled = true;
             txtTenKhoa.Text = "";
             txtTenKhoa.Focus();
         }
@@ -768,7 +807,7 @@ namespace GDU_Management
         {
             if (string.IsNullOrEmpty(lblMaKhoaKN.Text))
             {
-                MessageBox.Show("Cập nhật thông tin '" + lblMaKhoaKN.Text + "' Thất bại, Vui Lòng Kiểm Tra Lại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Update " + lblMaKhoaKN.Text + "Failed (-_-)!!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -776,7 +815,7 @@ namespace GDU_Management
                 kh.MaKhoa = lblMaKhoaKN.Text;
                 kh.TenKhoa = txtTenKhoa.Text;
                 khoaService.UpdateKhoa(kh);
-                MessageBox.Show("Cập nhật thông tin '" + lblMaKhoaKN.Text + "' Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Update " + lblMaKhoaKN.Text + " Successfully </>", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadDanhSachKhoaToDatagridview();
                 LoadDataToCombox();
             }
@@ -784,26 +823,29 @@ namespace GDU_Management
 
         private void btnDeleteKhoa_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn Có Muốn Xóa '"+ lblMaKhoaKN.Text +"' ?", "THÔNG BÁO" ,MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn Có Muốn Xóa '"+ lblMaKhoaKN.Text +"' ?", "Thông Báo" ,MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                string maKhoa;
-                maKhoa = lblMaKhoaKN.Text.Trim();
-                if (string.IsNullOrEmpty(lblMaKhoaKN.Text))
+                if (lblMaKhoaKN.Text.Equals("???"))
                 {
-                    MessageBox.Show("Xóa Thất Bại", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("Xóa Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
                 else
                 {
-                    khoaService.DeleteKhoa(maKhoa);
-                    lblMaKhoaKN.Text = "null";
+                    giangVienService.DeleteListGiangVienByMaKhoa(lblMaKhoaKN.Text);
+                    khoaService.DeleteKhoa(lblMaKhoaKN.Text.Trim());
+                    lblMaKhoaKN.Text = "???";
                     txtTenKhoa.Text = "";
                     btnNewKhoa.Enabled = true;
                     btnSaveKhoa.Enabled = false;
                     btnUpdateKhoa.Enabled = false;
                     btnDeleteKhoa.Enabled = false;
                     LoadDanhSachKhoaToDatagridview();
+                    if (dgvDanhSachKhoa.Rows.Count == 0)
+                    {
+                        CreateDataDefault();
+                    }
                     LoadDataToCombox();
-                    MessageBox.Show("Đã Xóa...!!!", "Thông Báo", MessageBoxButtons.OK);
+                    MessageBox.Show("Delete Successfully", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -820,6 +862,7 @@ namespace GDU_Management
             else
             {
                 txtTenKhoa.Focus();
+                txtTenKhoa.Enabled = true;
                 btnSaveKhoa.Enabled = false;
                 btnUpdateKhoa.Enabled = true;
                 btnDeleteKhoa.Enabled = true;
@@ -835,8 +878,8 @@ namespace GDU_Management
             string maKhoa = cboChonKhoaKL.SelectedValue.ToString();
             cboChonNganhKL.DataSource = nganhHocService.GetNganhHocByKHOA(maKhoa);
             cboChonNganhKL.DisplayMember = "TenNganh";
-            cboChonNganhKL.ValueMember = "MaNganh";
-            btnXemDanhSachLop.Enabled = true;
+            cboChonNganhKL.ValueMember = "MaNganh"; 
+            CheckEnableXemDanhSachLop();
         }
 
         private void cboChonNganh_SelectedIndexChanged(object sender, EventArgs e)
@@ -847,6 +890,8 @@ namespace GDU_Management
         private void btnNewKhoaHoc_Click(object sender, EventArgs e)
         {
             AutoDataKhoas();
+            txtTenKhoasHoc.Enabled = true;
+            txtNienKhoa.Enabled = true;
             nubNienKhoaKL.Enabled = true;
             btnSaveKhoaHoc.Enabled = true;
             btnUpdateKhoaHoc.Enabled = false;
@@ -872,37 +917,34 @@ namespace GDU_Management
                 int soNienKhoa = Convert.ToInt32(nubNienKhoaKL.Value.ToString());
 
                 KhoasHoc khoaHoc = new KhoasHoc();
-                khoaHoc.MaKhoaHoc = lblMaKhoaHocKL.Text.Trim();
-                khoaHoc.TenKhoaHoc = txtTenKhoaHoc.Text.Trim();
+                khoaHoc.MaKhoaHoc = lblMaKhoasHocKL.Text.Trim();
+                khoaHoc.TenKhoaHoc = txtTenKhoasHoc.Text.Trim();
                 khoaHoc.NienKhoa = txtNienKhoa.Text.Trim()+"-" + (nienKhoa + soNienKhoa);
 
                 khoaHocService.CreateKhoaHoc(khoaHoc);
                 LoadDanhSachKhoasHocToDatagridview();
-                MessageBox.Show("Thêm Thành Công...", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Save Successfully </>", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnSaveKhoaHoc.Enabled = false;
                 nubNienKhoaKL.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Thêm Thất Bại, Vui Lòng Kiểm Tra Lạ...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnUpdateKhoaHoc_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(lblMaKhoaHocKL.Text))
+            if (string.IsNullOrEmpty(lblMaKhoasHocKL.Text))
             {
-                MessageBox.Show("Cập Nhật Thông Tin '" + lblMaKhoaHocKL.Text + "' Thất bại, Vui Lòng Kiểm Tra lại...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Update '" + lblMaKhoasHocKL.Text + "' Failed (-_-)!!!...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 KhoasHoc khoaHoc = new KhoasHoc();
-                khoaHoc.MaKhoaHoc = lblMaKhoaHocKL.Text.Trim();
-                khoaHoc.TenKhoaHoc = txtTenKhoaHoc.Text.Trim();
+                khoaHoc.MaKhoaHoc = lblMaKhoasHocKL.Text.Trim();
+                khoaHoc.TenKhoaHoc = txtTenKhoasHoc.Text.Trim();
                 khoaHoc.NienKhoa = txtNienKhoa.Text.Trim();
                 khoaHocService.UpdateKhoaHoc(khoaHoc);
                 LoadDanhSachKhoasHocToDatagridview();
-                MessageBox.Show("Cập Nhật Thông Tin '" + lblMaKhoaHocKL.Text + "' Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Update " + lblMaKhoasHocKL.Text + " Successfully </>", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadDataToCombox();
             }
         }
 
@@ -916,6 +958,9 @@ namespace GDU_Management
             }
             else
             {
+                txtTenKhoasHoc.Enabled = true;
+                txtNienKhoa.Enabled = true;
+                nubNienKhoaKL.Enabled = true;
                 ShowDataTuDataGridViewToTextBox();
                 btnSaveKhoaHoc.Enabled = false;
                 btnUpdateKhoaHoc.Enabled = true;
@@ -927,10 +972,10 @@ namespace GDU_Management
 
         private void btnDeleteKhoaHoc_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn Có Muốn Xóa '" + lblMaKhoaHocKL.Text + "' ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn Có Muốn Xóa '" + lblMaKhoasHocKL.Text + "' ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                string maKhoaHoc = lblMaKhoaHocKL.Text;
-                if (string.IsNullOrEmpty(lblMaKhoaHocKL.Text))
+                string maKhoaHoc = lblMaKhoasHocKL.Text;
+                if (string.IsNullOrEmpty(lblMaKhoasHocKL.Text))
                 {
                     MessageBox.Show("Xóa Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -938,12 +983,13 @@ namespace GDU_Management
                 {
                     khoaHocService.DeleteKhoaHoc(maKhoaHoc);
                     LoadDanhSachKhoasHocToDatagridview();
-                    MessageBox.Show("Đã Xóa ["+lblMaKhoaHocKL.Text+"]", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    lblMaKhoaHocKL.Text = "null";
-                    txtTenKhoaHoc.Text = "";
+                    MessageBox.Show("Delete Successfully </>", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lblMaKhoasHocKL.Text = "???";
+                    txtTenKhoasHoc.Text = "";
                     txtNienKhoa.Text = "";
                     btnDeleteKhoa.Enabled = false;
                     btnUpdateKhoa.Enabled = false;
+                    LoadDataToCombox();
                 }
             }
          }
@@ -956,9 +1002,6 @@ namespace GDU_Management
 
         private void txtTimKiemKhoaHocKL_TextChanged(object sender, EventArgs e)
         {
-            //dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByMaKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
-            //dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByTenKhoaHoc(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
-            //dgvDanhSachKhoaHoc.DataSource = khoaHocService.SearchKhoaHocByNienKhoa(txtTimKiemKhoaHocKL.Text.Trim()).ToList();
 
             if (checkNumber(txtTimKiemKhoasHoc_KL.Text))
             {
@@ -989,9 +1032,9 @@ namespace GDU_Management
 
         private void cboChonKhoaHocSV_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (cboChonNganhSV.Text=="")
+            if (cboChonNganhSV.Text=="" || trvDSLop.Nodes == null)
             {
-                MessageBox.Show("Danh Sách Lớp Null", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Danh Sách Lớp Trống", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -1057,8 +1100,11 @@ namespace GDU_Management
         {
             if (checkDataSINHVIEN())
             {
-                //gui email thong bao da add tai khoang;
-                SendMaillAddSinhVienSuccessfully();
+                // gưi email sinh viên đến form loading => gưi mail đã add sinh viên đến sv
+                frmLoadingWating frm_loading = new frmLoadingWating();
+                SendEmailToFormOther sendEmailToLoading = new SendEmailToFormOther(frm_loading.FunDataEmailFromQLSV);
+                sendEmailToLoading(txtEmail.Text, lblMaSV.Text, txtTenSV.Text);
+                frm_loading.ShowDialog();
 
                 //thêm sinh viên
                 SinhVien sv = new SinhVien();
@@ -1087,7 +1133,7 @@ namespace GDU_Management
                 //
                 sinhVienService.CreateSinhVien(sv);
                 LoadDanhSachSinhVienToDgv();
-                MessageBox.Show("Thêm Thành Công...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Save Successfully </>", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnSaveSV.Enabled = false;
                 btnUpdateSV.Enabled = true;
                 btnDeleteSV.Enabled = true;
@@ -1212,12 +1258,15 @@ namespace GDU_Management
 
         private void dgvDanhSachKhoasHoc_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if(cboChonNganhKL.Text != "")
+            {
                 frmDanhSachLop frmDSLop = new frmDanhSachLop();
                 SendMaKhoaHocMaNganhToFrmDanhSachLop senMaKhoaHocMaNganh = new SendMaKhoaHocMaNganhToFrmDanhSachLop(frmDSLop.FunDatafrmDanhSachLopToFrmQLSV);
                 string maNganhKL = cboChonNganhKL.SelectedValue.ToString();
-                string maKhoaHocKL = lblMaKhoaHocKL.Text.Trim();
+                string maKhoaHocKL = lblMaKhoasHocKL.Text.Trim();
                 senMaKhoaHocMaNganh(maNganhKL, maKhoaHocKL);
                 frmDSLop.ShowDialog();
+            }
         }
 
         private void txtTimKiemSV_Click(object sender, EventArgs e)
@@ -1239,6 +1288,7 @@ namespace GDU_Management
             else
             {
                 dgvDanhSachAllSinhVien.DataSource = sinhVienService.SearchAllSinhVien(txtTimKiemAllSinhVien.Text, txtTimKiemAllSinhVien.Text);
+                CountRowsAllSV();
             }
         }
 
@@ -1268,7 +1318,102 @@ namespace GDU_Management
 
         private void btnNewKhoa_MouseHover(object sender, EventArgs e)
         {
-            MessageBox.Show("");
+            this.btnNewKhoa.ForeColor = Color.Blue;
+        }
+
+        private void btnNewKhoa_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnNewKhoa.ForeColor = Color.Black;
+        }
+
+        private void btnSaveKhoa_MouseHover(object sender, EventArgs e)
+        {
+            this.btnSaveKhoa.ForeColor = Color.Blue;
+        }
+
+        private void btnSaveKhoa_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnSaveKhoa.ForeColor = Color.Black;
+        }
+
+        private void btnUpdateKhoa_MouseHover(object sender, EventArgs e)
+        {
+            this.btnUpdateKhoa.ForeColor = Color.Blue;
+        }
+
+        private void btnUpdateKhoa_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnUpdateKhoa.ForeColor = Color.Black;
+        }
+
+        private void btnDeleteKhoa_MouseHover(object sender, EventArgs e)
+        {
+            this.btnDeleteKhoa.ForeColor = Color.Blue;
+        }
+
+        private void btnDeleteKhoa_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnDeleteKhoa.ForeColor = Color.Black;
+        }
+
+        private void btnDSNganh_MouseHover(object sender, EventArgs e)
+        {
+            this.btnXemDSNganh.ForeColor = Color.MidnightBlue;
+            this.btnXemDSNganh.BackColor = Color.White;
+        }
+
+        private void btnXemDSNganh_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnXemDSNganh.ForeColor = Color.White;
+            this.btnXemDSNganh.BackColor = Color.Blue;
+        }
+
+        private void btnHome_SV_MouseHover(object sender, EventArgs e)
+        {
+            this.btnHome_SV.BackColor = Color.Blue;
+            this.btnHome_SV.ForeColor = Color.White;
+        }
+
+        private void btnHome_SV_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnHome_SV.BackColor = Color.White;
+            this.btnHome_SV.ForeColor = Color.Blue;
+        }
+
+        private void btnExitSV_MouseHover(object sender, EventArgs e)
+        {
+            this.btnExitSV.BackColor = Color.DimGray;
+            this.btnExitSV.ForeColor = Color.White;
+        }
+
+        private void btnExitSV_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnExitSV.BackColor = Color.White;
+            this.btnExitSV.ForeColor = Color.DimGray;
+        }
+
+        private void btnHome_allSV_MouseHover(object sender, EventArgs e)
+        {
+            this.btnHome_allSV.BackColor = Color.Blue;
+            this.btnHome_allSV.ForeColor = Color.White;
+        }
+
+        private void btnHome_allSV_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnHome_allSV.BackColor = Color.White;
+            this.btnHome_allSV.ForeColor = Color.Blue;
+        }
+
+        private void btnExit_allSV_MouseHover(object sender, EventArgs e)
+        {
+            this.btnExit_allSV.BackColor = Color.DimGray;
+            this.btnExit_allSV.ForeColor = Color.White;
+        }
+
+        private void btnExit_allSV_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnExit_allSV.BackColor = Color.White;
+            this.btnExit_allSV.ForeColor = Color.DimGray;
         }
     }
 }

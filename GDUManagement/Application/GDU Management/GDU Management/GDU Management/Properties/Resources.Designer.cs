@@ -143,6 +143,56 @@ namespace GDU_Management.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gif_252_128x40 {
+            get {
+                object obj = ResourceManager.GetObject("gif-252-128x40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gif_285_64x64 {
+            get {
+                object obj = ResourceManager.GetObject("gif-285-64x64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gif_30_102x15 {
+            get {
+                object obj = ResourceManager.GetObject("gif-30-102x15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gif_84_64x64 {
+            get {
+                object obj = ResourceManager.GetObject("gif-84-64x64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gif_home_loading_100x100 {
+            get {
+                object obj = ResourceManager.GetObject("gif-home-loading-100x100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_diem {
             get {
                 object obj = ResourceManager.GetObject("icon_diem", resourceCulture);
@@ -513,6 +563,46 @@ namespace GDU_Management.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_home_page_51x40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-home-page-51x40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_home_page_59x45 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-home-page-59x45", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_home_page_64x51 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-home-page-64x51", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_home_page_68x55 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-home-page-68x55", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_open_in_popup_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8-open-in-popup-32", resourceCulture);
@@ -526,6 +616,26 @@ namespace GDU_Management.Properties {
         internal static System.Drawing.Bitmap icons8_print_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-print-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_print_401 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-print-401", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_print_42 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-print-42", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

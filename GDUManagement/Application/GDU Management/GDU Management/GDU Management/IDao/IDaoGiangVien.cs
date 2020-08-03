@@ -17,5 +17,6 @@ namespace GDU_Management.IDao
         GiangVien GetGiangVienByMaGV(string maGV);
         void UpdateAccountGiangVien(GiangVien giangVien);
         List<GiangVien> SearchGiangVienByEmail(string email);
+        void DeleteListGiangVienByMaKhoa(string maKhoa);
     }
 }

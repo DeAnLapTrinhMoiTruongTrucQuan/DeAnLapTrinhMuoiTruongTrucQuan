@@ -33,6 +33,15 @@ namespace GDU_Management.DaoImpl
             db.SubmitChanges();
         }
 
+        //xóa môn học theo ngành
+        public void DeleteMonHocByNganh(string maNganh)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listMonHocDelete = from x in db.MonHocs.Where(p => p.MaNganh == maNganh) select x;
+            db.MonHocs.DeleteAllOnSubmit(listMonHocDelete.ToList());
+            db.SubmitChanges();
+        }
+
         public List<MonHoc> GetAllMonHoc()
         {
             //code content
@@ -66,5 +75,7 @@ namespace GDU_Management.DaoImpl
             mh.STC = monHoc.STC;
             db.SubmitChanges();
         }
+
+
     }
 }
