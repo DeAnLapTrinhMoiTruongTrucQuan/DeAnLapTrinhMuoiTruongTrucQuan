@@ -298,6 +298,21 @@ namespace GDU_Management
                     txtEmail.Focus();
                     return false;
                 }
+                var listEmailSV = sinhVienService.GetAllSinhVien();
+                foreach(var emailSV in listEmailSV)
+                {
+                    if(txtEmail.Text.ToString() == emailSV.Email)
+                    {
+                        MessageBox.Show("Email Đã Tồn Tại", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    if(IsNullOrWhiteSpace(txtEmail.Text.ToString().Trim()) == false)
+                    {
+                        MessageBox.Show("Email Không được chứa khoảng trắng", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                        break;
+                    }
+                }
             }
             else
             {
@@ -317,6 +332,16 @@ namespace GDU_Management
                     txtSdt.Focus();
                     return false;
                 }
+                var listEmailSV = sinhVienService.GetAllSinhVien();
+                foreach (var emailSV in listEmailSV)
+                {
+                    if (txtSdt.Text.ToString() == emailSV.SDT)
+                    {
+                        MessageBox.Show("SĐT Đã Tồn Tại", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+
             }
             else
             {
@@ -334,6 +359,20 @@ namespace GDU_Management
             }
             return true;
         }
+
+        //check khoảng trắng
+        public static bool IsNullOrWhiteSpace(String value)
+        {
+            if (value == null) return true;
+
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (value[i].Equals(" "))
+                    return false;
+            }
+            return true;
+        }
+
 
         //hàm  đóng kích hoạt các button khi hệ thống bắt đầu
         public void EnableFalseButton()
@@ -446,14 +485,12 @@ namespace GDU_Management
                 SLSV = ssv.STT;
             }
             string LastIdKhoas = cboChonKhoasHocSV.SelectedValue.ToString().Substring(1);                //lấy 2 số cuối mã khóa
-            string LastIdLop = _maLopSV.Substring(8);
-           
-            //đếm số lượng sinh viên có trong data
+            string LastIdLop = _maLopSV.Substring(8);                                                                           //đếm số lượng sinh viên có trong data
            
 
             if (SLSV < 10)
             {
-                lblMaSV.Text = "GD" + LastIdKhoas + LastIdLop + "000" + SLSV;
+                lblMaSV.Text = "GD" + LastIdKhoas + LastIdLop + "000" + (SLSV+1);
             }
             else if(SLSV < 100)
             {

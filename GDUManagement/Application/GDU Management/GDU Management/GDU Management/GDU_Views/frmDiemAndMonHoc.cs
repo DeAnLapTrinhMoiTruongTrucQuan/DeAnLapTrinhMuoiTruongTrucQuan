@@ -108,6 +108,7 @@ namespace GDU_Management
             }
             else
             {
+                dgvDanhSachMonHoc.Enabled = true;
                 lblMaMonHocMH.DataBindings.Clear();
                 lblMaMonHocMH.DataBindings.Add("text", dgvDanhSachMonHoc.DataSource, "MaMonHoc");
                 txtTenMon_MH.DataBindings.Clear();

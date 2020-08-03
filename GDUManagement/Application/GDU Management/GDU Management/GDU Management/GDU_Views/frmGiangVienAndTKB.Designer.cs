@@ -255,6 +255,7 @@
             // 
             // btnExit_GV
             // 
+            this.btnExit_GV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit_GV.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit_GV.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnExit_GV.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
@@ -270,10 +271,11 @@
             // 
             // btnHomeGV
             // 
-            this.btnHomeGV.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnHomeGV.BackColor = System.Drawing.Color.White;
+            this.btnHomeGV.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHomeGV.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHomeGV.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHomeGV.Image = global::GDU_Management.Properties.Resources.icons_home_page_45;
+            this.btnHomeGV.Image = global::GDU_Management.Properties.Resources.icons8_home_page_51x40;
             this.btnHomeGV.Location = new System.Drawing.Point(188, 5);
             this.btnHomeGV.Name = "btnHomeGV";
             this.btnHomeGV.Size = new System.Drawing.Size(154, 60);
@@ -283,10 +285,11 @@
             // 
             // btnExportDSMonHoc
             // 
-            this.btnExportDSMonHoc.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnExportDSMonHoc.BackColor = System.Drawing.Color.White;
+            this.btnExportDSMonHoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportDSMonHoc.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportDSMonHoc.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExportDSMonHoc.Image = global::GDU_Management.Properties.Resources.icons_print_45;
+            this.btnExportDSMonHoc.Image = global::GDU_Management.Properties.Resources.icons8_print_42;
             this.btnExportDSMonHoc.Location = new System.Drawing.Point(3, 5);
             this.btnExportDSMonHoc.Name = "btnExportDSMonHoc";
             this.btnExportDSMonHoc.Size = new System.Drawing.Size(179, 60);
@@ -1112,6 +1115,7 @@
             // 
             // btnExit_TKB
             // 
+            this.btnExit_TKB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit_TKB.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit_TKB.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnExit_TKB.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
@@ -1188,10 +1192,11 @@
             // 
             // btnHomTKB
             // 
-            this.btnHomTKB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnHomTKB.BackColor = System.Drawing.Color.White;
+            this.btnHomTKB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHomTKB.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHomTKB.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHomTKB.Image = global::GDU_Management.Properties.Resources.icons_home_page_45;
+            this.btnHomTKB.Image = global::GDU_Management.Properties.Resources.icons8_home_page_59x45;
             this.btnHomTKB.Location = new System.Drawing.Point(710, 263);
             this.btnHomTKB.Name = "btnHomTKB";
             this.btnHomTKB.Size = new System.Drawing.Size(143, 55);
@@ -1201,10 +1206,11 @@
             // 
             // btnExportTKB
             // 
-            this.btnExportTKB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnExportTKB.BackColor = System.Drawing.Color.White;
+            this.btnExportTKB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportTKB.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportTKB.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExportTKB.Image = global::GDU_Management.Properties.Resources.icons_print_45;
+            this.btnExportTKB.Image = global::GDU_Management.Properties.Resources.icons8_print_42;
             this.btnExportTKB.Location = new System.Drawing.Point(542, 265);
             this.btnExportTKB.Name = "btnExportTKB";
             this.btnExportTKB.Size = new System.Drawing.Size(162, 55);

@@ -24,5 +24,6 @@ namespace GDU_Management.IDao
         void UpdateAccountSinhVien(SinhVien sinhVien);
         List<SinhVien> SearchAccountSinhVienByEmail(string email);
         List<SinhVien> SearchAllSinhVien(string maSV, string tenSV);
+
     }
 }
